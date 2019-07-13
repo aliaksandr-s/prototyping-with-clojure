@@ -25,5 +25,8 @@ With this one image we covered 3 user stories at once, that's basically gonna be
 
 Here we created a few simple forms for login and registration. Nothing too fancy just a few fields one button and a link. And that's it for this chapter.
 
-[map]: https://raw.githubusercontent.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-02/map.png
-[login]: https://raw.githubusercontent.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-02/login.png
+[map]: https://raw.githubusercontent.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-01/map.png
+[login]: https://raw.githubusercontent.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-01/login.png
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5OTQzNTg5MzBdfQ==
+-->
