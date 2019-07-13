@@ -7,6 +7,7 @@ This series of tutorials is supposed to show you how to turn your ideas into wor
 [1]: https://www.braveclojure.com/clojure-for-the-brave-and-true/
 
 ## Table of contents
-Chapter-1: The app idea
-Chapter-2: Environment set up
-Chapter-3: ....
+
+### Chapter-1: The app idea
+### Chapter-2: Environment set up
+### Chapter-3: ....
