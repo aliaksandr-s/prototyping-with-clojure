@@ -66,14 +66,14 @@ Then choose `Figwhell` and specify adress with a port `localhost:7002`. And let'
 
 And now we need to run this function the same way. Put your cursor before or after `(mount-components)` expression inside `init!` function and eval it using Calva. Text in your browser should immediatelly change. And of course I'd recommend using hotkeys to evaluate expressions using Calva. 
 
-Code for this chapter can be found in `app/chapter-3` folder.
+Code for this chapter can be found in `app/chapter-2` folder.
 
 
 
 
 
 
-		
+
 [1]: https://leiningen.org/#install
 [2]: http://www.luminusweb.net/
 [3]: https://code.visualstudio.com/
