@@ -8,10 +8,11 @@ It should be clear from the series title that as a main language we'll be using 
 
 ### Database 
 
-Our app is relatively small and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But **Clojure** is so awesome and cool that we can even use it as a database.   
+Our app is relatively small and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But   
 
 ### 3
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00Mz
-I5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbLTE0NDU4NTY0ODAsLTQ4MTQxOTE0OCwxMj
+IzNjgwODQ0LC00MzI5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3
+ODk3NzRdfQ==
 -->
