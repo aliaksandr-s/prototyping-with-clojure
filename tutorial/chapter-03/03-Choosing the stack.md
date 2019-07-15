@@ -4,8 +4,8 @@ In this chapter we're gonna decide what tools we're gonna use to build our app. 
 
 ## Choosing the tools
 
-
+It should be clear from the series title that as a main language we'll be using **Clojure** 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzA0OTM2NjExLC0xNDYzNzAwNDczLC0xMz
-QxNzg5Nzc0XX0=
+eyJoaXN0b3J5IjpbLTQzMjk5NDE2MiwtMTQ2MzcwMDQ3MywtMT
+M0MTc4OTc3NF19
 -->
