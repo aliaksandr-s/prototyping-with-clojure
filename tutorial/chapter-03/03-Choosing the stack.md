@@ -10,14 +10,16 @@ It should be clear from the series title that as a main language we'll be using 
 
 Our app is relatively small and simple and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But why not using something more clojurish so we'll choose  [**Datomic**][datomic]. As a query language it uses [**Datalog**][datalog] which is kinda a mix of logic programming and [edn] (a data format, similar to json in javascript world)
 
-### 3
+### Scaffolding
+
+### R
 
 
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NTE5Mjk2MzAsMzIyMzk5NzAyLC0xND
-Q1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0NCwtNDMyOTk0
-MTYyLC0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX0=
+eyJoaXN0b3J5IjpbNzUzNzI0NDYyLDMyMjM5OTcwMiwtMTQ0NT
+g1NjQ4MCwtNDgxNDE5MTQ4LDEyMjM2ODA4NDQsLTQzMjk5NDE2
+MiwtMTQ2MzcwMDQ3MywtMTM0MTc4OTc3NF19
 -->
