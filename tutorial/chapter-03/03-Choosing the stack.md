@@ -16,16 +16,16 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Authentication
 
-### View rendering
+### View rendering 
 
-### 
+### State managament
 
 
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTYzNDA2ODMwLDMyMjM5OTcwMiwtMTQ0NT
-g1NjQ4MCwtNDgxNDE5MTQ4LDEyMjM2ODA4NDQsLTQzMjk5NDE2
-MiwtMTQ2MzcwMDQ3MywtMTM0MTc4OTc3NF19
+eyJoaXN0b3J5IjpbMjEzOTQ1NDg3NCwzMjIzOTk3MDIsLTE0ND
+U4NTY0ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00MzI5OTQx
+NjIsLTE0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
 -->
