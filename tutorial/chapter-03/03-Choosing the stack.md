@@ -8,15 +8,16 @@ It should be clear from the series title that as a main language we'll be using 
 
 ### Database 
 
-Our app is relatively small and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But why not using something more clojurish so we'll stick with [**Datomic**][datomic]. As a query language it uses [**Datalog**][datalog] which is kinda a mix of logic programming and [Edn]
+Our app is relatively small and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But why not using something more clojurish so we'll stick with [**Datomic**][datomic]. As a query language it uses [**Datalog**][datalog] which is kinda a mix of logic programming and [edn] ()
 
 ### 3
 
 
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
 [datalog]: http://www.learndatalogtoday.org/
+[edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTUyODQ5MzgzLC0xNDQ1ODU2NDgwLC00OD
+eyJoaXN0b3J5IjpbMzIyMzk5NzAyLC0xNDQ1ODU2NDgwLC00OD
 E0MTkxNDgsMTIyMzY4MDg0NCwtNDMyOTk0MTYyLC0xNDYzNzAw
 NDczLC0xMzQxNzg5Nzc0XX0=
 -->
