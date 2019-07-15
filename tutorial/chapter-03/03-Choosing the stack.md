@@ -8,10 +8,10 @@ It should be clear from the series title that as a main language we'll be using 
 
 ### Database 
 
-Our app is relatively small and we don't have any special needs so we can probably use pos.  
+Our app is relatively small and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But we'll use   
 
 ### 3
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkxMjk4MTA2MiwxMjIzNjgwODQ0LC00Mz
-I5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbLTEwMDU3OTU4NDAsMTIyMzY4MDg0NCwtND
+MyOTk0MTYyLC0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX0=
 -->
