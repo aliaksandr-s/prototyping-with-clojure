@@ -12,14 +12,20 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Scaffolding
 
-### R
+### Routing
+
+### Authentication
+
+### View rendering
+
+### 
 
 
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzUzNzI0NDYyLDMyMjM5OTcwMiwtMTQ0NT
+eyJoaXN0b3J5IjpbNTYzNDA2ODMwLDMyMjM5OTcwMiwtMTQ0NT
 g1NjQ4MCwtNDgxNDE5MTQ4LDEyMjM2ODA4NDQsLTQzMjk5NDE2
 MiwtMTQ2MzcwMDQ3MywtMTM0MTc4OTc3NF19
 -->
