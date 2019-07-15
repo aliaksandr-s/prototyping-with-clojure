@@ -4,8 +4,8 @@ In this chapter we're gonna decide what tools we're gonna use to build our app. 
 
 ## Choosing the tools
 
-It should be clear from the series title that as a main language we'll be using **Clojure**. But besides the language itself we need a database to save our users trips.   
+It should be clear from the series title that as a main language we'll be using **Clojure**. But besides the language itself we need a database to save our users trips. We need something to help us with pro  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNDg3MDgwMTAsLTQzMjk5NDE2MiwtMT
-Q2MzcwMDQ3MywtMTM0MTc4OTc3NF19
+eyJoaXN0b3J5IjpbLTk4NDI0MjkxMSwtNDMyOTk0MTYyLC0xND
+YzNzAwNDczLC0xMzQxNzg5Nzc0XX0=
 -->
