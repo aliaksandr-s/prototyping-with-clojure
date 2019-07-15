@@ -4,8 +4,8 @@ In this chapter we're gonna decide what tools we're gonna use to build our app. 
 
 ## Choosing the tools
 
-It should be clear from the series title that as a main language we'll be using **Clojure**. But besides the language itself we need a database to save our users trips. We need something to help us with project scaffolding because it may take tremendous amount of time and you may even lose all the interest in developing the app itself.  
+It should be clear from the series title that as a main language we'll be using **Clojure**. But besides the language itself we need a database to save our users trips. We need something to help us with project scaffolding because it may take tremendous amount of time and you may even lose all the interest in developing the app itself. And also we need a bunch of libraries to help us with authentication and authorization,  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0OTI4Mzk3LC00MzI5OTQxNjIsLTE0Nj
+eyJoaXN0b3J5IjpbODE4NTU4NzYyLC00MzI5OTQxNjIsLTE0Nj
 M3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
 -->
