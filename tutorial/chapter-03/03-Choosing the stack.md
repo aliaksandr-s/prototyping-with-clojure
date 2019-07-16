@@ -16,7 +16,7 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Routing
 
-
+To distinguish between reqests from the client we need a routing library
 
 
 ### Authentication
@@ -31,10 +31,10 @@ Our app is relatively small and simple and we don't have any special needs so we
 [edn]: https://github.com/edn-format/edn
 [luminus]: http://www.luminusweb.net/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2NTc4NjYwLDU5NzI4MTI4OCwtOTcyNj
-g5MjkyLC0xNTMwNzQxMDU3LDE4Njc5MTIzODcsNzEwNTYzNjM3
-LDIwNzc5NzgwMDksNTg1NzA3MzU4LDIxMzk0NTQ4NzQsMzIyMz
-k5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0
-NCwtNDMyOTk0MTYyLC0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX
-0=
+eyJoaXN0b3J5IjpbLTE4OTQwODE4NDcsLTU2NTc4NjYwLDU5Nz
+I4MTI4OCwtOTcyNjg5MjkyLC0xNTMwNzQxMDU3LDE4Njc5MTIz
+ODcsNzEwNTYzNjM3LDIwNzc5NzgwMDksNTg1NzA3MzU4LDIxMz
+k0NTQ4NzQsMzIyMzk5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkx
+NDgsMTIyMzY4MDg0NCwtNDMyOTk0MTYyLC0xNDYzNzAwNDczLC
+0xMzQxNzg5Nzc0XX0=
 -->
