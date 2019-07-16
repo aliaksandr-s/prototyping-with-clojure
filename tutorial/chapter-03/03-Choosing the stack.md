@@ -24,7 +24,7 @@ Authentication and authorization are big and complicated topics by themselvels. 
 
 ### View rendering 
 
-Rerendering an application when its state changes used to be a big problem before [**React**][react]. Now you don't have to worry when and how you should change your DOM. 
+Rerendering an application when its state changes used to be a big problem before [**React**][react]. Now you don't have to worry when and how you should change your DOM. All this work has been abstracted by [**React**][react]. When the state of your app changes 
 
 ### State managament
 
@@ -39,7 +39,7 @@ Rerendering an application when its state changes used to be a big problem befor
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MDYxODc2NjEsMTQzNjUwMzE5NSwtMT
+eyJoaXN0b3J5IjpbLTExNjgyNTMxMDcsMTQzNjUwMzE5NSwtMT
 MwNDQ1NjUwNCwtNTY1Nzg2NjAsNTk3MjgxMjg4LC05NzI2ODky
 OTIsLTE1MzA3NDEwNTcsMTg2NzkxMjM4Nyw3MTA1NjM2MzcsMj
 A3Nzk3ODAwOSw1ODU3MDczNTgsMjEzOTQ1NDg3NCwzMjIzOTk3
