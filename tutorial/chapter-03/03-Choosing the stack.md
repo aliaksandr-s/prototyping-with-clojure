@@ -20,7 +20,7 @@ To distinguish between reqests from the client we need a routing library. [**Rei
 
 ### Authentication
 
-Authentication and authorization are big and complicated topics by themselvels. And you need a good cryptography bac to implement it right 
+Authentication and authorization are big and complicated topics by themselvels. And you need a good cryptography background to implement it from scratch. So in our project will use [**Buddy**][buddy] library to handle 
 
 ### View rendering 
 
@@ -36,10 +36,10 @@ Authentication and authorization are big and complicated topics by themselvels. 
 [reitit]: https://metosin.github.io/reitit/
 [buddy]: https://github.com/funcool/buddy
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjkyMTU3OSwtMTMwNDQ1NjUwNCwtNT
-Y1Nzg2NjAsNTk3MjgxMjg4LC05NzI2ODkyOTIsLTE1MzA3NDEw
-NTcsMTg2NzkxMjM4Nyw3MTA1NjM2MzcsMjA3Nzk3ODAwOSw1OD
-U3MDczNTgsMjEzOTQ1NDg3NCwzMjIzOTk3MDIsLTE0NDU4NTY0
-ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00MzI5OTQxNjIsLT
-E0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbLTU3NTY5NjQ0LC0xMzA0NDU2NTA0LC01Nj
+U3ODY2MCw1OTcyODEyODgsLTk3MjY4OTI5MiwtMTUzMDc0MTA1
+NywxODY3OTEyMzg3LDcxMDU2MzYzNywyMDc3OTc4MDA5LDU4NT
+cwNzM1OCwyMTM5NDU0ODc0LDMyMjM5OTcwMiwtMTQ0NTg1NjQ4
+MCwtNDgxNDE5MTQ4LDEyMjM2ODA4NDQsLTQzMjk5NDE2MiwtMT
+Q2MzcwMDQ3MywtMTM0MTc4OTc3NF19
 -->
