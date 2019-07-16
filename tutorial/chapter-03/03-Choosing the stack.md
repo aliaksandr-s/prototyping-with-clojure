@@ -12,7 +12,7 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Scaffolding
 
-To not spend too much time for a project set up.
+To not spend too much time on a project set up we'll use ``
 Setting up a project from scratch can take a lot of time and may become a really daunting process. So a reasonable scaffolding may help us a lot because we get a working environment with all the libraries connected with just one command. 
 
 ### Routing
@@ -28,8 +28,9 @@ Setting up a project from scratch can take a lot of time and may become a really
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2NzkxMjM4Nyw3MTA1NjM2MzcsMjA3Nz
-k3ODAwOSw1ODU3MDczNTgsMjEzOTQ1NDg3NCwzMjIzOTk3MDIs
-LTE0NDU4NTY0ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00Mz
-I5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbLTE5MjEwNjgzNDcsMTg2NzkxMjM4Nyw3MT
+A1NjM2MzcsMjA3Nzk3ODAwOSw1ODU3MDczNTgsMjEzOTQ1NDg3
+NCwzMjIzOTk3MDIsLTE0NDU4NTY0ODAsLTQ4MTQxOTE0OCwxMj
+IzNjgwODQ0LC00MzI5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3
+ODk3NzRdfQ==
 -->
