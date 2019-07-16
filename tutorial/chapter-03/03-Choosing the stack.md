@@ -1,6 +1,6 @@
 # Choosing the stack
 
-In this chapter we're gonna decide what tools we're gonna use to build our app. And try to answer why we need those tools. 
+In this chapter we're gonna decide what tools we're gonna use to build our application. And try to answer why we need those tools. 
 
 ## Choosing the tools
 
@@ -38,10 +38,10 @@ Authentication and authorization are big and complicated topics by themselvels. 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTMzMjA2ODkwLC0xMzA0NDU2NTA0LC01Nj
-U3ODY2MCw1OTcyODEyODgsLTk3MjY4OTI5MiwtMTUzMDc0MTA1
-NywxODY3OTEyMzg3LDcxMDU2MzYzNywyMDc3OTc4MDA5LDU4NT
-cwNzM1OCwyMTM5NDU0ODc0LDMyMjM5OTcwMiwtMTQ0NTg1NjQ4
-MCwtNDgxNDE5MTQ4LDEyMjM2ODA4NDQsLTQzMjk5NDE2MiwtMT
-Q2MzcwMDQ3MywtMTM0MTc4OTc3NF19
+eyJoaXN0b3J5IjpbMTQzNjUwMzE5NSwtMTMwNDQ1NjUwNCwtNT
+Y1Nzg2NjAsNTk3MjgxMjg4LC05NzI2ODkyOTIsLTE1MzA3NDEw
+NTcsMTg2NzkxMjM4Nyw3MTA1NjM2MzcsMjA3Nzk3ODAwOSw1OD
+U3MDczNTgsMjEzOTQ1NDg3NCwzMjIzOTk3MDIsLTE0NDU4NTY0
+ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00MzI5OTQxNjIsLT
+E0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
 -->
