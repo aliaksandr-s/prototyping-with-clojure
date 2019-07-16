@@ -24,7 +24,7 @@ Authentication and authorization are big and complicated topics by themselvels. 
 
 ### View rendering 
 
-Rerendering an application when its state changes used to be a big problem before [**React**][react]. It  Now you don't have to worry when and how you should change your DOM. All this work has been abstracted by [**React**][react]. When the state of your app changes all the necessary components will be rerendered automagically. And in Clojure world we can use [**Reagent**][reagent] which is just a wrapper on top of [**React**][react]. 
+Rerendering an application when its state changes used to be a big problem before [**React**][react]. It abstracted everything related to when and how you should change your DOM. When the state of your app changes all the necessary components will be rerendered automagically. And in Clojure world we can use [**Reagent**][reagent] which is just a wrapper on top of [**React**][react]. 
 
 ### State managament
 
@@ -39,11 +39,11 @@ Rerendering an application when its state changes used to be a big problem befor
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4NjU2MTMwNywxMzIxNDY2Nzc4LDE0Mz
-Y1MDMxOTUsLTEzMDQ0NTY1MDQsLTU2NTc4NjYwLDU5NzI4MTI4
-OCwtOTcyNjg5MjkyLC0xNTMwNzQxMDU3LDE4Njc5MTIzODcsNz
-EwNTYzNjM3LDIwNzc5NzgwMDksNTg1NzA3MzU4LDIxMzk0NTQ4
-NzQsMzIyMzk5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMT
-IyMzY4MDg0NCwtNDMyOTk0MTYyLC0xNDYzNzAwNDczLC0xMzQx
-Nzg5Nzc0XX0=
+eyJoaXN0b3J5IjpbLTE0NzQ2MDcxODIsMTMyMTQ2Njc3OCwxND
+M2NTAzMTk1LC0xMzA0NDU2NTA0LC01NjU3ODY2MCw1OTcyODEy
+ODgsLTk3MjY4OTI5MiwtMTUzMDc0MTA1NywxODY3OTEyMzg3LD
+cxMDU2MzYzNywyMDc3OTc4MDA5LDU4NTcwNzM1OCwyMTM5NDU0
+ODc0LDMyMjM5OTcwMiwtMTQ0NTg1NjQ4MCwtNDgxNDE5MTQ4LD
+EyMjM2ODA4NDQsLTQzMjk5NDE2MiwtMTQ2MzcwMDQ3MywtMTM0
+MTc4OTc3NF19
 -->
