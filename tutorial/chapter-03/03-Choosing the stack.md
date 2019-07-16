@@ -16,12 +16,15 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Routing
 
-To distinguish between reqests from the client we need a routing library. [**Reitit**][reitit] is a default one used by **Luminus**. So we'll stick with it.
-
+To distinguish between reqests from the client we need a routing library. [**Reitit**][reitit] is a default one used by [**Luminus**][luminus]. So we'll stick with it.
 
 ### Authentication
 
+
+
 ### View rendering 
+
+
 
 ### State managament
 
@@ -32,7 +35,7 @@ To distinguish between reqests from the client we need a routing library. [**Rei
 [luminus]: http://www.luminusweb.net/
 [reitit]: https://metosin.github.io/reitit/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzOTc5OTYyMTUsLTU2NTc4NjYwLDU5Nz
+eyJoaXN0b3J5IjpbLTEzMDQ0NTY1MDQsLTU2NTc4NjYwLDU5Nz
 I4MTI4OCwtOTcyNjg5MjkyLC0xNTMwNzQxMDU3LDE4Njc5MTIz
 ODcsNzEwNTYzNjM3LDIwNzc5NzgwMDksNTg1NzA3MzU4LDIxMz
 k0NTQ4NzQsMzIyMzk5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkx
