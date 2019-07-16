@@ -12,6 +12,8 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Scaffolding
 
+
+
 ### Routing
 
 ### Authentication
@@ -25,7 +27,8 @@ Our app is relatively small and simple and we don't have any special needs so we
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEzOTQ1NDg3NCwzMjIzOTk3MDIsLTE0ND
-U4NTY0ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00MzI5OTQx
-NjIsLTE0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbNDEyODI3MDcwLDIxMzk0NTQ4NzQsMzIyMz
+k5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0
+NCwtNDMyOTk0MTYyLC0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX
+0=
 -->
