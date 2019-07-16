@@ -8,11 +8,11 @@ It should be clear from the series title that as a main language we'll be using 
 
 ### Database 
 
-Our app is relatively small and simple and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But why not using something more clojurish so we'll choose  [**Datomic**][datomic]. As a query language it uses [**Datalog**][datalog] which is kinda a mix of logic programming and [edn] (a data format, similar to json in javascript world)
+Our app is relatively small and simple and we don't have any special needs so we can probably use **postgreSQL**, **MongoDB** or any other popular solution. But why not using something more clojurish so we'll choose  [**Datomic**][datomic]. As a query language it uses [**Datalog**][datalog] which is kinda a mix of logic programming and [**edn**][edn] (a data format, similar to json in javascript world)
 
 ### Scaffolding
 
-To not spend too much time on a project set up we'll use ``
+To not spend too much time on a project set up we'll use [**Luminus**][luminus]
 Setting up a project from scratch can take a lot of time and may become a really daunting process. So a reasonable scaffolding may help us a lot because we get a working environment with all the libraries connected with just one command. 
 
 ### Routing
@@ -27,8 +27,9 @@ Setting up a project from scratch can take a lot of time and may become a really
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
+[luminus]: http://www.luminusweb.net/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjEwNjgzNDcsMTg2NzkxMjM4Nyw3MT
+eyJoaXN0b3J5IjpbLTE1MzA3NDEwNTcsMTg2NzkxMjM4Nyw3MT
 A1NjM2MzcsMjA3Nzk3ODAwOSw1ODU3MDczNTgsMjEzOTQ1NDg3
 NCwzMjIzOTk3MDIsLTE0NDU4NTY0ODAsLTQ4MTQxOTE0OCwxMj
 IzNjgwODQ0LC00MzI5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3
