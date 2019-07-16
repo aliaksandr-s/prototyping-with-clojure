@@ -30,7 +30,7 @@ Rerendering an application when its state changes used to be a big problem befor
 
 Our app should be build out of components and those components should be able to communicate to each other. So will use [**re-frame**][re-frame] to connect all the components into one live system.  
 
-I didn't go into too much details about each tool so if you're not familiar with some of those tools you might want to have a quick glance at their docs.
+I didn't go into too much details about each tool now. Because we'll probably have  so if you're not familiar with some of those tools you might want to have a quick glance at their docs.
 
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
 [datalog]: http://www.learndatalogtoday.org/
@@ -42,11 +42,11 @@ I didn't go into too much details about each tool so if you're not familiar with
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjI1Mjk2OTU3LDE2ODYzNjgzMjIsMTUwND
-E5NTA4MCwtMTQ3NDYwNzE4MiwxMzIxNDY2Nzc4LDE0MzY1MDMx
-OTUsLTEzMDQ0NTY1MDQsLTU2NTc4NjYwLDU5NzI4MTI4OCwtOT
-cyNjg5MjkyLC0xNTMwNzQxMDU3LDE4Njc5MTIzODcsNzEwNTYz
-NjM3LDIwNzc5NzgwMDksNTg1NzA3MzU4LDIxMzk0NTQ4NzQsMz
-IyMzk5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4
-MDg0NF19
+eyJoaXN0b3J5IjpbMTUwODYxMDUyMSwxNjg2MzY4MzIyLDE1MD
+QxOTUwODAsLTE0NzQ2MDcxODIsMTMyMTQ2Njc3OCwxNDM2NTAz
+MTk1LC0xMzA0NDU2NTA0LC01NjU3ODY2MCw1OTcyODEyODgsLT
+k3MjY4OTI5MiwtMTUzMDc0MTA1NywxODY3OTEyMzg3LDcxMDU2
+MzYzNywyMDc3OTc4MDA5LDU4NTcwNzM1OCwyMTM5NDU0ODc0LD
+MyMjM5OTcwMiwtMTQ0NTg1NjQ4MCwtNDgxNDE5MTQ4LDEyMjM2
+ODA4NDRdfQ==
 -->
