@@ -12,7 +12,7 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Scaffolding
 
-
+Creating an app 
 
 ### Routing
 
@@ -27,7 +27,7 @@ Our app is relatively small and simple and we don't have any special needs so we
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDEyODI3MDcwLDIxMzk0NTQ4NzQsMzIyMz
+eyJoaXN0b3J5IjpbMzk3MjkwODU3LDIxMzk0NTQ4NzQsMzIyMz
 k5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0
 NCwtNDMyOTk0MTYyLC0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX
 0=
