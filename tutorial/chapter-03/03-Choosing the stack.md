@@ -28,7 +28,7 @@ Rerendering an application when its state changes used to be a big problem befor
 
 ### State managament
 
-Our app should be build out of components and those components should be able to communicate to each other. So 
+Our app should be build out of components and those components should be able to communicate to each other. So will use [re-frame][re-frame] to connect all the components into one system.  
 
 
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
@@ -41,7 +41,7 @@ Our app should be build out of components and those components should be able to
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDI3ODU0MTA2LDE2ODYzNjgzMjIsMTUwND
+eyJoaXN0b3J5IjpbOTI0NTkzNTI5LDE2ODYzNjgzMjIsMTUwND
 E5NTA4MCwtMTQ3NDYwNzE4MiwxMzIxNDY2Nzc4LDE0MzY1MDMx
 OTUsLTEzMDQ0NTY1MDQsLTU2NTc4NjYwLDU5NzI4MTI4OCwtOT
 cyNjg5MjkyLC0xNTMwNzQxMDU3LDE4Njc5MTIzODcsNzEwNTYz
