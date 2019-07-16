@@ -12,6 +12,7 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Scaffolding
 
+To not spend a lot of time for
 Setting up a project from scratch can take a lot of time and may become a really daunting process. So a reasonable scaffolding may help us a lot because we get a working environment with all the libraries connected with just one command. 
 
 ### Routing
@@ -27,8 +28,8 @@ Setting up a project from scratch can take a lot of time and may become a really
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3Nzk3ODAwOSw1ODU3MDczNTgsMjEzOT
-Q1NDg3NCwzMjIzOTk3MDIsLTE0NDU4NTY0ODAsLTQ4MTQxOTE0
-OCwxMjIzNjgwODQ0LC00MzI5OTQxNjIsLTE0NjM3MDA0NzMsLT
-EzNDE3ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbLTY1NDIyMDU2OCwyMDc3OTc4MDA5LDU4NT
+cwNzM1OCwyMTM5NDU0ODc0LDMyMjM5OTcwMiwtMTQ0NTg1NjQ4
+MCwtNDgxNDE5MTQ4LDEyMjM2ODA4NDQsLTQzMjk5NDE2MiwtMT
+Q2MzcwMDQ3MywtMTM0MTc4OTc3NF19
 -->
