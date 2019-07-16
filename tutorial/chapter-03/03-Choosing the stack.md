@@ -20,7 +20,7 @@ To distinguish between reqests from the client we need a routing library. [**Rei
 
 ### Authentication
 
-Authentication and anuthorization are re
+Authentication and authorization are big and complicated topics by themselvel 
 
 ### View rendering 
 
@@ -36,10 +36,10 @@ Authentication and anuthorization are re
 [reitit]: https://metosin.github.io/reitit/
 [buddy]: https://github.com/funcool/buddy
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY3NDkzNDYzMCwtMTMwNDQ1NjUwNCwtNT
-Y1Nzg2NjAsNTk3MjgxMjg4LC05NzI2ODkyOTIsLTE1MzA3NDEw
-NTcsMTg2NzkxMjM4Nyw3MTA1NjM2MzcsMjA3Nzk3ODAwOSw1OD
-U3MDczNTgsMjEzOTQ1NDg3NCwzMjIzOTk3MDIsLTE0NDU4NTY0
-ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00MzI5OTQxNjIsLT
-E0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbLTEyODQ1MjYxMTEsLTEzMDQ0NTY1MDQsLT
+U2NTc4NjYwLDU5NzI4MTI4OCwtOTcyNjg5MjkyLC0xNTMwNzQx
+MDU3LDE4Njc5MTIzODcsNzEwNTYzNjM3LDIwNzc5NzgwMDksNT
+g1NzA3MzU4LDIxMzk0NTQ4NzQsMzIyMzk5NzAyLC0xNDQ1ODU2
+NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0NCwtNDMyOTk0MTYyLC
+0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX0=
 -->
