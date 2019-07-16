@@ -12,7 +12,7 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Scaffolding
 
-Creating an environment
+Setting up a project from scratch can take a lot of time and may become a really daunting process. 
 
 ### Routing
 
@@ -27,7 +27,7 @@ Creating an environment
 [datalog]: http://www.learndatalogtoday.org/
 [edn]: https://github.com/edn-format/edn
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3NjU5OTk5LDIxMzk0NTQ4NzQsMzIyMz
+eyJoaXN0b3J5IjpbNTg1NzA3MzU4LDIxMzk0NTQ4NzQsMzIyMz
 k5NzAyLC0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0
 NCwtNDMyOTk0MTYyLC0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX
 0=
