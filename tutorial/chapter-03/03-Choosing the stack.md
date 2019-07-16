@@ -12,7 +12,7 @@ Our app is relatively small and simple and we don't have any special needs so we
 
 ### Scaffolding
 
-To not spend too much time on a project set up we'll use [**Luminus**][luminus]
+To not spend too much time on a project set up we'll use [**Luminus**][luminus]. It's a mini framework that can give us 
 Setting up a project from scratch can take a lot of time and may become a really daunting process. So a reasonable scaffolding may help us a lot because we get a working environment with all the libraries connected with just one command. 
 
 ### Routing
@@ -29,9 +29,9 @@ Setting up a project from scratch can take a lot of time and may become a really
 [edn]: https://github.com/edn-format/edn
 [luminus]: http://www.luminusweb.net/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzA3NDEwNTcsMTg2NzkxMjM4Nyw3MT
-A1NjM2MzcsMjA3Nzk3ODAwOSw1ODU3MDczNTgsMjEzOTQ1NDg3
-NCwzMjIzOTk3MDIsLTE0NDU4NTY0ODAsLTQ4MTQxOTE0OCwxMj
-IzNjgwODQ0LC00MzI5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3
-ODk3NzRdfQ==
+eyJoaXN0b3J5IjpbLTk3MjY4OTI5MiwtMTUzMDc0MTA1NywxOD
+Y3OTEyMzg3LDcxMDU2MzYzNywyMDc3OTc4MDA5LDU4NTcwNzM1
+OCwyMTM5NDU0ODc0LDMyMjM5OTcwMiwtMTQ0NTg1NjQ4MCwtND
+gxNDE5MTQ4LDEyMjM2ODA4NDQsLTQzMjk5NDE2MiwtMTQ2Mzcw
+MDQ3MywtMTM0MTc4OTc3NF19
 -->
