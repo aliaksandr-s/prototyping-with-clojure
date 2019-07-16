@@ -24,7 +24,7 @@ Authentication and authorization are big and complicated topics by themselvels. 
 
 ### View rendering 
 
-Rerendering an applications when it's state changes used to be a big problem
+Rerendering an application when its state changes used to be a big problem
 
 ### State managament
 
@@ -38,11 +38,10 @@ Rerendering an applications when it's state changes used to be a big problem
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5ODM2MjEzNDQsMTQzNjUwMzE5NSwtMT
-MwNDQ1NjUwNCwtNTY1Nzg2NjAsNTk3MjgxMjg4LC05NzI2ODky
-OTIsLTE1MzA3NDEwNTcsMTg2NzkxMjM4Nyw3MTA1NjM2MzcsMj
-A3Nzk3ODAwOSw1ODU3MDczNTgsMjEzOTQ1NDg3NCwzMjIzOTk3
-MDIsLTE0NDU4NTY0ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC
-00MzI5OTQxNjIsLTE0NjM3MDA0NzMsLTEzNDE3ODk3NzRdfQ==
-
+eyJoaXN0b3J5IjpbLTYwNDEyMDE4LDE0MzY1MDMxOTUsLTEzMD
+Q0NTY1MDQsLTU2NTc4NjYwLDU5NzI4MTI4OCwtOTcyNjg5Mjky
+LC0xNTMwNzQxMDU3LDE4Njc5MTIzODcsNzEwNTYzNjM3LDIwNz
+c5NzgwMDksNTg1NzA3MzU4LDIxMzk0NTQ4NzQsMzIyMzk5NzAy
+LC0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0NCwtND
+MyOTk0MTYyLC0xNDYzNzAwNDczLC0xMzQxNzg5Nzc0XX0=
 -->
