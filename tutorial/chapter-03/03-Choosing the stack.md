@@ -28,7 +28,7 @@ Rerendering an application when its state changes used to be a big problem befor
 
 ### State managament
 
-Our app consis
+Our app should consist ou
 
 
 [datomic]: https://docs.datomic.com/on-prem/getting-started/brief-overview.html
@@ -41,11 +41,11 @@ Our app consis
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3MTI4MjAxMCwxNTA0MTk1MDgwLC0xND
-c0NjA3MTgyLDEzMjE0NjY3NzgsMTQzNjUwMzE5NSwtMTMwNDQ1
-NjUwNCwtNTY1Nzg2NjAsNTk3MjgxMjg4LC05NzI2ODkyOTIsLT
-E1MzA3NDEwNTcsMTg2NzkxMjM4Nyw3MTA1NjM2MzcsMjA3Nzk3
-ODAwOSw1ODU3MDczNTgsMjEzOTQ1NDg3NCwzMjIzOTk3MDIsLT
-E0NDU4NTY0ODAsLTQ4MTQxOTE0OCwxMjIzNjgwODQ0LC00MzI5
-OTQxNjJdfQ==
+eyJoaXN0b3J5IjpbLTIwNjUzODA5NzUsMTUwNDE5NTA4MCwtMT
+Q3NDYwNzE4MiwxMzIxNDY2Nzc4LDE0MzY1MDMxOTUsLTEzMDQ0
+NTY1MDQsLTU2NTc4NjYwLDU5NzI4MTI4OCwtOTcyNjg5MjkyLC
+0xNTMwNzQxMDU3LDE4Njc5MTIzODcsNzEwNTYzNjM3LDIwNzc5
+NzgwMDksNTg1NzA3MzU4LDIxMzk0NTQ4NzQsMzIyMzk5NzAyLC
+0xNDQ1ODU2NDgwLC00ODE0MTkxNDgsMTIyMzY4MDg0NCwtNDMy
+OTk0MTYyXX0=
 -->
