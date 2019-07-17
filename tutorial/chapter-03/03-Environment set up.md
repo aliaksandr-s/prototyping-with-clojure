@@ -4,18 +4,17 @@ In this chapter we'll do all the necessary preparations before we can actually s
 
 ## Installing dependencies
 
-To get started we need only `java` and `Leiningen`. For now it's recommended to use `java 8`.  To install it in Ubuntu we can simply use this command: 
+Clojure is a hosted language and it's beign compiled to JVM bytecode and then beign executed by JVM. And to work with it we should have `java` installed (for now it's recommended to use `java 8`). Then we need something for managing dependencies, handling versioning, and building our projects. And `Leiningen` should help us here. And the last thing we need to install is `Datomic`.
 
-`$ sudo apt-get install openjdk-8-jre`. 
+Here are the links where you can get everything:
 
-To verify that everything worked:
-
-`$ java -version`
-
-To install Leiningen I suggest using [instructions from their website][1].
-That's actually it. But I should probably say a few words about what we just installed and why. Clojure is a hosted language and it's beign compiled to JVM bytecode and then beign executed by JVM that's why we need to install java. Leiningen is used to manage dependencies, bundle and scaffold your projects. If you're comming from javascript world it's like npm, webpack, gulp... and any other tools you might think at once.
+ - [Java 8][java-download]
+ - [Leiningen][lein-install]
+ - [Datomic][datomic-download]
 
 ## Trying REPL
+
+First start datomic..... **to do**
 
 Now that we have everything installed we need to verify that everything works. We don't want to spend too much time for setting up the project so we'll use [Luminus framework][2] for scaffolding. Let's run those commands:
 
@@ -74,10 +73,12 @@ Code for this chapter can be found in `app/chapter-2` folder.
 
 
 
-[1]: https://leiningen.org/#install
+[lein-install]: https://leiningen.org/#install
+[java-download]: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+[datomic-download]: https://my.datomic.com/downloads/free
 [2]: http://www.luminusweb.net/
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDU5NjQ4NDldfQ==
+eyJoaXN0b3J5IjpbMTk4OTY4OTU2Myw0NTk2NDg0OV19
 -->
