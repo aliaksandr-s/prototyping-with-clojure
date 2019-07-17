@@ -1,6 +1,6 @@
 # Choosing the stack
 
-In this chapter we're gonna decide what tools we're gonna use to build our application. And try to answer why we need those tools. 
+In this chapter we're gonna decide what tools we need to build our application and try to answer why we need those tools. 
 
 ## Choosing the tools
 
@@ -42,5 +42,5 @@ I didn't go into too much details about each tool now. Because we'll get back to
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0MTE0ODc5M119
+eyJoaXN0b3J5IjpbLTE4NzE0MzcxMTddfQ==
 -->
