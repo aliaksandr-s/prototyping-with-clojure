@@ -12,14 +12,30 @@ Here are the links where you can get everything:
  - [Leiningen][lein-install]
  - [Datomic][datomic-download]
 
-## Trying REPL
+## Starting the project
 
-Now that we have everything installed we nee to verify that everything works. Let's create a project and play around with it for a bit. But first we need to run a database. Here are the steps:
+Now that we have everything installed let's create a new project and verify that everything works. But first we need to run a database. Follow these steps to launch it:
 
-1. 
-2. 
+1. Go to the folder where you installed it. 
+2. Run that command: 
 
- We don't want to spend too much time for setting up the project so we'll use [Luminus framework][2] for scaffolding. Let's run those commands:
+```bash
+$ bin/transactor config/samples/free-transactor-template.properties
+```
+If everything is okay you should see something like that:
+
+```bash
+System started datomic:free://localhost:4334/<DB-NAME>
+```
+Now that we have a database running we can start our project. But I just realized that we don't have a name for it. Sure we can call it `myapp`, `testapp`, just `app` it actually doesn't matter but that would be too boring. So let's choose something more beautiful and meaningful. For example `visitera` sounds like a good name for me.  Now lets run this command in a new terminal window:
+
+```bash
+$ lein new luminus visitera +datomic +re-frame +auth
+```
+It will scaffold a project for us with all the dependencies we need.
+
+
+We don't want to spend too much time for setting up the project so we'll use [Luminus framework][2] for scaffolding. Let's run those commands:
 
 `$ lein new luminus my-app +cljs`
 `$ cd my-app`
@@ -83,5 +99,5 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI5ODA5NjM5MSw0NTk2NDg0OV19
+eyJoaXN0b3J5IjpbMTA3NTQ3Njg1Niw0NTk2NDg0OV19
 -->
