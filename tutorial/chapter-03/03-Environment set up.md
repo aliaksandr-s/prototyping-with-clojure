@@ -22,31 +22,55 @@ Now that we have everything installed let's create a new project and verify that
 ```bash
 $ bin/transactor config/samples/free-transactor-template.properties
 ```
+
 If everything is okay you should see something like that:
 
 ```bash
 System started datomic:free://localhost:4334/<DB-NAME>
 ```
-Now that we have a database running we can start our project. But I just realized that we don't have a name for it. Sure we can call it `myapp`, `testapp`, just `app` it actually doesn't matter but that would be too boring. So let's choose something more beautiful and meaningful. For example `visitera` sounds like a good name for me.  Now lets run this command in a new terminal window:
+
+Now that we have a database running we can start our project. But I just realized that we don't have a name for it. Sure we can call it `myapp`, `testapp`, just `app` it actually doesn't matter but that would be too boring. So let's choose something more beautiful and meaningful. For example `visitera` sounds like a good name for me.  Now lets run the following command in a new terminal window:
 
 ```bash
 $ lein new luminus visitera +datomic +re-frame +auth
 ```
-It will scaffold a project for us with all the dependencies we need.
+
+It will scaffold a project for us with all the dependencies we need. Code for the project after this step will be in folder `app/chapter-3/start`.
+
+Now lets go to a newly created directory and run the project. 
+
+```bash
+$ cd visitera
+$ lein run
+```
+
+If everything went okay we should see these lines in the terminal:
+
+```bash
+server started on port 3000
+starting nREPL server on port 7000
+```
+
+Let's go to `http://localhost:3000/` in out browser to see what we get.
+We should see something like that:
+
+```markdown
+#### Welcome to visitera
+
+If you're seeing this message, that means you haven't yet compiled your ClojureScript!
+
+Please run  `lein figwheel`  to start the ClojureScript compiler and reload the page.
+```
+
+We can see a response that means our server part is working. And that message says that we need to compile our
 
 
-We don't want to spend too much time for setting up the project so we'll use [Luminus framework][2] for scaffolding. Let's run those commands:
 
-`$ lein new luminus my-app +cljs`
-`$ cd my-app`
-`$ lein run`
 
-We should see these lines in terminal:
 
-`server started on port 3000`
-`starting nREPL server on port 7000`
 
-Go to `http://localhost:3000/` and to see that everything works. Now let's try to use REPL. We know that it's running on port `7000` we just need to connect to it using this command:
+
+ Now let's try to use REPL. We know that it's running on port `7000` we just need to connect to it using this command:
 
 `$ lein repl :connect localhost:7000`
 
@@ -95,9 +119,9 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [lein-install]: https://leiningen.org/#install
 [java-download]: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [datomic-download]: https://my.datomic.com/downloads/free
-[2]: http://www.luminusweb.net/
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA3NTQ3Njg1Niw0NTk2NDg0OV19
+eyJoaXN0b3J5IjpbMzE5NjA4NjAsMTA3NTQ3Njg1Niw0NTk2ND
+g0OV19
 -->
