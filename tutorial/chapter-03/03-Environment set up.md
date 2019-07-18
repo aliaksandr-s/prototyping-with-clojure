@@ -14,9 +14,12 @@ Here are the links where you can get everything:
 
 ## Trying REPL
 
-First start datomic..... **to do**
+Now that we have everything installed we nee to verify that everything works. Let's create a project and play around with it for a bit. But first we need to run a database. Here are the steps:
 
-Now that we have everything installed we need to verify that everything works. We don't want to spend too much time for setting up the project so we'll use [Luminus framework][2] for scaffolding. Let's run those commands:
+1. 
+2. 
+
+ We don't want to spend too much time for setting up the project so we'll use [Luminus framework][2] for scaffolding. Let's run those commands:
 
 `$ lein new luminus my-app +cljs`
 `$ cd my-app`
@@ -80,5 +83,5 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4OTY4OTU2Myw0NTk2NDg0OV19
+eyJoaXN0b3J5IjpbLTI5ODA5NjM5MSw0NTk2NDg0OV19
 -->
