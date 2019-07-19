@@ -68,11 +68,70 @@ We can see a response, that means our backend part is working. And that message 
 Congratulations, your Luminus site is ready!
 ```
 
-Great! It seems everything is working. But we forgot about our database. But before we test it lets have a look at our project structure.
+Great! It seems everything is working. But we completely forgot about our database. We need to make sure that we can interract with it from our code. First we need to change some settings. Lets open `dev-config.edn` file. Here its content:
+
+```clojure
+{:dev true
+ :port 3000
+ ;; when :nrepl-port is set the application starts the nREPL server on load
+ :nrepl-port 7000
+ 
+ ; set your dev database connection URL here
+ ; database-url "datomic:free://localhost:4334/visitera_dev"
+
+ ; alternatively, you can use the datomic mem db for development:
+ ; :database-url "datomic:mem://visitera_datomic_dev"
+}
+```
+
+We need to uncomment this line:
+ `database-url "datomic:free://localhost:4334/visitera_dev"`
+
+Now let's have a look what we have inside `src` folder. There are three folders: 
+
+1. `clj` - is for Clojure server-side code.  
+2. `cljs` - is for ClojureScript client-side code.
+3. `cljc` - is for shared code that can be used with Clojure and with ClojureScript.
+
+For now we're interested only in `clj` folder and particularly in `/visitera/core.clj` and `visitera/db/core.clj`. It should be pretty obvious from the name that `visitera/db/core.clj` has everything related to interactions with the database. And `/visitera/core.clj` is our app entry-point it has `-main` function that will be called during a startup.
+We need to install a db schema when we start our app so let's do some changes to `/visitera/core.clj`.
+
+```clojure
+(ns visitera.core
+  (:require
+   [visitera.handler :as handler]
+   [visitera.nrepl :as nrepl]
+   [luminus.http-server :as http]
+   [visitera.config :refer [env]]
+   [clojure.tools.cli :refer [parse-opts]]
+   [clojure.tools.logging :as log]
+   [mount.core :as mount]
+   [visitera.db.core :refer [conn install-schema]])
+  (:gen-class))
+```
+
+First we require `conn` and `install-schema` from `visitera.db.core` namespace.
+
+```clojure
+(defn start-app [args]
+  (doseq [component (-> args
+                        (parse-opts cli-options)
+                        mount/start-with-args
+                        :started)]
+    (log/info component "started")
+    (install-schema conn))
+  (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
+```
+
+And then we add a call to `install-schema` inside `start-app` function.
+
+All of that should create a database, install a schema and prepopulate it with some test data. The schema with some test data is located in `resources/migrations/schema.edn` file.
 
 
 
 
+
+##
 
  Now let's try to use REPL. We know that it's running on port `7000` we just need to connect to it using this command:
 
@@ -126,6 +185,6 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzcxMDU5NzYsLTUyMjg0MDQ5OSwzMT
-k2MDg2MCwxMDc1NDc2ODU2LDQ1OTY0ODQ5XX0=
+eyJoaXN0b3J5IjpbMTUxOTAxMTYzNywtNTIyODQwNDk5LDMxOT
+YwODYwLDEwNzU0NzY4NTYsNDU5NjQ4NDldfQ==
 -->
