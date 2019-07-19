@@ -51,18 +51,22 @@ server started on port 3000
 starting nREPL server on port 7000
 ```
 
-Let's go to `http://localhost:3000/` in out browser to see what we get.
+Let's go to `http://localhost:3000/` in our browser to see what we get.
 We should see something like that:
 
-```markdown
-#### Welcome to visitera
+```
+Welcome to visitera
 
 If you're seeing this message, that means you haven't yet compiled your ClojureScript!
 
-Please run  `lein figwheel`  to start the ClojureScript compiler and reload the page.
+Please run  lein figwheel  to start the ClojureScript compiler and reload the page.
 ```
 
-We can see a response that means our server part is working. And that message says that we need to compile our
+We can see a response, that means our backend part is working. And that message says that we need to compile our clientside code to make it work. Let's run the suggestet command `lein figwheel` in a new terminal window and see what will happen. If everything went fine after refreshing the browser we should see a different page with that phrase:
+
+```
+Congratulations, your Luminus site is ready!
+```
 
 
 
@@ -122,6 +126,6 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzE5NjA4NjAsMTA3NTQ3Njg1Niw0NTk2ND
-g0OV19
+eyJoaXN0b3J5IjpbLTUyMjg0MDQ5OSwzMTk2MDg2MCwxMDc1ND
+c2ODU2LDQ1OTY0ODQ5XX0=
 -->
