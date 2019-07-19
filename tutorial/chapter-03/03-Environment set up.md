@@ -148,9 +148,8 @@ And the last thing we need to test a database interaction is a route that will g
    ["/" {:get home-page}]
    ["/db-test" {:get (fn [_]
                        (let [db (d/db conn)
-                             user (find-user db "abc")
-                             user-name (:user/name user)]
-                         (-> (response/ok user-name)
+                             user (find-user db "abc")]
+                         (-> (response/ok (:user/name user))
                              (response/header "Content-Type" "text/plain; charset=utf-8"))))}]
    ["/docs" {:get (fn [_]
                     (-> (response/ok (-> "docs/docs.md" io/resource slurp))
@@ -168,26 +167,50 @@ Great! Everything is working.
 
 ## Tryin REPL
 
- Now let's try to use REPL. We know that it's running on port `7000` we just need to connect to it using this command:
+We just created a new route to test if our database integration is working. But that's not really convenient. Is there a better way to do this? Yes, it is! Using REPL we can interactively test any part of our programm. So lets try it!
 
-`$ lein repl :connect localhost:7000`
+When we execute `lein run` we have our app started on port `3000` and our REPL running on port `7000`.
 
-And we should see its prompt sign `user=>`. And now we can interract with our running programm. First let's enter to the namespace with our route handler which is located in that file `/src/clj/my_app/handler.clj`.
+```bash
+server started on port 3000
+starting nREPL server on port 7000
+``` 
 
-`=> (in-ns 'my-app.handler)`
+Let's create a new terminal window and connect to REPL using that commnad:
 
-And now we can run the next command which should return the same html we just saw earlier in our browser.
+```bash
+$ lein repl :connect localhost:7000
+```
 
-`=> (app-routes {:request-method :get, :uri "/"})`
+We should see the prompt sign `user=>` (`user` represents a namespace we are currently in).  And now we can interract with our running programm. 
+First let's enter our `visitera.db.core` namespace with that command:
 
-That's pretty cool but we can also interract with our app inside the browser using cljs REPL. First we need to run that command:
+```clojure
+(in-ns 'visitera.db.core)
+```
 
-`$ lein figwheel`
+And then run the following command:
+
+```clojure
+(:user/name (let [db (d/db conn)]
+   (find-user db "abc")))
+```
+
+You should get the same result: 
+
+`"Good Name A"`
+
+That's much more simple and convenient then making a call to server. We just interactively communicate with the database. I encourage you to play with it for a bit and try other functions (`add-user`, `show-transaction`, `find-one-by`) from the current namespace.
+
+We also have another REPL on port `7002` to interact with our ClojureScript coe and it's already beign started for us by `$ lein figwheel` command.
+
+
+##
 
 It will compile our Clojurescript to javascript and will run a browser REPL on port `7002`. Our terminal prompt should change to `app:cljs.user=>` and now we can interract with REPL in the same terminal window. Also if we go to the browser again we should see a different content on the main page because it's been replaced by cljs script which is located here: `/src/cljs/my_
 app/core.cljs`.  Now Let's evaluate those expressions:
 
-```clj
+```clojure
 => (.-innerHTML (.getElementById js/document "app"))
 => (set! (.-innerHTML (js/document.getElementById "app")) "Hello world!")
 ```
@@ -220,6 +243,6 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0MjcxNzg2MCwtNTIyODQwNDk5LDMxOT
+eyJoaXN0b3J5IjpbMTM3NDMzMDI1NiwtNTIyODQwNDk5LDMxOT
 YwODYwLDEwNzU0NzY4NTYsNDU5NjQ4NDldfQ==
 -->
