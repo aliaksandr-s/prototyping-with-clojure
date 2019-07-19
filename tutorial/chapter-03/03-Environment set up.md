@@ -62,13 +62,13 @@ If you're seeing this message, that means you haven't yet compiled your ClojureS
 Please run  lein figwheel  to start the ClojureScript compiler and reload the page.
 ```
 
-We can see a response, that means our backend part is working. And that message says that we need to compile our clientside code to make it work. Let's run the suggestet command `lein figwheel` in a new terminal window and see what will happen. If everything went fine after refreshing the browser we should see a different page with that phrase:
+We can see a response, that means our backend part is working. And that message says that we need to compile our clientside code to make it work. Let's run the suggestet command `lein figwheel` in a new terminal window and see what will happen. If everything went fine after refreshing the browser we should see a page with that phrase:
 
 ```
 Congratulations, your Luminus site is ready!
 ```
 
-
+Great! It seems everything is working. But we forgot about our database. But before we test it lets have a look at our project structure.
 
 
 
@@ -126,6 +126,6 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyMjg0MDQ5OSwzMTk2MDg2MCwxMDc1ND
-c2ODU2LDQ1OTY0ODQ5XX0=
+eyJoaXN0b3J5IjpbLTE1MzcxMDU5NzYsLTUyMjg0MDQ5OSwzMT
+k2MDg2MCwxMDc1NDc2ODU2LDQ1OTY0ODQ5XX0=
 -->
