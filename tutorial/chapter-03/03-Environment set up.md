@@ -182,7 +182,11 @@ Let's create a new terminal window and connect to REPL using that commnad:
 $ lein repl :connect localhost:7000
 ```
 
-We should see the prompt sign `user=>` (`user` represents a namespace we are currently in).  And now we can interract with our running programm. 
+We should see the prompt sign:
+
+`user=>`
+
+Here `user` represents a namespace we are currently in.  And now we can interract with our running programm. 
 First let's enter our `visitera.db.core` namespace with that command:
 
 ```clojure
@@ -202,27 +206,27 @@ You should get the same result:
 
 That's much more simple and convenient then making a call to server. We just interactively communicate with the database. I encourage you to play with it for a bit and try other functions (`add-user`, `show-transaction`, `find-one-by`) from the current namespace.
 
-We also have another REPL on port `7002` to interact with our ClojureScript coe and it's already beign started for us by `$ lein figwheel` command.
+We also have another REPL on port `7002` to interact with our ClojureScript code and it's already beign started for us by `$ lein figwheel` command. Let's open that terminal window where we run that command. Our prompt should be like that:
 
+`app:cljs.user=>`
 
-##
-
-It will compile our Clojurescript to javascript and will run a browser REPL on port `7002`. Our terminal prompt should change to `app:cljs.user=>` and now we can interract with REPL in the same terminal window. Also if we go to the browser again we should see a different content on the main page because it's been replaced by cljs script which is located here: `/src/cljs/my_
-app/core.cljs`.  Now Let's evaluate those expressions:
+First let's go to `http://localhost:3000/`. And then evaluate that expression in REPL:
 
 ```clojure
-=> (.-innerHTML (.getElementById js/document "app"))
-=> (set! (.-innerHTML (js/document.getElementById "app")) "Hello world!")
+=> (set! (.-innerHTML (.getElementById js/document "app")) "Hello world!")
 ```
 
- You should immediatelly see the result in your browser.  That shouldn't be so hard to understand what that code does. But if you're confused `.` is used to call methods on js objects and `.-` is for accessing properties. 
+You should immediatelly see the result in your browser.  That shouldn't be so hard to understand what that code does. But if you're confused `.` is used to call methods on js objects and `.-` is for accessing properties.  You can try to use some commands from [ClojureScript Cheatsheet][cljs-cheatsheet] to get more practice.
 
 ## Setting up a text editor.
 
-Using REPL gives us a really cool interactive development experience. But we can make it even better by integrating REPL to a text editor which will give us an extremely pleasurable development experience. Here I'll show how to do this using [VSCode][3].  Basically all we need is to install [Calva][4] extension. Now when we open our project in VSCode we should see an input on the top. If there is no input we can press <kbd>CTRL</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to get a command input and type in 
+Using REPL gives us a really cool interactive development experience. But we can make it even better by integrating REPL to a text editor which will give us an extremely pleasurable development experience. Here I'll show how to do this using [VSCode][vs-code].  Basically all we need is to install [Calva][calva] extension. Now when we open our project in VSCode we should see an input on the top. If there is no input we can press <kbd>CTRL</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to get a command input and type in 
 
 `> Calva: Connect to a running REPL`. 
 
+
+
+## ..to chage
 Then choose `Figwhell` and specify adress with a port `localhost:7002`. And let's test it now. Open `/src/cljs/my_app/core.cljs` and change a string `"Welcome to my-app"` to `"Hello clojure!"`.  Now without saving anything put your cursor before the opening or after closing bracket of the `mount-components` function and run the command:
 
 `> Calva: evaluate current form/selection inline and print to output`
@@ -240,9 +244,10 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [lein-install]: https://leiningen.org/#install
 [java-download]: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [datomic-download]: https://my.datomic.com/downloads/free
-[3]: https://code.visualstudio.com/
-[4]: https://github.com/BetterThanTomorrow/calva
+[cljs-cheatsheet]: https://cljs.info/cheatsheet/
+[vs-code]: https://code.visualstudio.com/
+[calva]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3NDMzMDI1NiwtNTIyODQwNDk5LDMxOT
-YwODYwLDEwNzU0NzY4NTYsNDU5NjQ4NDldfQ==
+eyJoaXN0b3J5IjpbLTIxMzM1MzExODksLTUyMjg0MDQ5OSwzMT
+k2MDg2MCwxMDc1NDc2ODU2LDQ1OTY0ODQ5XX0=
 -->
