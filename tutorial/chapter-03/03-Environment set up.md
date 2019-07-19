@@ -124,14 +124,49 @@ First we require `conn` and `install-schema` from `visitera.db.core` namespace.
 ```
 
 And then we add a call to `install-schema` inside `start-app` function.
+The schema with some test data is located in `resources/migrations/schema.edn` file.
 
-All of that should create a database, install a schema and prepopulate it with some test data. The schema with some test data is located in `resources/migrations/schema.edn` file.
+And the last thing we need to test a database interaction is a route that will get some data from the database and send it in a response back to the browser. Here are the changes we need to make to `src/clj/visitera/routes/home.clj`
 
+```clojure
+(ns visitera.routes.home
+  (:require
+   [visitera.layout :as layout]
+   [clojure.java.io :as io]
+   [visitera.middleware :as middleware]
+   [ring.util.http-response :as response]
+   [visitera.db.core :refer [conn find-user]]
+   [datomic.api :as d]))
 
+(defn home-page [request]
+  (layout/render request "home.html"))
 
+(defn home-routes []
+  [""
+   {:middleware [middleware/wrap-csrf
+                 middleware/wrap-formats]}
+   ["/" {:get home-page}]
+   ["/db-test" {:get (fn [_]
+                       (let [db (d/db conn)
+                             user (find-user db "abc")
+                             user-name (:user/name user)]
+                         (-> (response/ok user-name)
+                             (response/header "Content-Type" "text/plain; charset=utf-8"))))}]
+   ["/docs" {:get (fn [_]
+                    (-> (response/ok (-> "docs/docs.md" io/resource slurp))
+                        (response/header "Content-Type" "text/plain; charset=utf-8")))}]])
+```
 
+First we require `conn` and `find-user` functions from `visitera.db.core` namespace. And also everything from `datomic.api` namespace as `d`.  Next we add a new `/db-test` route. Where we first retrieve value of the database for reading `(d/db conn)`. Next we get a user by its id `(find-user db "abc")`. User with that id is predefined in `resources/migrations/schema.edn` file. And the last part we just return that user name `(response/ok (:user/name user))`. 
 
-##
+Now it's time to test everything. First we should stop the terminal process where we run `lein run` using <kbd>CTRL</kbd>+<kbd>C</kbd>. And run 
+it again. Now go to `http://localhost:3000/db-test` in your browser and you should see:
+ 
+`Good Name A`
+
+Great! Everything is working.
+
+## Tryin REPL
 
  Now let's try to use REPL. We know that it's running on port `7000` we just need to connect to it using this command:
 
@@ -185,6 +220,6 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [3]: https://code.visualstudio.com/
 [4]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUxOTAxMTYzNywtNTIyODQwNDk5LDMxOT
+eyJoaXN0b3J5IjpbLTk0MjcxNzg2MCwtNTIyODQwNDk5LDMxOT
 YwODYwLDEwNzU0NzY4NTYsNDU5NjQ4NDldfQ==
 -->
