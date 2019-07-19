@@ -11,6 +11,7 @@ pom.xml
 profiles.clj
 /.env
 .nrepl-port
+/.rebel_*
 
 /node_modules
 /log
