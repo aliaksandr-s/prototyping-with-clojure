@@ -229,19 +229,22 @@ Using REPL gives us a really cool interactive development experience. But we can
 
 Now we should have a REPL connected to our text editor. That means we can evaluate our code right under the cursor. Let's see how it works.
 
-
-And let's test it now. Open `src/clj/visitera/db/core.clj` file and add this line to the end of the file:
+Open `src/clj/visitera/db/core.clj` file and add this line to the end of the file:
 
 ```clojure
 (:user/name (find-user (d/db conn) "abc"))
 ```
 
-
- and change a string `"Welcome to my-app"` to `"Hello clojure!"`.  Now without saving anything put your cursor before the opening or after closing bracket of the `mount-components` function and run the command:
+Now you can put your cursor before any opening `(` or closing `)` parentheses
+and run the command:
 
 `> Calva: evaluate current form/selection inline and print to output`
 
-And now we need to run this function the same way. Put your cursor before or after `(mount-components)` expression inside `init!` function and eval it using Calva. Text in your browser should immediatelly change. And of course I'd recommend using hotkeys to evaluate expressions using Calva. 
+All the code inside the parentheses will be evaluated and you should see the result immideatelly right in your text editor. I'd recommend setting up hotkeys for that command because you'll be using it a lot. 
+
+To connect to ClojureScript REPL follow the same steps just on step 3 choose `Figwheel` and on step 4 port `7002`.
+
+Clojure REPL is one of the best language features
 
 Code for this chapter can be found in `app/chapter-2` folder.
 
@@ -258,7 +261,7 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [vs-code]: https://code.visualstudio.com/
 [calva]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc2MDUzNDIzLC0yMTMzNTMxMTg5LC01Mj
-I4NDA0OTksMzE5NjA4NjAsMTA3NTQ3Njg1Niw0NTk2NDg0OV19
-
+eyJoaXN0b3J5IjpbLTE3OTM3MTEyODksLTIxMzM1MzExODksLT
+UyMjg0MDQ5OSwzMTk2MDg2MCwxMDc1NDc2ODU2LDQ1OTY0ODQ5
+XX0=
 -->
