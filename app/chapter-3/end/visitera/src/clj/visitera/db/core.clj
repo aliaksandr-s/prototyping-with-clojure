@@ -73,3 +73,5 @@
 
 (defn find-user [db id]
   (d/touch (find-one-by db :user/id id)))
+
+; (:user/name (find-user (d/db conn) "abc"))
