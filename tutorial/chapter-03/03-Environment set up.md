@@ -220,14 +220,24 @@ You should immediatelly see the result in your browser.  That shouldn't be so ha
 
 ## Setting up a text editor.
 
-Using REPL gives us a really cool interactive development experience. But we can make it even better by integrating REPL to a text editor which will give us an extremely pleasurable development experience. Here I'll show how to do this using [VSCode][vs-code].  Basically all we need is to install [Calva][calva] extension. Now when we open our project in VSCode we should see an input on the top. If there is no input we can press <kbd>CTRL</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to get a command input and type in 
+Using REPL gives us a really cool interactive development experience. But we can make it even better by integrating REPL to a text editor which will give us an extremely pleasurable development experience. Here I'll show how to do this using [VSCode][vs-code].  Basically all we need is to install [Calva][calva] extension. Now when we open our project in VSCode we should see an input on the top. If there is no input follow these steps: 
 
-`> Calva: Connect to a running REPL`. 
+1.  Press <kbd>CTRL</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to get a command input
+2. Type in `> Calva: Connect to a running REPL`
+3. Then choose `Don't load any cljs supprot`
+4. And specify adress with a port `localhost:7000`
+
+Now we should have a REPL connected to our text editor. That means we can evaluate our code right under the cursor. Let's see how it works.
 
 
+And let's test it now. Open `src/clj/visitera/db/core.clj` file and add this line to the end of the file:
 
-## ..to chage
-Then choose `Figwhell` and specify adress with a port `localhost:7002`. And let's test it now. Open `/src/cljs/my_app/core.cljs` and change a string `"Welcome to my-app"` to `"Hello clojure!"`.  Now without saving anything put your cursor before the opening or after closing bracket of the `mount-components` function and run the command:
+```clojure
+(:user/name (find-user (d/db conn) "abc"))
+```
+
+
+ and change a string `"Welcome to my-app"` to `"Hello clojure!"`.  Now without saving anything put your cursor before the opening or after closing bracket of the `mount-components` function and run the command:
 
 `> Calva: evaluate current form/selection inline and print to output`
 
@@ -248,6 +258,7 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [vs-code]: https://code.visualstudio.com/
 [calva]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMzM1MzExODksLTUyMjg0MDQ5OSwzMT
-k2MDg2MCwxMDc1NDc2ODU2LDQ1OTY0ODQ5XX0=
+eyJoaXN0b3J5IjpbMTc2MDUzNDIzLC0yMTMzNTMxMTg5LC01Mj
+I4NDA0OTksMzE5NjA4NjAsMTA3NTQ3Njg1Niw0NTk2NDg0OV19
+
 -->
