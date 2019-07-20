@@ -218,7 +218,7 @@ First let's go to `http://localhost:3000/`. And then evaluate that expression in
 
 You should immediatelly see the result in your browser.  That shouldn't be so hard to understand what that code does. But if you're confused `.` is used to call methods on js objects and `.-` is for accessing properties.  You can try to use some commands from [ClojureScript Cheatsheet][cljs-cheatsheet] to get more practice.
 
-## Setting up a text editor.
+## Integrating REPL to a text editor.
 
 Using REPL gives us a really cool interactive development experience. But we can make it even better by integrating REPL to a text editor which will give us an extremely pleasurable development experience. Here I'll show how to do this using [VSCode][vs-code].  Basically all we need is to install [Calva][calva] extension. Now when we open our project in VSCode we should see an input on the top. If there is no input follow these steps: 
 
@@ -244,9 +244,9 @@ All the code inside the parentheses will be evaluated and you should see the res
 
 To connect to ClojureScript REPL follow the same steps just on step 3 choose `Figwheel` and on step 4 port `7002`.
 
-Clojure REPL is one of the best language features
+In this chapter we set up our development environment, scaffolded our project, and tried interactive development with REPL: one of the best Clojure features. 
 
-Code for this chapter can be found in `app/chapter-2` folder.
+Code for the end of this chapter can be found in `app/chapter-3/end` folder.
 
 
 
@@ -261,7 +261,7 @@ Code for this chapter can be found in `app/chapter-2` folder.
 [vs-code]: https://code.visualstudio.com/
 [calva]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTM3MTEyODksLTIxMzM1MzExODksLT
-UyMjg0MDQ5OSwzMTk2MDg2MCwxMDc1NDc2ODU2LDQ1OTY0ODQ5
-XX0=
+eyJoaXN0b3J5IjpbMTUyNzg5NjMxNywtMjEzMzUzMTE4OSwtNT
+IyODQwNDk5LDMxOTYwODYwLDEwNzU0NzY4NTYsNDU5NjQ4NDld
+fQ==
 -->
