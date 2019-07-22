@@ -244,7 +244,10 @@ All the code inside the parentheses will be evaluated and you should see the res
 
 To connect to ClojureScript REPL follow the same steps just on step 3 choose `Figwheel` and on step 4 port `7002`.
 
+##
+
 In this chapter we set up our development environment, scaffolded our project, and tried interactive development with REPL: one of the best Clojure features. 
+
 
 Code for the end of this chapter can be found in `app/chapter-03/end` folder.
 
@@ -261,7 +264,7 @@ Code for the end of this chapter can be found in `app/chapter-03/end` folder.
 [vs-code]: https://code.visualstudio.com/
 [calva]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4NTA0NTg5MywtMjEzMzUzMTE4OSwtNT
-IyODQwNDk5LDMxOTYwODYwLDEwNzU0NzY4NTYsNDU5NjQ4NDld
-fQ==
+eyJoaXN0b3J5IjpbLTQ2ODk0Nzk5NSwtOTg1MDQ1ODkzLC0yMT
+MzNTMxMTg5LC01MjI4NDA0OTksMzE5NjA4NjAsMTA3NTQ3Njg1
+Niw0NTk2NDg0OV19
 -->
