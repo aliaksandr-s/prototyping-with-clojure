@@ -35,7 +35,7 @@ Now that we have a database running we can start our project. But I just realize
 $ lein new luminus visitera +datomic +re-frame +auth
 ```
 
-It will scaffold a project for us with all the dependencies we need. Code for the project after this step will be in folder `app/chapter-3/start`.
+It will scaffold a project for us with all the dependencies we need. Code for the project after this step will be in folder `app/chapter-03/start`.
 
 Now lets go to a newly created directory and run the project. 
 
@@ -246,7 +246,7 @@ To connect to ClojureScript REPL follow the same steps just on step 3 choose `Fi
 
 In this chapter we set up our development environment, scaffolded our project, and tried interactive development with REPL: one of the best Clojure features. 
 
-Code for the end of this chapter can be found in `app/chapter-3/end` folder.
+Code for the end of this chapter can be found in `app/chapter-03/end` folder.
 
 
 
@@ -261,7 +261,7 @@ Code for the end of this chapter can be found in `app/chapter-3/end` folder.
 [vs-code]: https://code.visualstudio.com/
 [calva]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyNzg5NjMxNywtMjEzMzUzMTE4OSwtNT
+eyJoaXN0b3J5IjpbLTk4NTA0NTg5MywtMjEzMzUzMTE4OSwtNT
 IyODQwNDk5LDMxOTYwODYwLDEwNzU0NzY4NTYsNDU5NjQ4NDld
 fQ==
 -->
