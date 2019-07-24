@@ -1,12 +1,13 @@
 (ns visitera.core
   (:require
-    [visitera.handler :as handler]
-    [visitera.nrepl :as nrepl]
-    [luminus.http-server :as http]
-    [visitera.config :refer [env]]
-    [clojure.tools.cli :refer [parse-opts]]
-    [clojure.tools.logging :as log]
-    [mount.core :as mount])
+   [visitera.handler :as handler]
+   [visitera.nrepl :as nrepl]
+   [luminus.http-server :as http]
+   [visitera.config :refer [env]]
+   [clojure.tools.cli :refer [parse-opts]]
+   [clojure.tools.logging :as log]
+   [mount.core :as mount]
+   [visitera.db.core :refer [conn install-schema]])
   (:gen-class))
 
 (def cli-options
@@ -43,7 +44,8 @@
                         (parse-opts cli-options)
                         mount/start-with-args
                         :started)]
-    (log/info component "started"))
+    (log/info component "started")
+    (install-schema conn))
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
 
 (defn -main [& args]

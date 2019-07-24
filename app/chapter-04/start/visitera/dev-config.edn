@@ -8,7 +8,7 @@
  :nrepl-port 7000
  
  ; set your dev database connection URL here
- ; :database-url "datomic:free://localhost:4334/visitera_dev"
+ :database-url "datomic:free://localhost:4334/visitera_dev"
 
  ; alternatively, you can use the datomic mem db for development:
  ; :database-url "datomic:mem://visitera_datomic_dev"
