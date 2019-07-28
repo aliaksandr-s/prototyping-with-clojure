@@ -46,11 +46,67 @@ That's pretty cool and gives us more flexiblity. But where do these `(start)` an
   (stop)
   (start))
 ```
-We'll add a function to reset 
+We'll add a function to reset a database here in a bit. But first let's create a fuction to delete a database in `visitera.db.core` namespace. 
+
+```clojure
+(defn delete-database
+  []
+  (-> env :database-url d/delete-database))
+```
+Don't forget to import `env` from `visitera.config`
+
+```clojure
+[visitera.config :refer [env]]
+```
+
+Now we can create a `reset-db` function in `user` namespace. It just deletes a database and restrarts our application. We also added `(install-schema conn)` to `start` function as we did in previous chapter with `visitera.core` namespace. Here's an updated file:
+
+```clojure
+(ns user
+  "Userspace functions you can run by default in your local REPL."
+  (:require
+   [visitera.config :refer [env]]
+   [clojure.spec.alpha :as s]
+   [expound.alpha :as expound]
+   [mount.core :as mount]
+   [visitera.figwheel :refer [start-fw stop-fw cljs]]
+   [visitera.core :refer [start-app]]
+   [visitera.db.core :refer [conn install-schema delete-database]]))
+
+(alter-var-root #'s/*explain-out* (constantly expound/printer))
+
+(add-tap (bound-fn* clojure.pprint/pprint))
+
+(defn start 
+  "Starts application.
+  You'll usually want to run this on startup."
+  []
+  (mount/start-without #'visitera.core/repl-server)
+  (install-schema conn))
+
+(defn stop 
+  "Stops application."
+  []
+  (mount/stop-except #'visitera.core/repl-server))
+
+(defn restart 
+  "Restarts application."
+  []
+  (stop)
+  (start))
+
+(defn reset-db
+  "Delete database and restart application"
+  []
+  (delete-database)
+  (restart))
+```
+
+Now let's restart our REPL. We can stop it with <kbd>CTRL</kbd>+<kbd>D</kbd> command. Then `$ lein repl`
 
 
 
 ## Creating a schema
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3OTIwMjQ2Ml19
+eyJoaXN0b3J5IjpbOTk2MzY0OTI2XX0=
 -->
