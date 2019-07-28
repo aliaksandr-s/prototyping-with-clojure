@@ -1,13 +1,18 @@
 (ns visitera.db.core
   (:require
-    [datomic.api :as d]
-    [io.rkn.conformity :as c]
-    [mount.core :refer [defstate]]
-    [visitera.config :refer [env]]))
+   [datomic.api :as d]
+   [io.rkn.conformity :as c]
+   [mount.core :refer [defstate]]
+   [visitera.config :refer [env]]
+   [clojure.string :as str]))
 
 (defstate conn
   :start (do (-> env :database-url d/create-database) (-> env :database-url d/connect))
   :stop (-> conn .release))
+
+(defn delete-database
+  []
+  (-> env :database-url d/delete-database))
 
 (defn install-schema
   "This function expected to be called at system start up.
@@ -41,18 +46,6 @@
   [conn]
   (seq (d/tx-range (d/log conn) nil nil)))
 
-(defn add-user
-  "e.g.
-    (add-user conn {:id \"aaa\"
-                    :screen-name \"AAA\"
-                    :status :user.status/active
-                    :email \"aaa@example.com\" })"
-  [conn {:keys [id screen-name status email]}]
-  @(d/transact conn [{:user/id         id
-                      :user/name       screen-name
-                      :user/status     status
-                      :user/email      email}]))
-
 (defn find-one-by
   "Given db value and an (attr/val), return the user as EntityMap (datomic.query.EntityMap)
    If there is no result, return nil.
@@ -71,7 +64,86 @@
                  db attr val)))
 
 
-(defn find-user [db id]
-  (d/touch (find-one-by db :user/id id)))
+;; app domain functions
+(defn add-user
+  "Adds new user to a database"
+  [conn {:keys [email password]}]
+  (when-not (find-one-by (d/db conn) :user/email email)
+    @(d/transact conn [{:user/email    email
+                        :user/password password}])))
 
-; (:user/name (find-user (d/db conn) "abc"))
+; (add-user conn {:email    "test@user.com"
+;                 :password "somepass"})
+
+
+(defn find-user [db email]
+  "Find user by email"
+  (d/touch (find-one-by db :user/email email)))
+
+; (find-user (d/db conn) "test@user.com")
+
+
+(defn get-country-id-by-alpha-3 [db alpha-3]
+  (-> (find-one-by db :country/alpha-3 alpha-3)
+                            (d/touch)
+                            (:db/id)))
+
+; (get-country-id-by-alpha-3 (d/db conn) "BLR")
+
+
+(defn concat-keyword [part-1 part-2]
+  "Concatenates two keywords: 
+  (:one/two- :three) => :one/two-three"
+  (let [name-1 (str/replace part-1 #"^:" "")
+        name-2 (name part-2)]
+    (-> (str name-1 name-2)
+        (keyword))))
+
+(defn remove-from-countries [type conn user-email alpha-3]
+  (let [user-id (-> (find-user (d/db conn) user-email)
+                    (:db/id))
+        country-id (get-country-id-by-alpha-3 (d/db conn) alpha-3)
+        attr (concat-keyword :user/countries- type)]
+    @(d/transact conn [[:db/retract user-id attr country-id]])))
+
+; (remove-from-countries :visited conn "test@user.com" "BLR")
+; (remove-from-countries :to-visit conn "test@user.com" "BLR")
+
+(defn add-to-countries [type conn user-email alpha-3]
+  "Add country to visited list"
+  (when-let [country-id (get-country-id-by-alpha-3 (d/db conn) alpha-3)]
+    (case type
+      :visited  (remove-from-countries :to-visit conn user-email alpha-3)
+      :to-visit (remove-from-countries :visited  conn user-email alpha-3))
+    (let [attr (concat-keyword :user/countries- type)
+          tx-user {:user/email user-email
+                   attr        [country-id]}]
+      @(d/transact conn [tx-user]))))
+
+; (add-to-countries :visited conn "test@user.com" "BLR")
+; (add-to-countries :to-visit conn "test@user.com" "BLR")
+
+
+(defn get-countries [db user-email]
+  (d/q '[:find (pull ?e
+                     [{:user/countries-to-visit
+                       [:country/alpha-3]}
+                      {:user/countries-visited
+                       [:country/alpha-3]}])
+         :in $ ?user-email
+         :where [?e :user/email ?user-email]]
+     db user-email))
+
+; (get-countries (d/db conn) "test@user.com")
+
+
+; (d/q '[:find (pull ?e
+;                    [:user/email
+;                     :user/password
+;                     :db/id
+;                     {:user/countries-to-visit
+;                      [:country/alpha-3]}
+;                     {:user/countries-visited
+;                      [:country/alpha-3]}])
+;        :where [?e :user/email "test@user.com"]]
+;      (d/db conn))
