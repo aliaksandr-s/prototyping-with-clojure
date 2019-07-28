@@ -6,9 +6,9 @@ Code for the beggining of this chapter can be found in  `app/chapter-04/start` f
 
 ## Preparation
 
-Before we can start working on a schema there are some preparations to make. 
+Before we can start working on a schema there are some preparations to make. We need a function to reset a database and we want the ability to run it withour restarting the whole application. 
 
 ## Creating a schema
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwODM1MjY4Ml19
+eyJoaXN0b3J5IjpbLTUyMzA3NjI5OV19
 -->
