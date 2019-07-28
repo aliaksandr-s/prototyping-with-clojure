@@ -102,11 +102,11 @@ Now we can create a `reset-db` function in `user` namespace. It just deletes a d
   (restart))
 ```
 
-Now let's restart our REPL. We can stop it with <kbd>CTRL</kbd>+<kbd>D</kbd> command. Then `$ lein repl`
+Now let's restart our REPL. We can stop it with <kbd>CTRL</kbd>+<kbd>D</kbd> command. Then `$ lein repl` and `(start)`. Now we can try to execute `(reset-db)`. Everything should work, but let's verify to be sure. 
 
 
 
 ## Creating a schema
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTk2MzY0OTI2XX0=
+eyJoaXN0b3J5IjpbLTEzMzk4NzI4NTVdfQ==
 -->
