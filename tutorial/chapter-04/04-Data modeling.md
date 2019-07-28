@@ -104,9 +104,27 @@ Now we can create a `reset-db` function in `user` namespace. It just deletes a d
 
 Now let's restart our REPL. We can stop it with <kbd>CTRL</kbd>+<kbd>D</kbd> command. Then `$ lein repl` and `(start)`. Now we can try to execute `(reset-db)`. Everything should work, but let's verify to be sure. 
 
+In the previous chapter we added `/db-test` route to `visitera.routes.home` namespace which just returns a name of a user with `abc` id which is equal to `Good Name A`
+ 
+```clojure
+["/db-test" {:get (fn [_]
+                       (let [db (d/db conn)
+                             user (find-user db "abc")]
+                         (-> (response/ok (:user/name user))
+                             (response/header "Content-Type" "text/plain; charset=utf-8"))))}]
+```
 
+So let's open `/resources/migrations/schema.edn` and change its name to something like `Bad Name B` or any other stupid name that you can imagine.
+
+```clojure
+{:user/id     "abc"
+ :user/name   "Bad Name B"
+ :user/email  "abc@example.com"
+ :user/status :user.status/active}
+```
+Now simply run `(reset-db)` in our REPL and have a look at the result by the address `http://localhost:3000/db-test`
 
 ## Creating a schema
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMzk4NzI4NTVdfQ==
+eyJoaXN0b3J5IjpbMzU1MTAwMDM4XX0=
 -->
