@@ -132,10 +132,12 @@ Let's start with a user model. First of all we'll use an email as a unique ident
 
 For countries we definitely need a name `:country/name`. And... and... what are the other attributes we might need? Let's do some research and see what data format our client code would use. I was able to find these [maps][datamaps] and they use **alpha-3** codes to colorize countries. So let's add `:country/alpha-3` attribute and a numerical code `:country/code` just in case.
 
-That's how the end result will look like:
+That's how our `resources/migrations/schema.edn` file should look like:
 
 ```clojure
-{:txes
+{;; norm1 installs the schema into Datomic
+ :visitera/norm1
+ {:txes
   [[;; User schema
     {:db/doc                "User email address"
      :db/ident              :user/email
@@ -173,7 +175,7 @@ That's how the end result will look like:
     {:db/doc                "Country code"
      :db/ident              :country/code
      :db/valueType          :db.type/string
-     :db/cardinality        :db.cardinality/one}]]}
+     :db/cardinality        :db.cardinality/one}]]}}
 ```
 
 Now let's have a look at some common attributes we used here.
@@ -186,11 +188,16 @@ Now let's have a look at some common attributes we used here.
 
 Here are a few articles from official docs that have more information about [Datomic data model][datomic-data-model] and [Datomic schema][datomic-schema].
 
+And now we can run `(reset-db)` to apply our new changes. To verify that everything worked we can run a `show-schema` function from `visitera.db.core` namespace or we can try to use a gui solution. Here is a link to [download datomic console][datomic-console-download] (a gui for datomic). After downloading follow the instuctions in `README.MD` file. And here is [a link from docs][datomic-console-docs] that shows how to use it.
+
+
 
 [datamaps]: https://datamaps.github.io/
 [datomic-data-model]: https://docs.datomic.com/cloud/whatis/data-model.html
 [datomic-schema]: https://docs.datomic.com/cloud/schema/schema-reference.html
+[datomic-console-download]: https://my.datomic.com/downloads/console
+[datomic-console-docs]: https://docs.datomic.com/on-prem/console.html
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2MzUzMDczMiwxMDE1NDA1NjExLDM1NT
+eyJoaXN0b3J5IjpbLTE2MTE2MDY1NywxMDE1NDA1NjExLDM1NT
 EwMDAzOF19
 -->
