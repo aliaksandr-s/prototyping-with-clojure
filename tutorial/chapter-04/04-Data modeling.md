@@ -125,6 +125,8 @@ So let's open `/resources/migrations/schema.edn` and change its name to somethin
 Now simply run `(reset-db)` in our REPL and have a look at the result by the address `http://localhost:3000/db-test`
 
 ## Creating a schema
+
+Now we have everything ready to start working on our database schema. From the data perspective our app is quite simple. We have users and countries and some countries will be related to some users. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzU1MTAwMDM4XX0=
+eyJoaXN0b3J5IjpbLTc3NTMxNTUyMiwzNTUxMDAwMzhdfQ==
 -->
