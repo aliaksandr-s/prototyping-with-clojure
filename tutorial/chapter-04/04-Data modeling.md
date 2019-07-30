@@ -130,9 +130,9 @@ Now we have everything ready to start working on our database schema. From the d
 
 Let's start with a user model. First of all we'll use an email as a unique identifier `:user/email`. Then we need a password `:user/password` (we'll be storing a hash in the database). And to associate countries we'll use a few lists `:user/countries-visited` and `:user/countries-to-visit`.
 
-For countries we definitely need a name `:country/name`. And... and... what are the other attributes we might need? Let's do some research and see what data format our client code would expect from us. I was able to find these [maps][datamaps] and they use **alpha-3** codes to colorize countries. So let's add `:country/alpha-3` attribute and a numerical code `:country/code` just in case.
+For countries we definitely need a name `:country/name`. And... and... what are the other attributes we might need? Let's do some research and see what data format our client code would use. I was able to find these [maps][datamaps] and they use **alpha-3** codes to colorize countries. So let's add `:country/alpha-3` attribute and a numerical code `:country/code` just in case.
 
-That's how the end result should look like:
+That's how the end result will look like:
 
 ```clojure
 {:txes
@@ -142,29 +142,25 @@ That's how the end result should look like:
      :db/valueType          :db.type/string
      :db/cardinality        :db.cardinality/one
      :db/unique             :db.unique/identity
-     :db/id                 #db/id [:db.part/db]
-     :db.install/_attribute :db.part/db}
+     :db/id                 #db/id [:db.part/db]}
 
     {:db/doc                "User password hash"
      :db/ident              :user/password
      :db/valueType          :db.type/string
      :db/cardinality        :db.cardinality/one
-     :db/id                 #db/id [:db.part/db]
-     :db.install/_attribute :db.part/db}
+     :db/id                 #db/id [:db.part/db]}
 
     {:db/doc                "Countries user already visited"
      :db/ident              :user/countries-visited
      :db/valueType          :db.type/ref
      :db/cardinality        :db.cardinality/many
-     :db/id                 #db/id [:db.part/db]
-     :db.install/_attribute :db.part/db}
+     :db/id                 #db/id [:db.part/db]}
 
     {:db/doc                "Countries user wants to visit"
      :db/ident              :user/countries-to-visit
      :db/valueType          :db.type/ref
      :db/cardinality        :db.cardinality/many
-     :db/id                 #db/id [:db.part/db]
-     :db.install/_attribute :db.part/db}]
+     :db/id                 #db/id [:db.part/db]}]
 
     ;; Country schema
    [{:db/doc                "Country name"
@@ -172,25 +168,32 @@ That's how the end result should look like:
      :db/valueType          :db.type/string
      :db/cardinality        :db.cardinality/one
      :db/unique             :db.unique/identity
-     :db/id                 #db/id [:db.part/db]
-     :db.install/_attribute :db.part/db}
+     :db/id                 #db/id [:db.part/db]}
 
     {:db/doc                "Country ISO alpha-3 code"
      :db/ident              :country/alpha-3
      :db/valueType          :db.type/string
      :db/cardinality        :db.cardinality/one
-     :db/id                 #db/id [:db.part/db]
-     :db.install/_attribute :db.part/db}
+     :db/id                 #db/id [:db.part/db]}
 
     {:db/doc                "Country code"
      :db/ident              :country/code
      :db/valueType          :db.type/string
      :db/cardinality        :db.cardinality/one
-     :db/id                 #db/id [:db.part/db]
-     :db.install/_attribute :db.part/db}]]}
+     :db/id                 #db/id [:db.part/db]}]]}
 ```
+
+:db/doc                "User email address"
+     :db/ident              :user/email
+     :db/valueType          :db.type/string
+     :db/cardinality        :db.cardinality/one
+     :db/unique             :db.unique/identity
+     :db/id 
+
+
 
 [datamaps]: https://datamaps.github.io/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxNTQwNTYxMSwzNTUxMDAwMzhdfQ==
+eyJoaXN0b3J5IjpbLTgxNDk3MDc4MiwxMDE1NDA1NjExLDM1NT
+EwMDAzOF19
 -->
