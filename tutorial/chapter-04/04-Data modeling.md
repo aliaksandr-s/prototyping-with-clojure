@@ -141,59 +141,56 @@ That's how the end result will look like:
      :db/ident              :user/email
      :db/valueType          :db.type/string
      :db/cardinality        :db.cardinality/one
-     :db/unique             :db.unique/identity
-     :db/id                 #db/id [:db.part/db]}
+     :db/unique             :db.unique/identity}
 
     {:db/doc                "User password hash"
      :db/ident              :user/password
      :db/valueType          :db.type/string
-     :db/cardinality        :db.cardinality/one
-     :db/id                 #db/id [:db.part/db]}
+     :db/cardinality        :db.cardinality/one}
 
     {:db/doc                "Countries user already visited"
      :db/ident              :user/countries-visited
      :db/valueType          :db.type/ref
-     :db/cardinality        :db.cardinality/many
-     :db/id                 #db/id [:db.part/db]}
+     :db/cardinality        :db.cardinality/many}
 
     {:db/doc                "Countries user wants to visit"
      :db/ident              :user/countries-to-visit
      :db/valueType          :db.type/ref
-     :db/cardinality        :db.cardinality/many
-     :db/id                 #db/id [:db.part/db]}]
+     :db/cardinality        :db.cardinality/many}]
 
     ;; Country schema
    [{:db/doc                "Country name"
      :db/ident              :country/name
      :db/valueType          :db.type/string
      :db/cardinality        :db.cardinality/one
-     :db/unique             :db.unique/identity
-     :db/id                 #db/id [:db.part/db]}
+     :db/unique             :db.unique/identity}
 
     {:db/doc                "Country ISO alpha-3 code"
      :db/ident              :country/alpha-3
      :db/valueType          :db.type/string
-     :db/cardinality        :db.cardinality/one
-     :db/id                 #db/id [:db.part/db]}
+     :db/cardinality        :db.cardinality/one}
 
     {:db/doc                "Country code"
      :db/ident              :country/code
      :db/valueType          :db.type/string
-     :db/cardinality        :db.cardinality/one
-     :db/id                 #db/id [:db.part/db]}]]}
+     :db/cardinality        :db.cardinality/one}]]}
 ```
 
-:db/doc                "User email address"
-     :db/ident              :user/email
-     :db/valueType          :db.type/string
-     :db/cardinality        :db.cardinality/one
-     :db/unique             :db.unique/identity
-     :db/id 
+Now let's have a look at some common attributes we used here.
 
+ - `:db/doc` is an optional documentation string.
+ - `:db/ident` specifies a unique name for an attribute
+ - `:db/valueType` specifies the type of data that can be stored in the attribute
+ - `:db/cardinality` specifies whether the attribute stores a single value, or a collection of values
+ - `:db/unique` specifies a uniqueness constraint for the values of an attribute
+
+Here are a few articles from official docs that have more information about [Datomic data model][datomic-data-model] and [Datomic schema][datomic-schema].
 
 
 [datamaps]: https://datamaps.github.io/
+[datomic-data-model]: https://docs.datomic.com/cloud/whatis/data-model.html
+[datomic-schema]: https://docs.datomic.com/cloud/schema/schema-reference.html
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgxNDk3MDc4MiwxMDE1NDA1NjExLDM1NT
+eyJoaXN0b3J5IjpbMTU2MzUzMDczMiwxMDE1NDA1NjExLDM1NT
 EwMDAzOF19
 -->
