@@ -253,6 +253,9 @@ Don't forget to run `(reset-db)` from terminal to apply all the changes.
 
 .....
 
+
+
+
 [datamaps]: https://datamaps.github.io/
 [datomic-data-model]: https://docs.datomic.com/cloud/whatis/data-model.html
 [datomic-schema]: https://docs.datomic.com/cloud/schema/schema-reference.html
@@ -262,6 +265,6 @@ Don't forget to run `(reset-db)` from terminal to apply all the changes.
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzcwNzEyNDYsLTE2MTE2MDY1NywxMD
-E1NDA1NjExLDM1NTEwMDAzOF19
+eyJoaXN0b3J5IjpbMTM1Nzc5NjczMiwtMTYxMTYwNjU3LDEwMT
+U0MDU2MTEsMzU1MTAwMDM4XX0=
 -->
