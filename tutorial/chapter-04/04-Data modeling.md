@@ -1,6 +1,6 @@
 # Data modeling
 
-In this chapter we'll be working with the core part of our application: the database. We need to create a schema for our database and populate it with countires data. 
+In this chapter we'll be working with the core part of our application: the database. We need to create a schema for our database, populate it with countires data and add some queries. 
 
 Code for the beggining of this chapter can be found in  `app/chapter-04/start` folder.
 
@@ -190,11 +190,68 @@ Here are a few articles from official docs that have more information about [Dat
 
 And now we can run `(reset-db)` to apply our new changes. To verify that everything worked we can run a `show-schema` function from `visitera.db.core` namespace or we can try to use a gui solution. Here is a link to [download datomic console][datomic-console-download] (a gui for datomic). After downloading follow the instuctions in `README.MD` file. And here is [a link from docs][datomic-console-docs] that shows how to use it. After installing and launching in should be awailable in your browser by that address: `http://localhost:8080/browse`
 
-## Prepopulating database
+## Prepopulating countries data
 
 For our application to function properly we need to have information about all the countries prepopulated in the database. We definitely don't want to do this by hand, so let's do some research and try to find that data in some format we could use.
 
 After some researches I was able to find that [Countires list project][countries-list-github]. It has everything we need and even more. Here is a [json file][countries-list-json] with all the countries and codes. And because we're in a clojure world we need to conver json to edn. I used this [json to edn converter][json-to-end-converter].
+
+That's what we had:
+
+```json
+[{
+"name": "Afghanistan",
+"alpha-3": "AFG",
+"country-code": "004"
+},{
+"name": "Åland Islands",
+"alpha-3": "ALA",
+"country-code": "248"
+},{
+"name": "Albania",
+"alpha-3": "ALB",
+"country-code": "008"
+} ... ]
+```
+
+And that's what we got:
+
+```clojure
+[{:name "Afghanistan",
+  :alpha-3 "AFG",
+  :country-code "004"}
+ {:name "Åland Islands",
+  :alpha-3 "ALA",
+  :country-code "248"}
+ {:name "Albania",
+  :alpha-3 "ALB",
+  :country-code "008"} ... ]
+```
+
+We only need to change keys to country entity attributes, and add the full list to `resources/migrations/schema.edn`. 
+
+```clojure
+:visitera/data1
+ {:txes
+  [[{:country/name "Afghanistan"
+     :country/alpha-3 "AFG"
+     :country/code "004"}
+    {:country/name "Åland Islands"
+     :country/alpha-3 "ALA"
+     :country/code "248"}
+    {:country/name "Albania"
+     :country/alpha-3 "ALB"
+     :country/code "008"}
+  ... ]]}
+```
+
+Sure we could have put all this data to a separate file but for simplicity we put everything in one. So as an **exercise** you may try to do some refactoring to `install-schema` function from `visitera.db.core` namespace so we would have one file just for schema and another one for countries data.
+
+Don't forget to run `(reset-db)` from terminal to apply all the changes.
+
+## Querying the Database
+
+.....
 
 [datamaps]: https://datamaps.github.io/
 [datomic-data-model]: https://docs.datomic.com/cloud/whatis/data-model.html
@@ -205,6 +262,6 @@ After some researches I was able to find that [Countires list project][countries
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI0ODkyOTYyLC0xNjExNjA2NTcsMTAxNT
-QwNTYxMSwzNTUxMDAwMzhdfQ==
+eyJoaXN0b3J5IjpbLTIwMzcwNzEyNDYsLTE2MTE2MDY1NywxMD
+E1NDA1NjExLDM1NTEwMDAzOF19
 -->
