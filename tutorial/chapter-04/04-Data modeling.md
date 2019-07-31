@@ -188,16 +188,23 @@ Now let's have a look at some common attributes we used here.
 
 Here are a few articles from official docs that have more information about [Datomic data model][datomic-data-model] and [Datomic schema][datomic-schema].
 
-And now we can run `(reset-db)` to apply our new changes. To verify that everything worked we can run a `show-schema` function from `visitera.db.core` namespace or we can try to use a gui solution. Here is a link to [download datomic console][datomic-console-download] (a gui for datomic). After downloading follow the instuctions in `README.MD` file. And here is [a link from docs][datomic-console-docs] that shows how to use it.
+And now we can run `(reset-db)` to apply our new changes. To verify that everything worked we can run a `show-schema` function from `visitera.db.core` namespace or we can try to use a gui solution. Here is a link to [download datomic console][datomic-console-download] (a gui for datomic). After downloading follow the instuctions in `README.MD` file. And here is [a link from docs][datomic-console-docs] that shows how to use it. After installing and launching in should be awailable in your browser by that address: `http://localhost:8080/browse`
 
+## Prepopulating database
 
+For our application to function properly we need to have information about all the countries prepopulated in the database. We definitely don't want to do this by hand, so let's do some research and try to find that data in some format we could use.
+
+After some researches I was able to find that [Countires list project][countries-list-github]. It has everything we need and even more. Here is a [json file][countries-list-json] with all the countries and codes. And because we're in a clojure world we need to conver json to edn. I used this [json to edn converter][json-to-end-converter].
 
 [datamaps]: https://datamaps.github.io/
 [datomic-data-model]: https://docs.datomic.com/cloud/whatis/data-model.html
 [datomic-schema]: https://docs.datomic.com/cloud/schema/schema-reference.html
 [datomic-console-download]: https://my.datomic.com/downloads/console
 [datomic-console-docs]: https://docs.datomic.com/on-prem/console.html
+[countries-list-github]: https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
+[countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
+[json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MTE2MDY1NywxMDE1NDA1NjExLDM1NT
-EwMDAzOF19
+eyJoaXN0b3J5IjpbOTI0ODkyOTYyLC0xNjExNjA2NTcsMTAxNT
+QwNTYxMSwzNTUxMDAwMzhdfQ==
 -->
