@@ -126,7 +126,7 @@ First we require `conn` and `install-schema` from `visitera.db.core` namespace.
 And then we add a call to `install-schema` inside `start-app` function.
 The schema with some test data is located in `resources/migrations/schema.edn` file.
 
-And the last thing we need to test a database interaction is a route that will get some data from the database and send it in a response back to the browser. Here are the changes we need to make to `src/clj/visitera/routes/home.clj`
+And the last thing we need to test: a database interaction. There is a `db-test` route that will get some data from the database and send it in a response back to the browser. Here are the changes we need to make to `src/clj/visitera/routes/home.clj`
 
 ```clojure
 (ns visitera.routes.home
@@ -264,7 +264,7 @@ Code for the end of this chapter can be found in `app/chapter-03/end` folder.
 [vs-code]: https://code.visualstudio.com/
 [calva]: https://github.com/BetterThanTomorrow/calva
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ2ODk0Nzk5NSwtOTg1MDQ1ODkzLC0yMT
-MzNTMxMTg5LC01MjI4NDA0OTksMzE5NjA4NjAsMTA3NTQ3Njg1
-Niw0NTk2NDg0OV19
+eyJoaXN0b3J5IjpbLTcxNjMzNzY4MCwtNDY4OTQ3OTk1LC05OD
+UwNDU4OTMsLTIxMzM1MzExODksLTUyMjg0MDQ5OSwzMTk2MDg2
+MCwxMDc1NDc2ODU2LDQ1OTY0ODQ5XX0=
 -->
