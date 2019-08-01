@@ -85,21 +85,24 @@
 
 (defn get-country-id-by-alpha-3 [db alpha-3]
   (-> (find-one-by db :country/alpha-3 alpha-3)
-                            (d/touch)
-                            (:db/id)))
+      (d/touch)
+      (:db/id)))
 
 ; (get-country-id-by-alpha-3 (d/db conn) "BLR")
 
 
 (defn concat-keyword [part-1 part-2]
   "Concatenates two keywords: 
-  (:one/two- :three) => :one/two-three"
+  (concat-keyword :one/two- :three) => :one/two-three"
   (let [name-1 (str/replace part-1 #"^:" "")
         name-2 (name part-2)]
     (-> (str name-1 name-2)
         (keyword))))
 
+; (concat-keyword :user/countries- :visited)
+
 (defn remove-from-countries [type conn user-email alpha-3]
+  "Remove country from list"
   (let [user-id (-> (find-user (d/db conn) user-email)
                     (:db/id))
         country-id (get-country-id-by-alpha-3 (d/db conn) alpha-3)
