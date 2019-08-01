@@ -374,6 +374,14 @@ And now we can test everything together:
 
 Everything should work as expected.
 
+##
+
+In this chapter we learned a new way of runnig a project directly through REPL, we added a `reset-db` function to `user` namespace, we created a database schema, prepopulated countries data and added some queries.
+
+Code for the end of this chapter can be found in `app/chapter-04/end` folder.
+
+
+
 
 [datamaps]: https://datamaps.github.io/
 [datomic-data-model]: https://docs.datomic.com/cloud/whatis/data-model.html
@@ -384,7 +392,7 @@ Everything should work as expected.
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzU2NzAzMDc5LDE2MzA4NTM1ODAsMTM1Nz
-c5NjczMiwtMTYxMTYwNjU3LDEwMTU0MDU2MTEsMzU1MTAwMDM4
-XX0=
+eyJoaXN0b3J5IjpbMTgxNDIzOTkxMywxNjMwODUzNTgwLDEzNT
+c3OTY3MzIsLTE2MTE2MDY1NywxMDE1NDA1NjExLDM1NTEwMDAz
+OF19
 -->
