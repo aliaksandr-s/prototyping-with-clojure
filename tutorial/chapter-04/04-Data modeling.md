@@ -289,7 +289,58 @@ As a response we should get something like this:
 
 `:db/id` attribute is added automatically by datomic.
 
-Next we need a few functions to add and remove countries to `:user/countries-visited` and `:user/countries-to-visit` lists.
+Next we need a few functions to add and remove countries to `:user/countries-visited` and `:user/countries-to-visit` lists. We expect them to be called that way:
+
+```clojure
+(remove-from-countries :visited conn "test@user.com" "BLR")
+(add-to-countries :to-visit conn "test@user.com" "BLR")
+```
+
+As a first argument we pass a type of list, then connection to the database, user email, and alpha-3 code. 
+
+To get country id from alpha-3 code we'll use that helper function:
+
+```clojure
+(defn get-country-id-by-alpha-3 [db alpha-3]
+  (-> (find-one-by db :country/alpha-3 alpha-3)
+      (d/touch)
+      (:db/id)))
+```
+
+And we need a helper function to get from a passed keyword a full db attribute: 
+`(concat-keyword :user/countries- :visited)`
+
+```clojure
+(defn concat-keyword [part-1 part-2]
+  (let [name-1 (str/replace part-1 #"^:" "")
+        name-2 (name part-2)]
+    (-> (str name-1 name-2)
+        (keyword))))
+```
+
+And here are the remove and add functions:
+
+```clojure
+(defn remove-from-countries [type conn user-email alpha-3]
+  "Remove country from list"
+  (let [user-id (-> (find-user (d/db conn) user-email)
+                    (:db/id))
+        country-id (get-country-id-by-alpha-3 (d/db conn) alpha-3)
+        attr (concat-keyword :user/countries- type)]
+    @(d/transact conn [[:db/retract user-id attr country-id]])))
+
+(defn add-to-countries [type conn user-email alpha-3]
+  "Add country to visited list"
+  (when-let [country-id (get-country-id-by-alpha-3 (d/db conn) alpha-3)]
+    (case type
+      :visited  (remove-from-countries :to-visit conn user-email alpha-3)
+      :to-visit (remove-from-countries :visited  conn user-email alpha-3))
+    (let [attr (concat-keyword :user/countries- type)
+          tx-user {:user/email user-email
+                   attr        [country-id]}]
+      @(d/transact conn [tx-user]))))
+```
+
 
 
 [datamaps]: https://datamaps.github.io/
@@ -301,6 +352,7 @@ Next we need a few functions to add and remove countries to `:user/countries-vis
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYzMDg1MzU4MCwxMzU3Nzk2NzMyLC0xNj
-ExNjA2NTcsMTAxNTQwNTYxMSwzNTUxMDAwMzhdfQ==
+eyJoaXN0b3J5IjpbLTIwMTA0MTI1NiwxNjMwODUzNTgwLDEzNT
+c3OTY3MzIsLTE2MTE2MDY1NywxMDE1NDA1NjExLDM1NTEwMDAz
+OF19
 -->
