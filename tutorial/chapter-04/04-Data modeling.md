@@ -279,6 +279,17 @@ Let's run these functions to check that everything works:
 (find-user (d/db conn) "test@user.com")
 ```
 
+As a response we should get something like this:
+
+```clojure
+{ :db/id 17592186045673,
+  :user/email "test@user.com", 
+  :user/password "somepass" }
+```
+
+`:db/id` attribute is added automatically by datomic.
+
+
 
 
 [datamaps]: https://datamaps.github.io/
@@ -290,6 +301,6 @@ Let's run these functions to check that everything works:
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzg2MDgxMTMxLDEzNTc3OTY3MzIsLTE2MT
-E2MDY1NywxMDE1NDA1NjExLDM1NTEwMDAzOF19
+eyJoaXN0b3J5IjpbLTkyMDI1NDA0OCwxMzU3Nzk2NzMyLC0xNj
+ExNjA2NTcsMTAxNTQwNTYxMSwzNTUxMDAwMzhdfQ==
 -->
