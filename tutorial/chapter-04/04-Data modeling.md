@@ -341,6 +341,38 @@ And here are the remove and add functions:
       @(d/transact conn [tx-user]))))
 ```
 
+If we add a country to `visited` list we need to make sure it's been removed from `to-visit` list and vice versa. That's why we need that case statement:
+
+```clojure
+(case type
+  :visited  (remove-from-countries :to-visit conn user-email alpha-3)
+  :to-visit (remove-from-countries :visited  conn user-email alpha-3))
+```
+
+And the last thing we need is to get countries by user email:
+
+```clojure
+(defn get-countries [db user-email]
+  (d/q '[:find (pull ?e
+                     [{:user/countries-to-visit
+                       [:country/alpha-3]}
+                      {:user/countries-visited
+                       [:country/alpha-3]}])
+         :in $ ?user-email
+         :where [?e :user/email ?user-email]]
+     db user-email))
+```
+
+And now we can test everything together:
+
+```clojure
+(add-to-countries :visited conn "test@user.com" "BLR")
+(get-countries (d/db conn) "test@user.com")
+(add-to-countries :to-visit conn "test@user.com" "BLR")
+(get-countries (d/db conn) "test@user.com")
+```
+
+Everything should work as expected.
 
 
 [datamaps]: https://datamaps.github.io/
@@ -352,7 +384,7 @@ And here are the remove and add functions:
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTA0MTI1NiwxNjMwODUzNTgwLDEzNT
-c3OTY3MzIsLTE2MTE2MDY1NywxMDE1NDA1NjExLDM1NTEwMDAz
-OF19
+eyJoaXN0b3J5IjpbMzU2NzAzMDc5LDE2MzA4NTM1ODAsMTM1Nz
+c5NjczMiwtMTYxMTYwNjU3LDEwMTU0MDU2MTEsMzU1MTAwMDM4
+XX0=
 -->
