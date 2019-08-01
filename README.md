@@ -11,12 +11,14 @@ This series of tutorials is supposed to show you how to turn your ideas into wor
 ### [Chapter-1: The app idea][chapter-1]
 ### [Chapter-2: Choosing the stack][chapter-2]
 ### [Chapter-3: Environment set up][chapter-3] 
-### [Chapter-4: ...]
+### [Chapter-4: Data modeling][chapter-4]
+### [Chapter-5]: ....
 
 [chapter-1]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-01/01-The%20app%20idea.md
 [chapter-2]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-02/02-Choosing%20the%20stack.md
 [chapter-3]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-03/03-Environment%20set%20up.md
+[chapter-4]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-04/04-Data%20modeling.md
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NzU1MzQ1MDEsOTUzMjM4OTg0LDEwMz
-U3NzAxMzddfQ==
+eyJoaXN0b3J5IjpbOTgyMTEwNDU4LC0xNDc1NTM0NTAxLDk1Mz
+IzODk4NCwxMDM1NzcwMTM3XX0=
 -->
