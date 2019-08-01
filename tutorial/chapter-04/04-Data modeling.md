@@ -251,8 +251,33 @@ Don't forget to run `(reset-db)` from terminal to apply all the changes.
 
 ## Querying the Database
 
-.....
+We've just created a schema and added countries data to the database, so now it's time to add some queries. 
 
+First let's open `src/clj/visitera/db/core.clj` file and replace `add-user` and `find-user` functions.
+
+```clojure
+(defn add-user
+  "Adds new user to a database"
+  [conn {:keys [email password]}]
+  (when-not (find-one-by (d/db conn) :user/email email)
+    @(d/transact conn [{:user/email    email
+                        :user/password password}])))
+
+(defn find-user [db email]
+  "Find user by email"
+  (d/touch (find-one-by db :user/email email)))
+```
+
+We need `when-not` part to make sure we're adding a new entity and not modifying the old one.
+
+Let's run these functions to check that everything works:
+
+```clojure
+(add-user conn {:email    "test@user.com"
+                :password "somepass"})
+
+(find-user (d/db conn) "test@user.com")
+```
 
 
 
@@ -265,6 +290,6 @@ Don't forget to run `(reset-db)` from terminal to apply all the changes.
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1Nzc5NjczMiwtMTYxMTYwNjU3LDEwMT
-U0MDU2MTEsMzU1MTAwMDM4XX0=
+eyJoaXN0b3J5IjpbMzg2MDgxMTMxLDEzNTc3OTY3MzIsLTE2MT
+E2MDY1NywxMDE1NDA1NjExLDM1NTEwMDAzOF19
 -->
