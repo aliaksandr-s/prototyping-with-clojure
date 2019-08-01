@@ -289,7 +289,7 @@ As a response we should get something like this:
 
 `:db/id` attribute is added automatically by datomic.
 
-
+Next we need a few functions to add and remove countries to `:user/countries-visited` and `:user/countries-to-visit` lists.
 
 
 [datamaps]: https://datamaps.github.io/
@@ -301,6 +301,6 @@ As a response we should get something like this:
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkyMDI1NDA0OCwxMzU3Nzk2NzMyLC0xNj
+eyJoaXN0b3J5IjpbMTYzMDg1MzU4MCwxMzU3Nzk2NzMyLC0xNj
 ExNjA2NTcsMTAxNTQwNTYxMSwzNTUxMDAwMzhdfQ==
 -->
