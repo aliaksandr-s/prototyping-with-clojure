@@ -4,12 +4,12 @@ In this chapter we're gonna describe the app idea and create a few user stories.
 
 ## The idea description
 
-The main goal of our app is to help travelers to visualise their past and future travels. That actually may sound a bit too official so basically we're building a digital scratch map. Our users will see a world map where they can mark countries they previously visited and countries they would like to visit in future. And of course our users should be able to save their progress. I think that's gonna be enough for the beginning, so let's create some user stories. 
+The main goal of our app is to help travelers to visualize their past and future travels. That actually may sound a bit too official so basically we're building a digital scratch map. Our users will see a world map where they can mark countries they previously visited and countries they would like to visit in future. And of course our users should be able to save their progress. I think that's gonna be enough for the beginning, so let's create some user stories. 
 
 **User Stories:**
 
  1. As a user I want to see a world map.
- 2. I want to be able to track countires I visited.
+ 2. I want to be able to track countries I visited.
  3. I want to be able to track countries I'd like to visit in future.
  4. The app should save my progress. 
 
@@ -28,5 +28,5 @@ Here we created a few simple forms for login and registration. Nothing too fancy
 [map]: https://raw.githubusercontent.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-01/map.png
 [login]: https://raw.githubusercontent.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-01/login.png
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTQzNTg5MzBdfQ==
+eyJoaXN0b3J5IjpbODA1ODU3MzgzLC0xOTk0MzU4OTMwXX0=
 -->
