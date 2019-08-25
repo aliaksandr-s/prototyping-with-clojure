@@ -1,18 +1,18 @@
 # Data modeling
 
-In this chapter we'll be working with the core part of our application: the database. We need to create a schema for our database, populate it with countires data and add some queries. 
+In this chapter we'll be working with the core part of our application: the database. We need to create a schema for our database, populate it with countries data and add some queries. 
 
-Code for the beggining of this chapter can be found in  `app/chapter-04/start` folder.
+Code for the beginning of this chapter can be found in  `app/chapter-04/start` folder.
 
 ## Preparation
 
-Before we can start working on a schema there are some preparations to make. To conviniently experiment with schema modeling we need a function to reset a database and we want the ability to run it without restarting the whole application. 
+Before we can start working on a schema there are some preparations to make. To conveniently experiment with schema modeling we need a function to reset a database and we want the ability to run it without restarting the whole application. 
 
 But first let's have a look at another way of starting the application. In the previous chapter we used `$ lein run` command which executed `start-app` function from `visitera.core` namespace and run REPL for us. Then we just connected to a running REPL.
 
 Now let's first try to run a REPL using `$ lein repl` command. Then run `(start)`. Now we should have a running app and REPL where we can enter other commands. Let's try to execute `(stop)` command. Now our app is stopped but we still have our REPL. 
 
-That's pretty cool and gives us more flexiblity. But where do these `(start)` and `(stop)` commands come from? That's a good question. All these commands belong to `user` namespace which is located in `/env/dev/clj/user.clj` file. Here its content:
+That's pretty cool and gives us more flexibility. But where do these `(start)` and `(stop)` commands come from? That's a good question. All these commands belong to `user` namespace which is located in `/env/dev/clj/user.clj` file. Here its content:
 
 ```clojure
 (ns user
@@ -59,7 +59,7 @@ Don't forget to import `env` from `visitera.config`
 [visitera.config :refer [env]]
 ```
 
-Now we can create a `reset-db` function in `user` namespace. It just deletes a database and restrarts our application. We also added `(install-schema conn)` to `start` function as we did in previous chapter with `visitera.core` namespace. Here's an updated file:
+Now we can create a `reset-db` function in `user` namespace. It just deletes a database and restarts our application. We also added `(install-schema conn)` to `start` function as we did in previous chapter with `visitera.core` namespace. Here's an updated file:
 
 ```clojure
 (ns user
@@ -188,13 +188,13 @@ Now let's have a look at some common attributes we used here.
 
 Here are a few articles from official docs that have more information about [Datomic data model][datomic-data-model] and [Datomic schema][datomic-schema].
 
-And now we can run `(reset-db)` to apply our new changes. To verify that everything worked we can run a `show-schema` function from `visitera.db.core` namespace or we can try to use a gui solution. Here is a link to [download datomic console][datomic-console-download] (a gui for datomic). After downloading follow the instuctions in `README.MD` file. And here is [a link from docs][datomic-console-docs] that shows how to use it. After installing and launching in should be awailable in your browser by that address: `http://localhost:8080/browse`
+And now we can run `(reset-db)` to apply our new changes. To verify that everything worked we can run a `show-schema` function from `visitera.db.core` namespace or we can try to use a GUI solution. Here is a link to [download datomic console][datomic-console-download] (a GUI for datomic). After downloading follow the instructions in `README.MD` file. And here is [a link from docs][datomic-console-docs] that shows how to use it. After installing and launching in should be available in your browser by that address: `http://localhost:8080/browse`
 
 ## Prepopulating countries data
 
 For our application to function properly we need to have information about all the countries prepopulated in the database. We definitely don't want to do this by hand, so let's do some research and try to find that data in some format we could use.
 
-After some researches I was able to find that [Countires list project][countries-list-github]. It has everything we need and even more. Here is a [json file][countries-list-json] with all the countries and codes. And because we're in a clojure world we need to conver json to edn. I used this [json to edn converter][json-to-end-converter].
+After some researches I was able to find that [Countries list project][countries-list-github]. It has everything we need and even more. Here is a [json file][countries-list-json] with all the countries and codes. And because we're in a clojure world we need to convert json to edn. I used this [json to edn converter][json-to-end-converter].
 
 That's what we had:
 
@@ -376,7 +376,7 @@ Everything should work as expected.
 
 ##
 
-In this chapter we learned a new way of runnig a project directly through REPL, we added a `reset-db` function to `user` namespace, we created a database schema, prepopulated countries data and added some queries.
+In this chapter we learned a new way of running a project directly through REPL, we added a `reset-db` function to `user` namespace, we created a database schema, prepopulated countries data and added some queries.
 
 Code for the end of this chapter can be found in `app/chapter-04/end` folder.
 
@@ -392,7 +392,7 @@ Code for the end of this chapter can be found in `app/chapter-04/end` folder.
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
 [json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgxNDIzOTkxMywxNjMwODUzNTgwLDEzNT
+eyJoaXN0b3J5IjpbLTg4OTEwMTAzOCwxNjMwODUzNTgwLDEzNT
 c3OTY3MzIsLTE2MTE2MDY1NywxMDE1NDA1NjExLDM1NTEwMDAz
 OF19
 -->
