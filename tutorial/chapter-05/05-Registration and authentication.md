@@ -18,10 +18,15 @@ Here is a diagram of registration flow that shows all the details:
 
 ![registration-diagram]
 
+## Authentication
+
+![authentication-diagram]
 
 
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
+[authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
+eyJoaXN0b3J5IjpbLTEwMDA2OTAxODgsMjA3ODY3Nzc3Niw2ND
+I0MzI4NzhdfQ==
 -->
