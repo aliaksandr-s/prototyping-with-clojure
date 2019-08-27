@@ -80,13 +80,14 @@ Here is the content of `auth.html`:
 </html>
 ```
 
-In the head we include our css framework. And this block we'll be replaced with the content of the form.
+In the head we include our css framework. And the next block we'll be replaced with the content of the form.
 
 ```html
 {% block form %}
 {% endblock %}
 ```
 
+And here is how our ``
 
 
 
@@ -101,6 +102,6 @@ In the head we include our css framework. And this block we'll be replaced with 
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjc4MTM3NzQsLTEwMDA2OTAxODgsMjA3OD
-Y3Nzc3Niw2NDI0MzI4NzhdfQ==
+eyJoaXN0b3J5IjpbLTExMzYxODA0MywtMTAwMDY5MDE4OCwyMD
+c4Njc3Nzc2LDY0MjQzMjg3OF19
 -->
