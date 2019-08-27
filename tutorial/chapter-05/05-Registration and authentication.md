@@ -87,27 +87,30 @@ In the head we include our css framework. And the next block we'll be replaced w
 {% endblock %}
 ```
 
-And here is our `register.html`:
+And here is our `register.html` with comments explaining the main parts:
 
 ```html
-{% extends "auth.html" %}  
-{% block form %}           - 2
-<form method="POST" action="/register" class="box">
-    {% csrf-field %}       - 3 
+{% extends "auth.html" %}  <!--  here we specify what template to extend  -->
+{% block form %}           <!--  a place in auth template where the next code will be injected -->
+<form method="POST" action="/register" class="box"> 
+    {% csrf-field %}       <!--  more about this here http://www.luminusweb.net/docs/security.html#cross_site_request_forgery_protection -->
     <label class="label is-medium has-text-centered">Create Account</label>
     <div class="field">
         <label for="email" class="label">Email</label>
         <div class="control has-icons-left">
-            <input type="text"
+            <!-- Make input red if any errors in validation. 
+                 Also pass email back from the server so user wouldn't have to type it again -->
+             <input type="text"
                    name="email"
                    placeholder="e.g.bobsmith@gmail.com"
                    class="input {% if errors.email %} is-danger {% endif %}"
                    value="{% if email %}{{email}}{% endif %}"
             />
-            <span class="icon is-small is-left">
+           <span class="icon is-small is-left">
                 <i class="fa fa-envelope"></i>
             </span>
         </div>
+        <!-- Show validation errors if any -->
         {% if errors.email %}
         <p class="help is-danger">{{errors.email}}</p>
         {% endif %}
@@ -155,6 +158,6 @@ And here is our `register.html`:
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyMjMzNDUwNiwtMTAwMDY5MDE4OCwyMD
+eyJoaXN0b3J5IjpbLTI4Mjk1NTI0MSwtMTAwMDY5MDE4OCwyMD
 c4Njc3Nzc2LDY0MjQzMjg3OF19
 -->
