@@ -87,7 +87,60 @@ In the head we include our css framework. And the next block we'll be replaced w
 {% endblock %}
 ```
 
-And here is how our ``
+And here is our `register.html`:
+
+```html
+{% extends "auth.html" %}  
+{% block form %}           - 2
+<form method="POST" action="/register" class="box">
+    {% csrf-field %}       - 3 
+    <label class="label is-medium has-text-centered">Create Account</label>
+    <div class="field">
+        <label for="email" class="label">Email</label>
+        <div class="control has-icons-left">
+            <input type="text"
+                   name="email"
+                   placeholder="e.g.bobsmith@gmail.com"
+                   class="input {% if errors.email %} is-danger {% endif %}"
+                   value="{% if email %}{{email}}{% endif %}"
+            />
+            <span class="icon is-small is-left">
+                <i class="fa fa-envelope"></i>
+            </span>
+        </div>
+        {% if errors.email %}
+        <p class="help is-danger">{{errors.email}}</p>
+        {% endif %}
+
+   </div>
+    <div class="field">
+        <label for="password" class="label">Password</label>
+        <div class="control has-icons-left">
+            <input type="password"
+                   name="password"
+                   placeholder="*******"
+                   class="input {% if errors.password %} is-danger {% endif %}"
+ 
+            />
+            <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+            </span>
+        </div>
+        {% if errors.password %}
+        <p class="help is-danger">{{errors.password}}</p>
+        {% endif %}
+    </div>
+   <div class="field">
+        <button class="button is-success" style="width: 100%">
+            Register
+        </button>
+    </div>
+    <div class="field has-text-centered">
+        <span>Already a user? <a href="/login">Log in</a></span>
+    </div>
+</form>
+{% endblock %}
+```
 
 
 
@@ -102,6 +155,6 @@ And here is how our ``
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMzYxODA0MywtMTAwMDY5MDE4OCwyMD
+eyJoaXN0b3J5IjpbMTgyMjMzNDUwNiwtMTAwMDY5MDE4OCwyMD
 c4Njc3Nzc2LDY0MjQzMjg3OF19
 -->
