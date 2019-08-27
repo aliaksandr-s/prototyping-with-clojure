@@ -26,21 +26,70 @@ As the first step we obviously need to start the project:
  4. Start REPL `$ lein repl`
  5. Start the project from REPL `user=> (start)` 
 
-Recruiters and companies don’t really like when a candidate turns down a job offer after accepting it. It’s just unprofessional. But sometimes companies do the same thing, and change their mind after making an offer. That happened to me and the company didn’t even bother to notify me. 
+Next we need to create HTML templates. We'll have two forms: one for registration and another one for login. So to prevent copy-pasting we'll create one common HTML template and simply extend it with different forms.
 
-That was a bit of an introduction. But the main idea is that now I’m open for new opportunities. 
+```
+  +-------------------+     +-------------------+
+  |  auth.html        |     |  auth.html        |
+  | +---------------+ |     | +---------------+ |
+  | | register.html | |     | | login.html    | |
+  | |               | |     | |               | |
+  | +---------------+ |     | +---------------+ |
+  +-------------------+     +-------------------+
+```
 
-What I’m looking for:
-- Clojure/ClojureScript tech stack
-- A friendly team of professional engineers 
+Our app template already comes with [bulma css framework][bulma] preinstalled, so we don't need to worry about styling. And all the HTML templates are located in `resources/html` folder.
 
-What you can expect from me:
-- about 6 months working with Clojure 
-- 3+ years working with JavaScript (mostly with React and Node)
-- great attention to detail and clean code
-- love for good UX and desire to learn new stuff
+Here is the content of `auth.html`:
 
-Sharing is really welcome. Thanks!
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Visitera</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% style "/assets/bulma/css/bulma.min.css" %}
+    </head>
+    <body>
+        <div class="hero is-primary is-fullheight">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-brand">
+                            <a href="/" class="navbar-item has-text-white" style="font-weight: bold;">VisiterA</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="hero-body">
+                <div class="hero-body">
+                    <div class="container">
+                        <div class="columns is-centered">
+                            <div class="column is-5-tablet is-5-desktop
+                                is-4-widescreen">
+                                {% block form %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+```
+
+In the head we include our css framework. And this block we'll be replaced with the content of the form.
+
+```html
+{% block form %}
+{% endblock %}
+```
+
+
+
+
 
 ## Authentication
 
@@ -50,7 +99,8 @@ Sharing is really welcome. Thanks!
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
+[bulma]: https://bulma.io/documentation/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2Mjg5MDc2MiwtMTAwMDY5MDE4OCwyMD
-c4Njc3Nzc2LDY0MjQzMjg3OF19
+eyJoaXN0b3J5IjpbMjc4MTM3NzQsLTEwMDA2OTAxODgsMjA3OD
+Y3Nzc3Niw2NDI0MzI4NzhdfQ==
 -->
