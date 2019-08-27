@@ -795,23 +795,10 @@
      :country/alpha-3 "ZWE"
      :country/code "716"}]]}
 
-;  :visitera/data2
-;  {:txes
-;   [[;; Some test data 
-;     {:db/id           "1"
-;      :country/name    "Moloria"
-;      :country/alpha-3 "MLR"
-;      :country/code    "1111"}
-
-;     {:db/id           "2"
-;      :country/name    "Angoriatica"
-;      :country/alpha-3 "AGT"
-;      :country/code    "2222"}
-
-;     {:db/id                   "3"
-;      :user/email              "john@doe.com"
-;      :user/password           "123"
-;      :user/countries-to-visit [{:db/id "1"}]
-;      :user/countries-visited  [{:db/id "2"}]}]]}
- 
- }
+ :visitera/data2
+ {:txes
+  [[;; Some test data 
+    {:user/email              "john@doe.com"
+     :user/password           "123"
+     :user/countries-to-visit [{:country/name "Zambia"}]
+     :user/countries-visited  [{:country/name "Yemen"}]}]]}}
