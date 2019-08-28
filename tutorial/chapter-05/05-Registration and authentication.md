@@ -145,11 +145,56 @@ And here is our `register.html` with comments explaining the main parts:
 {% endblock %}
 ```
 
-All the templates are ready now so we can create a function that will handle the rendering. 
+All the templates are ready so now we can add a function that will handle the rendering. Let's put the next piece of code to `src/clj/visitera/layout.clj` file:
+
+```clojure
+(defn register-page [request]
+  (render
+   request
+   "register.html"))
+``` 
+
+Let's also move `home-page` function from `visitera.routes.home` namespace to `visitera.layout` namespace.
+
+```clojure
+(defn home-page [request]
+  (render request "home.html"))
+```
+
+And the last part is adding route handler to our `visitera.routes.home` namespace, and removing everything we don't need. Here's how it should look like by now: 
+
+```clojure
+(ns visitera.routes.home
+  (:require
+   [visitera.layout :refer [register-page home-page]]
+   [visitera.middleware :as middleware]
+   [ring.util.http-response :as response]
+   [visitera.db.core :refer [conn find-user]]
+   [datomic.api :as d]))
+
+(defn home-routes []
+  [""
+   {:middleware [middleware/wrap-csrf
+                 middleware/wrap-formats]}
+   ["/" {:get home-page}]
+   ["/register" {:get register-page}]])
+```
+
+Now we can go to `http://localhost:3000/register` and have a look at our form. But there are a few issues with it right now: submitting obviously isn't working yet, and icons aren't shown. Let's fix the second one first. 
+
+Icons aren't show because [bulma] uses [font-awesome] as a dependency. It's not coming preinstalled so we need to install it manually. First we go to [webjars] website, choose `Leiningen` as a build tool, and search for `font-awesome`. The first link should be the correct one, just the version may be different. For me it is: `org.webjars/font-awesome "5.9.0"`. Next we just add it to `:dependencies` in our `project.clj` file. 
+
+```clojure
+:dependencies [ ...
+				[org.webjars/font-awesome "5.9.0"]
+				...]
+```
 
 
 
 
+----
+------
 Now we'll add validation logic to `src/cljc/visitera/validation.cljs`
 
 ```clojure
@@ -183,7 +228,9 @@ Because it's located in `cljc` folder it can be shared between client and server
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
+[font-awesome]: https://fontawesome.com/
+[webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzAzNjUzMDgwLC0yODI5NTUyNDEsLTEwMD
-A2OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
+eyJoaXN0b3J5IjpbLTQ3NzI3NDk0NywtMjgyOTU1MjQxLC0xMD
+AwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX0=
 -->
