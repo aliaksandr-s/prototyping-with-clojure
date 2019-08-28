@@ -145,6 +145,11 @@ And here is our `register.html` with comments explaining the main parts:
 {% endblock %}
 ```
 
+All the templates are ready now so we can create a function that will do the rendering. 
+
+
+
+
 Now we'll add validation logic to `src/cljc/visitera/validation.cljs`
 
 ```clojure
@@ -179,6 +184,6 @@ Because it's located in `cljc` folder it can be shared between client and server
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ2NDk5MjI2NSwtMjgyOTU1MjQxLC0xMD
+eyJoaXN0b3J5IjpbLTQzMzEzMjM5NSwtMjgyOTU1MjQxLC0xMD
 AwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX0=
 -->
