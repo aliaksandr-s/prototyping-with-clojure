@@ -12,7 +12,7 @@ The authentication process simply consists of checking the `:identity` keyword i
 
 ## Registration
 
-Let's start with registration. There is nothing fancy here: user goes to the `/register` route and gets a form which is rendered on the sever. Then user submits a form, we check it on the server: if everything is fine we create a user and redirect to `/login` page, if there are any validation errors we insert them into the form and return back to user. 
+Let's start with registration. There is nothing fancy here: user goes to the `/register` route and gets a form which is rendered on the sever. There are two fields: email and password. User submits a form, we check it on the server: if everything is fine we create a user and redirect to `/login` page, if there are any validation errors we insert them into the form and return back to user. 
 
 Here is a diagram of registration flow that shows all the details:
 
@@ -145,8 +145,29 @@ And here is our `register.html` with comments explaining the main parts:
 {% endblock %}
 ```
 
+Now we'll add validation logic to `src/cljc/visitera/validation.cljs`
 
+```clojure
+(ns visitera.validation
+  (:require [struct.core :as st]))
 
+(def register-schema
+  [[:email
+    st/required
+    st/string
+    st/email]
+
+   [:password
+    st/required
+    st/string
+    {:message "password must contain at least 8 characters"
+     :validate #(> (count %) 7)}]])
+
+(defn validate-register [params]
+  (first (st/validate params register-schema)))
+```
+
+Because it's located in `cljc` folder it can be shared between client and server. The code by itself is pretty straightforward. We need to check that email and password exist and both are strings, for email we use default email validation, and for password check if it's more than 7 characters.
 
 ## Authentication
 
@@ -158,6 +179,6 @@ And here is our `register.html` with comments explaining the main parts:
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4Mjk1NTI0MSwtMTAwMDY5MDE4OCwyMD
-c4Njc3Nzc2LDY0MjQzMjg3OF19
+eyJoaXN0b3J5IjpbMTQ2NDk5MjI2NSwtMjgyOTU1MjQxLC0xMD
+AwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX0=
 -->
