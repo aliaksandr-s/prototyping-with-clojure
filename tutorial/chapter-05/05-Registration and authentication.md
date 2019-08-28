@@ -145,7 +145,7 @@ And here is our `register.html` with comments explaining the main parts:
 {% endblock %}
 ```
 
-All the templates are ready now so we can create a function that will do the rendering. 
+All the templates are ready now so we can create a function that will handle the rendering. 
 
 
 
@@ -184,6 +184,6 @@ Because it's located in `cljc` folder it can be shared between client and server
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQzMzEzMjM5NSwtMjgyOTU1MjQxLC0xMD
-AwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX0=
+eyJoaXN0b3J5IjpbMzAzNjUzMDgwLC0yODI5NTUyNDEsLTEwMD
+A2OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
 -->
