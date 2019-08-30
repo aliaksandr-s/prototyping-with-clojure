@@ -236,14 +236,53 @@ Let's add validation logic to the next file `src/cljc/visitera/validation.cljs`
 
 Because it's located in `cljc` folder it can be shared between client and server. The code by itself is pretty straightforward. We need to check that email and password exist and both are strings, for email we use default email validation, and for password check if it's more than 7 characters.
 
+And the last part is to add handler and update dependencies and routes in `visitera.routes.home` namespace:
 
+```clojure
+(ns visitera.routes.home
+  (:require
+   [visitera.layout :refer [register-page home-page]]
+   [visitera.middleware :as middleware]
+   [ring.util.http-response :as response]
+   [visitera.db.core :refer [conn find-user add-user]]
+   [visitera.validation :refer [validate-register]]
+   [datomic.api :as d]))
 
+(defn register-handler! [{:keys [params]}]
+  (if-let [errors (validate-register params)]
+    (-> (response/found "/register")
+        (assoc :flash {:errors errors 
+                       :email (:email params)}))
+    (if-not (add-user conn params)
+      (-> (response/found "/register")
+          (assoc :flash {:errors {:email "User with that email already exists"} 
+                         :email (:email params)}))
+      (-> (response/found "/login")
+          (assoc :flash {:messages {:success "User is registered! You can log in now."} 
+                         :email (:email params)})))))
 
+(defn home-routes []
+  [""
+   {:middleware [middleware/wrap-csrf
+                 middleware/wrap-formats]}
+   ["/" {:get home-page}]
+   ["/register" {:get register-page
+                 :post register-handler!}]])
+```
 
+All that code is explained on the diagram in the beginning of a chapter. We submit a form validate input data and try to create a user if user already exists or any errors in validation we return that form back and using flash messages show appropriate errors. 
 
+And the very very last thing we need to do is to update `register-page` function in `visitera.layout` namespace so we could pass error messages to our html template
 
+```clojure
+(defn register-page [{:keys [flash] :as request}]
+  (render
+   request
+   "register.html"
+   (select-keys flash [:errors :email])))
+```
 
-
+And we're done with registration part and now can go to `http://localhost:3000/register` to test it. We should see appropriate errors if we try to submit a form with incorrect data, the email should not get lost between requests. If input data is correct we should be redirected to `http://localhost:3000/login` which we'll implement shortly.
 
 ## Authentication
 
@@ -257,6 +296,6 @@ Because it's located in `cljc` folder it can be shared between client and server
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc5NzE2MzQzLC0yODI5NTUyNDEsLTEwMD
-A2OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
+eyJoaXN0b3J5IjpbMjA3ODE1ODM4OCwtMjgyOTU1MjQxLC0xMD
+AwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX0=
 -->
