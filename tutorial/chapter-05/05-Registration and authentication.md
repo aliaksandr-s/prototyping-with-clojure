@@ -190,6 +190,26 @@ Icons aren't show because [bulma] uses [font-awesome] as a dependency. It's not 
 				...]
 ```
 
+Then we can use `$ lein deps` command to install it explicitly and restart our app. Or just restart our app that will install all the dependencies implicitly:
+
+ 1. Stop: <kbd>CTRL + D</kbd>
+ 2. Start REPL: `$ lein repl`
+ 3. Run application: `=> (start)`
+
+The last part is to add `.css` file to the head of `auth.html` template:
+
+```html
+<head>
+     <title>Visitera</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     {% style "/assets/bulma/css/bulma.min.css" %}
+     {% style "/assets/font-awesome/css/all.css" %}
+</head>
+```
+
+Now we should be able to see nice icons of a locker and an envelope in our register form.
+
 
 
 
@@ -231,6 +251,6 @@ Because it's located in `cljc` folder it can be shared between client and server
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3NzI3NDk0NywtMjgyOTU1MjQxLC0xMD
-AwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX0=
+eyJoaXN0b3J5IjpbMjIzMjg5MzQ3LC0yODI5NTUyNDEsLTEwMD
+A2OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
 -->
