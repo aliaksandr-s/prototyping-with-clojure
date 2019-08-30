@@ -210,12 +210,9 @@ The last part is to add `.css` file to the head of `auth.html` template:
 
 Now we should be able to see nice icons of a locker and an envelope in our register form.
 
+There are a few more steps to finish our register form: we need to add a route handler and a validation schema for inputs.
 
-
-
-----
-------
-Now we'll add validation logic to `src/cljc/visitera/validation.cljs`
+Let's add validation logic to the next file `src/cljc/visitera/validation.cljs`
 
 ```clojure
 (ns visitera.validation
@@ -239,6 +236,15 @@ Now we'll add validation logic to `src/cljc/visitera/validation.cljs`
 
 Because it's located in `cljc` folder it can be shared between client and server. The code by itself is pretty straightforward. We need to check that email and password exist and both are strings, for email we use default email validation, and for password check if it's more than 7 characters.
 
+
+
+
+
+
+
+
+
+
 ## Authentication
 
 ![authentication-diagram]
@@ -251,6 +257,6 @@ Because it's located in `cljc` folder it can be shared between client and server
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjIzMjg5MzQ3LC0yODI5NTUyNDEsLTEwMD
+eyJoaXN0b3J5IjpbLTc5NzE2MzQzLC0yODI5NTUyNDEsLTEwMD
 A2OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
 -->
