@@ -311,7 +311,7 @@ Registration is ready so it's time to start implementing authentication. The mai
 
 The first part is really similar to registration. We go to `/login` page and submit login form with user credentials. Next we validate form data on the server side. If it's not correct we return the form back with appropriate errors. If it's correct we try to get user data form the database. If there is no such user or password is wrong we return login form with errors back to the client. If everything is correct we add the `:identity` field to the session. Then each request that should be protected will be wrapped with `wrap-restricted` middleware. That middleware just checks if a session has`:identity` field. If it has that field than everything is okay and our request will be passed to the next handler. If there is no `:identity` field we will be redirected back to the `/login` page.
 
-Let's start with the `login.html` template first. It's pretty similar to `register.html` just two inputs a button and a link.
+Let's start with the `login.html` template first. It's pretty similar to `register.html` just two inputs a button and a link. And we just added an extra success message that will be shown right after registration.
 
 ```clojure
 {% extends "auth.html" %}
@@ -491,7 +491,50 @@ There is just one tiny update we need to make in `find-user` function in `visite
     (d/touch user-id)))
 ```
 
-Now let's test everything. Let's go to `/register` route in our browser. First let's try to submit an empty form. We should immediately see validation errors but they won't fade away if we start typing, so let's fix that.
+Now let's test everything. Let's go to `/register` route in our browser. First let's try to submit an empty form. We should immediately see validation errors but they won't fade away if we start typing, so let's fix that. Let's add that script after closing `</body>` tag to our `auth.html` file:
+
+```html
+<script type="text/javascript">
+      (function() {
+        const inputs = document.querySelectorAll('.input');
+        const hideErrors = (input) => {
+          try {
+            input.classList.remove('is-danger')
+            input.parentNode.parentNode.children[2].style.display = "none"
+          } catch(error) {
+            undefined
+          }
+       }
+        inputs.forEach(input => input.addEventListener('focus', () => hideErrors(input)))
+      })();
+    </script>
+
+```
+
+It just finds error elements in the DOM and removes them when we set focus on inputs.
+
+Let's refresh our app in a browser and try to register a random user. If everything went smoothly we should be redirected to `/login` page and see a success message. Now let's try to visit our main route `/`. We should get an error: `Access to / is not authorized`. That's the correct behavior but our users wouldn't be so happy to see that message so let's better redirect them to `/login` page instead. 
+
+Here are a few changes we need to make in `visitera.midleware` namespace:
+
+First require:
+
+```clojure
+[ring.util.http-response :as response]
+```
+
+Second update `on-error` function:
+
+```clojure
+(defn on-error [request response]
+  (response/found "/login"))
+```
+
+And now if we go to `/` we should be redirected to `/login`. That's much better. 
+
+Now let's try to login with a previously created user. If everything went okay we should be able to see the main page. 
+
+And it's time to go to `/logout` route. It should destroy current session and redirect us back to `/login`. And our authentication is done.
 
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
@@ -500,7 +543,7 @@ Now let's test everything. Let's go to `/register` route in our browser. First l
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM0MDIzMzU0MywtNzMyODc4MTQ3LDIwNz
-gxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5MDE4OCwyMDc4Njc3
-Nzc2LDY0MjQzMjg3OF19
+eyJoaXN0b3J5IjpbLTE0MzIwODQ5NTAsLTczMjg3ODE0NywyMD
+c4MTU4Mzg4LC0yODI5NTUyNDEsLTEwMDA2OTAxODgsMjA3ODY3
+Nzc3Niw2NDI0MzI4NzhdfQ==
 -->
