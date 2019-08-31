@@ -292,7 +292,107 @@ Registration is ready so it's time to start implementing authentication. The mai
 
 The first part is really similar to registration. We go to `/login` page and submit login form with user credentials. Next we validate form data on the server side. If it's not correct we return the form back with appropriate errors. If it's correct we try to get user data form the database. If there is no such user or password is wrong we return login form with errors back to the client. If everything is correct we add the `:identity` field to the session. Then each request that should be protected will be wrapped with `wrap-restricted` middleware. That middleware just checks if a session has`:identity` field. If it has that field than everything is okay and our request will be passed to the next handler. If there is no `:identity` field we will be redirected back to the `/login` page.
 
-Let's start with the html template first. It's pretty similar to `register.html` just two inputs a button and a link.
+Let's start with the `login.html` template first. It's pretty similar to `register.html` just two inputs a button and a link.
+
+```clojure
+{% extends "auth.html" %}
+{% block form %}
+<form method="POST" action="/login" class="box">
+    {% csrf-field %}
+    <label class="label is-medium has-text-centered">Log in</label>
+    {% if messages.success %}
+      <p class="has-text-success level-item has-text-centered">{{messages.success}}</p>
+    {% endif %}
+    <div class="field">
+        <label for="email" class="label">Email</label>
+        <div class="control has-icons-left">
+            <input type="text"
+                   name="email"
+                   placeholder="e.g.bobsmith@gmail.com"
+                   class="input {% if errors.email %} is-danger {% endif %}"
+                   value="{% if email %}{{email}}{% endif %}"
+            />
+            <span class="icon is-small is-left">
+                <i class="fa fa-envelope"></i>
+            </span>
+        </div>
+        {% if errors.email %}
+        <p class="help is-danger">{{errors.email}}</p>
+        {% endif %}
+
+   </div>
+    <div class="field">
+        <label for="password" class="label">Password</label>
+        <div class="control has-icons-left">
+            <input type="password"
+                   name="password"
+                   placeholder="*******"
+                   class="input {% if errors.password %} is-danger {% endif %}"
+ 
+            />
+            <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+            </span>
+        </div>
+        {% if errors.password %}
+        <p class="help is-danger">{{errors.password}}</p>
+        {% endif %}
+    </div>
+   <div class="field">
+        <button class="button is-success" style="width: 100%">
+            Login
+        </button>
+    </div>
+    <div class="field has-text-centered">
+        <span>Not a user? <a href="/register">Register</a></span>
+    </div>
+</form>
+{% endblock %}
+```
+
+And we also need to add a rendering handler to `visitera.layout` namespace:
+
+```clojure
+(defn login-page [{:keys [flash] :as request}]
+  (render
+   request
+   "login.html"
+   (select-keys flash [:errors :email])))
+```
+
+It's almost identical to `register-page` so to avoid repeating we can refactor our code and create a more generic `auth-page`:
+
+```clojure
+(defn auth-page [type]
+  (fn [{:keys [flash] :as request}]
+  (render
+   request
+   (str type ".html")
+   (select-keys flash [:errors :email :messages]))))
+
+(def register-page (auth-page "register"))
+(def login-page (auth-page "login"))
+```
+
+Now let's add a validation schema to `visitera.validation` namespace:
+
+```clojure
+(def login-schema
+  [[:email
+    st/required
+    st/string
+    st/email]
+
+   [:password
+    st/required
+    st/string]])
+
+(defn validate-login [params]
+  (first (st/validate params login-schema)))
+```
+
+It's pretty similar to a register one, we just don't validate password length.
+
 
 
 
@@ -302,7 +402,7 @@ Let's start with the html template first. It's pretty similar to `register.html`
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTczMjg3ODE0NywyMDc4MTU4Mzg4LC0yOD
-I5NTUyNDEsLTEwMDA2OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4
-NzhdfQ==
+eyJoaXN0b3J5IjpbNDQxMTk4MDAxLC03MzI4NzgxNDcsMjA3OD
+E1ODM4OCwtMjgyOTU1MjQxLC0xMDAwNjkwMTg4LDIwNzg2Nzc3
+NzYsNjQyNDMyODc4XX0=
 -->
