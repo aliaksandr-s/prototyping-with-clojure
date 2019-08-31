@@ -467,6 +467,16 @@ Now it's time to update `visitera.routes.home` namespace. Here how it should loo
    ["/logout" {:get logout-handler}]])
 ```
 
+The code is pretty straightforward. If input data is correct and user exists we update a session. If there are any validation errors or user doesn't exist we return the form back with errors. And on logout we just clean a session. 
+
+There is just one tiny update we need to make in `find-user` function in `visitera.db.core` namespace to prevent errors when user doesn't exist:
+
+```clojure
+(defn find-user [db email]
+  "Find user by email"
+  (if-let [user-id (find-one-by db :user/email email)]
+    (d/touch user-id)))
+```
 
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
@@ -475,7 +485,7 @@ Now it's time to update `visitera.routes.home` namespace. Here how it should loo
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg1OTM3NDc2MCwtNzMyODc4MTQ3LDIwNz
-gxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5MDE4OCwyMDc4Njc3
-Nzc2LDY0MjQzMjg3OF19
+eyJoaXN0b3J5IjpbMjc5MTQxODk1LC03MzI4NzgxNDcsMjA3OD
+E1ODM4OCwtMjgyOTU1MjQxLC0xMDAwNjkwMTg4LDIwNzg2Nzc3
+NzYsNjQyNDMyODc4XX0=
 -->
