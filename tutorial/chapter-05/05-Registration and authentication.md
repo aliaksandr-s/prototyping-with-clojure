@@ -271,6 +271,25 @@ And the last part is to add handler and update dependencies and routes in `visit
 ```
 
 All that code is explained on the diagram in the beginning of a chapter. We submit a form validate input data and try to create a user if user already exists or any errors in validation we return that form back and using flash messages show appropriate errors. 
+   
+We don't want to save passwords as it is because it's a big security flaw. So we need to add a few small changes to `visitera.db.core` namespace. 
+
+First let's add to dependencies:
+
+```clojure
+[buddy.hashers :as hs]
+``` 
+
+And update `add-user` function:
+
+```clojure
+(defn add-user
+  "Adds new user to a database"
+  [conn {:keys [email password]}]
+  (when-not (find-one-by (d/db conn) :user/email email)
+    @(d/transact conn [{:user/email    email
+                        :user/password (hs/derive password)}])))
+```
 
 And the very very last thing we need to do is to update `register-page` function in `visitera.layout` namespace so we could pass error messages to our html template
 
@@ -282,7 +301,7 @@ And the very very last thing we need to do is to update `register-page` function
    (select-keys flash [:errors :email])))
 ```
 
-And we're done with registration part and now can go to `http://localhost:3000/register` to test it. We should see appropriate errors if we try to submit a form with incorrect data, the email should not get lost between requests. If input data is correct we should be redirected to `http://localhost:3000/login` which we'll implement shortly.
+And we're done with registration part and now can go to `http://localhost:3000/register` to test it. We should see appropriate errors if we try to submit a form with incorrect data, the email should not get lost between requests. There is only one issue that we have here: error messages won't fade away when we start typing again, we'll fix that a bit later. If input data is correct we should be redirected to `http://localhost:3000/login` which we'll implement shortly too.
 
 ## Authentication
 
@@ -393,6 +412,60 @@ Now let's add a validation schema to `visitera.validation` namespace:
 
 It's pretty similar to a register one, we just don't validate password length.
 
+Now it's time to update `visitera.routes.home` namespace. Here how it should look like:
+
+```clojure
+(ns visitera.routes.home
+  (:require
+   [visitera.layout :refer [register-page login-page]]
+   [visitera.middleware :as middleware]
+   [ring.util.http-response :as response]
+   [visitera.db.core :refer [conn find-user add-user]]
+   [datomic.api :as d]
+   [visitera.validation :refer [validate-register validate-login]]
+   [buddy.hashers :as hs]))
+
+(defn register-handler! [{:keys [params]}] ...)
+
+(defn password-valid? [user pass]
+  (hs/check pass (:user/password user)))
+
+(defn login-handler [{:keys [params session]}]
+  (if-let [errors (validate-login params)]
+    (-> (response/found "/login")
+        (assoc :flash {:errors errors 
+                       :email (:email params)}))
+    (let [user (find-user (d/db conn) (:email params))]
+      (cond
+        (not user)
+        (-> (response/found "/login")
+            (assoc :flash {:errors {:email "user with that email does not exist"} 
+                           :email (:email params)}))
+        (and user
+             (not (password-valid? user (:password params))))
+        (-> (response/found "/login")
+            (assoc :flash {:errors {:password "The password is wrong"} 
+                           :email (:email params)}))
+        (and user
+             (password-valid? user (:password params)))
+        (let [updated-session (assoc session :identity (keyword (:email params)))]
+          (-> (response/found "/")
+              (assoc :session updated-session)))))))
+
+(defn logout-handler [request]
+  (-> (response/found "/login")
+      (assoc :session {})))
+
+(defn auth-routes []
+  [""
+   {:middleware [middleware/wrap-csrf
+                 middleware/wrap-formats]}
+   ["/register" {:get register-page
+                 :post register-handler!}]
+   ["/login" {:get login-page
+              :post login-handler}]
+   ["/logout" {:get logout-handler}]])
+```
 
 
 
@@ -402,7 +475,7 @@ It's pretty similar to a register one, we just don't validate password length.
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDQxMTk4MDAxLC03MzI4NzgxNDcsMjA3OD
-E1ODM4OCwtMjgyOTU1MjQxLC0xMDAwNjkwMTg4LDIwNzg2Nzc3
-NzYsNjQyNDMyODc4XX0=
+eyJoaXN0b3J5IjpbLTg1OTM3NDc2MCwtNzMyODc4MTQ3LDIwNz
+gxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5MDE4OCwyMDc4Njc3
+Nzc2LDY0MjQzMjg3OF19
 -->
