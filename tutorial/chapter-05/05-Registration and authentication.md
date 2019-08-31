@@ -425,7 +425,18 @@ Now it's time to update `visitera.routes.home` namespace. Here how it should loo
    [visitera.validation :refer [validate-register validate-login]]
    [buddy.hashers :as hs]))
 
-(defn register-handler! [{:keys [params]}] ...)
+(defn register-handler! [{:keys [params]}]
+  (if-let [errors (validate-register params)]
+    (-> (response/found "/register")
+        (assoc :flash {:errors errors 
+                       :email (:email params)}))
+    (if-not (add-user conn params)
+      (-> (response/found "/register")
+          (assoc :flash {:errors {:email "User with that email already exists"} 
+                         :email (:email params)}))
+      (-> (response/found "/login")
+          (assoc :flash {:messages {:success "User is registered! You can log in now."} 
+                         :email (:email params)})))))
 
 (defn password-valid? [user pass]
   (hs/check pass (:user/password user)))
@@ -456,10 +467,12 @@ Now it's time to update `visitera.routes.home` namespace. Here how it should loo
   (-> (response/found "/login")
       (assoc :session {})))
 
-(defn auth-routes []
+(defn home-routes []
   [""
    {:middleware [middleware/wrap-csrf
                  middleware/wrap-formats]}
+   ["/" {:get home-page
+         :middleware [middleware/wrap-restricted]}]
    ["/register" {:get register-page
                  :post register-handler!}]
    ["/login" {:get login-page
@@ -478,6 +491,8 @@ There is just one tiny update we need to make in `find-user` function in `visite
     (d/touch user-id)))
 ```
 
+Now let's test everything. Let's go to `/register` route in our browser. First let's try to submit an empty form. We should immediately see validation errors but they won't fade away if we start typing, so let's fix that.
+
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
@@ -485,7 +500,7 @@ There is just one tiny update we need to make in `find-user` function in `visite
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjc5MTQxODk1LC03MzI4NzgxNDcsMjA3OD
-E1ODM4OCwtMjgyOTU1MjQxLC0xMDAwNjkwMTg4LDIwNzg2Nzc3
-NzYsNjQyNDMyODc4XX0=
+eyJoaXN0b3J5IjpbLTM0MDIzMzU0MywtNzMyODc4MTQ3LDIwNz
+gxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5MDE4OCwyMDc4Njc3
+Nzc2LDY0MjQzMjg3OF19
 -->
