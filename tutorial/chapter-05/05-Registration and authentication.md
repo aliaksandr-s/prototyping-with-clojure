@@ -7,8 +7,8 @@ Code for the beginning of this chapter can be found in  `app/chapter-05/start` f
 ## Some theory
 
 There are a lot of different ways to implement authentication in modern web applications: session, JWT, oauth2. For our app we'll go with the simplest one: session based authentication. 
-
-The authentication process simply consists of checking the `:identity` keyword in session. And session is just a tiny piece of encoded data that being sent with every request from the client. On the client it's stored in cookies and its value will look something like that: `3be2b6e9-0973-4860-b97f-a0f143cc1d8a`. On the server it will be decoded and we can get more sense out of it:  `{:identity :test@user.com}`. We'll get into more details when we start working with code.
+ 
+The authentication process simply consists of checking the `:identity` keyword in session. And session is just a tiny piece of encoded data that is being sent with every request from the client. On the client it's stored in cookies and its value will look something like that: `3be2b6e9-0973-4860-b97f-a0f143cc1d8a`. On the server it will be decoded and we can get more sense out of it:  `{:identity :test@user.com}`. We'll get into more details when we start working with code.
 
 ## Registration
 
@@ -286,7 +286,13 @@ And we're done with registration part and now can go to `http://localhost:3000/r
 
 ## Authentication
 
+Registration is ready so it's time to start implementing authentication. The main flow is shown on the next diagram:
+
 ![authentication-diagram]
+
+The first part is really similar to registration. We go to `/login` page and submit login form with user credentials. Next we validate form data on the server side. If it's not correct we return the form back with appropriate errors. If it's correct we try to get user data form the database. If there is no such user or password is wrong we return login form with errors back to the client. If everything is correct we add the `:identity` field to the session. Then each request that should be protected will be wrapped with `wrap-restricted` middleware. That middleware just checks if a session has`:identity` field. If it has that field than everything is okay and our request will be passed to the next handler. If there is no `:identity` field we will be redirected back to the `/login` page.
+
+Let's start with the html template first. It's pretty similar to `register.html` just two inputs a button and a link.
 
 
 
@@ -296,6 +302,7 @@ And we're done with registration part and now can go to `http://localhost:3000/r
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3ODE1ODM4OCwtMjgyOTU1MjQxLC0xMD
-AwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX0=
+eyJoaXN0b3J5IjpbLTczMjg3ODE0NywyMDc4MTU4Mzg4LC0yOD
+I5NTUyNDEsLTEwMDA2OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4
+NzhdfQ==
 -->
