@@ -548,7 +548,9 @@ Now let's try to login with a previously created user. If everything went okay w
 
 And it's time to go to `/logout` route. It should destroy current session and redirect us back to `/login`. And our authentication is done.
 
+## Testing
 
+We've already developed a decent part of our application but haven't added any tests. TDD practitioners probably would be disappointed in us. So let's fix that and test  
 
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
@@ -557,7 +559,7 @@ And it's time to go to `/logout` route. It should destroy current session and re
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc2MTc5MTEzMiwtMTQzMjA4NDk1MCwtNz
-MyODc4MTQ3LDIwNzgxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5
-MDE4OCwyMDc4Njc3Nzc2LDY0MjQzMjg3OF19
+eyJoaXN0b3J5IjpbLTE0MzYxMjAzMjAsLTE0MzIwODQ5NTAsLT
+czMjg3ODE0NywyMDc4MTU4Mzg4LC0yODI5NTUyNDEsLTEwMDA2
+OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
 -->
