@@ -550,7 +550,36 @@ And it's time to go to `/logout` route. It should destroy current session and re
 
 ## Testing
 
-We've already developed a decent part of our application but haven't added any tests. TDD practitioners probably would be disappointed in us. So let's fix that and test  
+We've already developed a decent part of our application but haven't added any tests. TDD practitioners probably would be disappointed in us. But it's better late than never so let's add more reliability to our app and add some tests. 
+
+There are a few way to run tests: 
+
+ - `lein test` -- will run all the tests in a project and quit the process.
+ - `lein test-refresh` -- will run all the tests too but will stay hanging and watch for any changes to run tests again.
+
+Let's try them our and run `lein test-refresh`. That's the result we should see: 
+
+```bash
+FAIL in (test-app) (handler.clj:23)
+main route
+expected: 200
+  actual: 302
+    diff: - 200
+          + 302
+
+Ran 1 tests containing 2 assertions.
+1 failures, 0 errors.
+```
+
+There is an error in our `main route`. Well that's not surprising because we protected it with our `wrap-restricated` middleware. Let's go to `/test/clj/visitera/test/handler.clj` and fix that by changing the expected response status from `200` to `302`.  And the result in the terminal should automatically change to:
+
+```bash
+Ran 1 tests containing 2 assertions.
+0 failures, 0 errors.
+```
+
+
+
 
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
@@ -559,7 +588,7 @@ We've already developed a decent part of our application but haven't added any t
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MzYxMjAzMjAsLTE0MzIwODQ5NTAsLT
-czMjg3ODE0NywyMDc4MTU4Mzg4LC0yODI5NTUyNDEsLTEwMDA2
-OTAxODgsMjA3ODY3Nzc3Niw2NDI0MzI4NzhdfQ==
+eyJoaXN0b3J5IjpbMTQwODU2NjY5NywtMTQzMjA4NDk1MCwtNz
+MyODc4MTQ3LDIwNzgxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5
+MDE4OCwyMDc4Njc3Nzc2LDY0MjQzMjg3OF19
 -->
