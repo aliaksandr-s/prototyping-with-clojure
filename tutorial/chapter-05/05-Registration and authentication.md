@@ -549,13 +549,15 @@ Now let's try to login with a previously created user. If everything went okay w
 And it's time to go to `/logout` route. It should destroy current session and redirect us back to `/login`. And our authentication is done.
 
 
+
+
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
 [bulma]: https://bulma.io/documentation/
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4OTIxMTM4NCwtMTQzMjA4NDk1MCwtNz
+eyJoaXN0b3J5IjpbMTc2MTc5MTEzMiwtMTQzMjA4NDk1MCwtNz
 MyODc4MTQ3LDIwNzgxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5
 MDE4OCwyMDc4Njc3Nzc2LDY0MjQzMjg3OF19
 -->
