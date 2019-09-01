@@ -8,7 +8,7 @@ Code for the beginning of this chapter can be found in  `app/chapter-05/start` f
 
 There are a lot of different ways to implement authentication in modern web applications: session, JWT, oauth2. For our app we'll go with the simplest one: session based authentication. 
  
-The authentication process simply consists of checking the `:identity` keyword in session. And session is just a tiny piece of encoded data that is being sent with every request from the client. On the client it's stored in cookies and its value will look something like that: `3be2b6e9-0973-4860-b97f-a0f143cc1d8a`. On the server it will be decoded and we can get more sense out of it:  `{:identity :test@user.com}`. We'll get into more details when we start working with code.
+The authentication process simply consists of checking the `:identity` keyword in session. And session is just an abstraction that holds some data about the client. There are a lot of different ways to store them: in memory, database, cookies. For our app in-memory solution is more that enough. On the client it's stored in cookies and its value will look something like that: `3be2b6e9-0973-4860-b97f-a0f143cc1d8a`. On the server it will be decoded and we can get more sense out of it:  `{:identity :test@user.com}`. We'll get into more details when we start working with code.
 
 ## Registration
 
@@ -417,7 +417,7 @@ Now it's time to update `visitera.routes.home` namespace. Here how it should loo
 ```clojure
 (ns visitera.routes.home
   (:require
-   [visitera.layout :refer [register-page login-page]]
+   [visitera.layout :refer [register-page login-page home-page]]
    [visitera.middleware :as middleware]
    [ring.util.http-response :as response]
    [visitera.db.core :refer [conn find-user add-user]]
@@ -543,7 +543,7 @@ And it's time to go to `/logout` route. It should destroy current session and re
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MzIwODQ5NTAsLTczMjg3ODE0NywyMD
-c4MTU4Mzg4LC0yODI5NTUyNDEsLTEwMDA2OTAxODgsMjA3ODY3
-Nzc3Niw2NDI0MzI4NzhdfQ==
+eyJoaXN0b3J5IjpbMjEyMzY0ODgxNiwtMTQzMjA4NDk1MCwtNz
+MyODc4MTQ3LDIwNzgxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5
+MDE4OCwyMDc4Njc3Nzc2LDY0MjQzMjg3OF19
 -->
