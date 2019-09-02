@@ -23,6 +23,19 @@
           :csrf-token *anti-forgery-token*)))
     "text/html; charset=utf-8"))
 
+(defn auth-page [type]
+  (fn [{:keys [flash] :as request}]
+  (render
+   request
+   (str type ".html")
+   (select-keys flash [:errors :email :messages]))))
+
+(def register-page (auth-page "register"))
+(def login-page (auth-page "login"))
+
+(defn home-page [request]
+  (render request "home.html"))
+
 (defn error-page
   "error-details should be a map containing the following keys:
    :status - error status

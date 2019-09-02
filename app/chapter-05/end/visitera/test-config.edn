@@ -4,5 +4,5 @@
 
 {:port 3000
  ; set your test database connection URL here
- ; :database-url "datomic:free://localhost:4334/visitera_test"
+ :database-url "datomic:free://localhost:4334/visitera_test"
 }
