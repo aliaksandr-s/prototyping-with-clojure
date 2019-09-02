@@ -677,7 +677,11 @@ Now we can create a separate `home.clj` file in `test/clj/visitera/test/routes/h
 
 Our tests should run automatically and show that we don't have any errors. `use-fixtures` is used to specify what preparations should be done before and after tests. In our case we need to prepare a database and then delete it.
 
+##
 
+In this chapter we implemented registration and authentication flow, covered that functionality with tests, learned about sessions and templating.
+
+Code for the end of this chapter can be found in  `app/chapter-05/end`folder.
 
 [registration-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Registration%20Flow.svg?sanitize=true
 [authentication-diagram]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-05/Authentication%20Flow.svg?sanitize=true
@@ -685,7 +689,8 @@ Our tests should run automatically and show that we don't have any errors. `use-
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYzNjAzOTgzNCwtMTQzMjA4NDk1MCwtNz
-MyODc4MTQ3LDIwNzgxNTgzODgsLTI4Mjk1NTI0MSwtMTAwMDY5
-MDE4OCwyMDc4Njc3Nzc2LDY0MjQzMjg3OF19
+eyJoaXN0b3J5IjpbMTgxMjUxMDk1MywtNjM2MDM5ODM0LC0xND
+MyMDg0OTUwLC03MzI4NzgxNDcsMjA3ODE1ODM4OCwtMjgyOTU1
+MjQxLC0xMDAwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX
+0=
 -->
