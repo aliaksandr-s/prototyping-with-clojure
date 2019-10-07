@@ -1,6 +1,6 @@
 # Registration and authentication
 
-By now our app has a data layer so we can start working on our backed service. In this chapter we will have a look at some theory behind registration and authentication, implement routes and handlers and add some tests.
+By now our app has a data layer so we can start working on our back-end service. In this chapter we will have a look at some theory behind registration and authentication, implement routes and handlers and add some tests.
 
 Code for the beginning of this chapter can be found in  `app/chapter-05/start` folder.
 
@@ -689,8 +689,8 @@ Code for the end of this chapter can be found in  `app/chapter-05/end`folder.
 [font-awesome]: https://fontawesome.com/
 [webjars]: https://www.webjars.org/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgxMjUxMDk1MywtNjM2MDM5ODM0LC0xND
-MyMDg0OTUwLC03MzI4NzgxNDcsMjA3ODE1ODM4OCwtMjgyOTU1
-MjQxLC0xMDAwNjkwMTg4LDIwNzg2Nzc3NzYsNjQyNDMyODc4XX
-0=
+eyJoaXN0b3J5IjpbLTE5ODUxMjk1NzYsMTgxMjUxMDk1MywtNj
+M2MDM5ODM0LC0xNDMyMDg0OTUwLC03MzI4NzgxNDcsMjA3ODE1
+ODM4OCwtMjgyOTU1MjQxLC0xMDAwNjkwMTg4LDIwNzg2Nzc3Nz
+YsNjQyNDMyODc4XX0=
 -->
