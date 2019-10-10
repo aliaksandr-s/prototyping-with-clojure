@@ -20,12 +20,14 @@ Let's have a look at the next diagram and go through all the steps one by one.
 
 ![reframe-img]
 
+We have an application that has a button and an empty table when user clicks the button we'll get some data from the server and populate the table.
+
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 [react]: https://reactjs.org/
 [components-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/components.svg?sanitize=true
 [reframe-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/Re-frame.svg?sanitize=true
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYxMDkxNDY5NiwxNjg1MDA0NTY3LC0xND
+eyJoaXN0b3J5IjpbMjA3MDQ4NzkzMCwxNjg1MDA0NTY3LC0xND
 Y2MDczMjk3XX0=
 -->
