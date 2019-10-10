@@ -20,7 +20,14 @@ Let's have a look at the next diagram and go through all the steps one by one.
 
 ![reframe-img]
 
-We have an application that has a button and an empty table when user clicks the button we'll get some data from the server and populate the table.
+We have an application that has a button and an empty table, when user clicks the button we'll get some data from the server and populate the table. 
+
+1. When user clicks the button we dispatch an event which notifies the system that we want to fetch some data.
+2. To handle this event we should register an event handler. It will declaratively describe what effects should happen to fetch the data and what to do with the response.
+3. We also need to register a few more event handlers that will describe how to update our app db if we get data successfully or we got some errors.
+4. By this moment our app db should have all data that we need. So we need to add a subscription that knows how to get that data.
+5. 
+
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -28,6 +35,6 @@ We have an application that has a button and an empty table when user clicks the
 [components-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/components.svg?sanitize=true
 [reframe-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/Re-frame.svg?sanitize=true
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3MDQ4NzkzMCwxNjg1MDA0NTY3LC0xND
-Y2MDczMjk3XX0=
+eyJoaXN0b3J5IjpbLTExNzg1MDk0NjcsMTY4NTAwNDU2NywtMT
+Q2NjA3MzI5N119
 -->
