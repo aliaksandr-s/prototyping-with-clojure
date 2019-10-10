@@ -14,8 +14,9 @@ To implement our UI we've chosen two main libraries: [reagent] and [re-frame]. W
 
 But all those components need some data to show. Sure we can fetch that data directly inside a component and for really small applications it works fine. But when an application starts growing and we have a lot of components and some of them need to share data we're in a big trouble: our code will become really hard to maintain. That's why it's a good idea to keep our components and app logic separated. 
 
-And [re-frame] should help us with solving those problems. It gives us a great structure where we can put 
+And [re-frame] should help us with solving those problems. It gives us a great structure where we can put everything related to business logic of our app. It gives us a centralized store where we put all the data related to our app. We can change the data in store using events and effects. And we also can subscribe to those data changes in store, which will also cause our UI to automatically update.
 
+Let's have a look at the next diagram and go through all the steps one by one.
 
 ![reframe-img]
 
@@ -25,6 +26,6 @@ And [re-frame] should help us with solving those problems. It gives us a great s
 [components-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/components.svg?sanitize=true
 [reframe-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/Re-frame.svg?sanitize=true
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTM0Nzk4NzEsMTY4NTAwNDU2NywtMTQ2Nj
-A3MzI5N119
+eyJoaXN0b3J5IjpbLTYxMDkxNDY5NiwxNjg1MDA0NTY3LC0xND
+Y2MDczMjk3XX0=
 -->
