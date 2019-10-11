@@ -47,7 +47,45 @@ Now it's time to add a map to our application. But let's run our project first. 
    - `lein figwheel`
    - Go to `localhost:3000` in your browser
 
-To show a map we planned to use [datamaps]. But after playing around with it for a bit it occurred their map isn't responsive and has no support for zooming out of the box. So it's been decided to use [amcharts] instead. They support much more features out of the box and have a free license if we don't mind a small amCharts attribution on charts, and we're absolutely fine with that. 
+To show a map we planned to use [datamaps]. But after playing around with it for a bit it occurred their map isn't responsive and has no support for zooming out of the box. So it's been decided to use [amcharts] instead. They support much more features out of the box and have a free license if we don't mind (of course we don't) a small amCharts attribution on charts. 
+
+The first step is to install the library. We'll do this using a CDN version. All we need to do is to add the next scripts to the end of `visitera/resources/html/home.html` file
+
+```html
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+```
+
+We can also remove welcome message from that file so it should look like that:
+
+```html
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Welcome to visitera</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<!-- scripts and styles -->
+		{% style "/assets/bulma/css/bulma.min.css" %} {% style
+		"/assets/material-icons/css/material-icons.min.css" %} {% style
+		"/css/screen.css" %}
+
+		<script type="text/javascript">
+			var csrfToken = '{{csrf-token}}';
+		</script>
+
+		<script src="https://www.amcharts.com/lib/4/core.js"></script>
+		<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+		<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+
+		{% script "/js/app.js" %}
+	</body>
+</html>
+```
 
 
 [reagent]: https://reagent-project.github.io/
@@ -58,6 +96,6 @@ To show a map we planned to use [datamaps]. But after playing around with it for
 [datamaps]: https://datamaps.github.io/
 [amcharts]: https://www.amcharts.com/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk1NDg0NTM2NiwxNjg1MDA0NTY3LC0xND
-Y2MDczMjk3XX0=
+eyJoaXN0b3J5IjpbNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0Nj
+YwNzMyOTddfQ==
 -->
