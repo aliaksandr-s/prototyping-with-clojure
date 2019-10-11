@@ -25,8 +25,10 @@ We have an application that has a button and an empty table, when user clicks th
 1. When user clicks the button we dispatch an event which notifies the system that we want to fetch some data.
 2. To handle this event we should register an event handler. It will declaratively describe what effects should happen to fetch the data and what to do with the response.
 3. We also need to register a few more event handlers that will describe how to update our app db if we get data successfully or we got some errors.
-4. By this moment our app db should have all data that we need. So we need to add a subscription that knows how to get that data.
-5. 
+4. By this moment our app db supposed to have all data that we need. So it's time to add a subscription that knows how to get that data.
+5. And the last step is to add that subscription to a UI component. In our case it's table. When the data we subscribed to changes, our component UI will be updated automatically. 
+
+That was just a general overview, we'll get into more details when we start working with code.
 
 
 [reagent]: https://reagent-project.github.io/
@@ -35,6 +37,6 @@ We have an application that has a button and an empty table, when user clicks th
 [components-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/components.svg?sanitize=true
 [reframe-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/Re-frame.svg?sanitize=true
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNzg1MDk0NjcsMTY4NTAwNDU2NywtMT
-Q2NjA3MzI5N119
+eyJoaXN0b3J5IjpbLTI5OTQ3NDc1NCwxNjg1MDA0NTY3LC0xND
+Y2MDczMjk3XX0=
 -->
