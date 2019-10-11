@@ -30,13 +30,34 @@ We have an application that has a button and an empty table, when user clicks th
 
 That was just a general overview, we'll get into more details when we start working with code.
 
+## Adding a map
+
+Now it's time to add a map to our application. But let's run our project first. Here are all the steps:
+
+1. Run datomic
+   - `cd {datomic-folder}`
+   - `bin/transactor config/samples/free-transactor-template.properties`
+   - *Optional gui console*: `bin/console -p 8080 dev datomic:free://localhost:4334`
+
+2. Start a web server:
+   - `lein repl`
+   - `(start)`
+
+3. Start client:
+   - `lein figwheel`
+   - Go to `localhost:3000` in your browser
+
+To show a map we planned to use [datamaps]. But after playing around with it for a bit it occurred their map isn't responsive and has no support for zooming out of the box. So it's been decided to use [amcharts] instead. They support much more features out of the box and have a free license if we don't mind a small amCharts attribution on charts, and we're absolutely fine with that. 
+
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
 [react]: https://reactjs.org/
 [components-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/components.svg?sanitize=true
 [reframe-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/Re-frame.svg?sanitize=true
+[datamaps]: https://datamaps.github.io/
+[amcharts]: https://www.amcharts.com/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI5OTQ3NDc1NCwxNjg1MDA0NTY3LC0xND
+eyJoaXN0b3J5IjpbLTk1NDg0NTM2NiwxNjg1MDA0NTY3LC0xND
 Y2MDczMjk3XX0=
 -->
