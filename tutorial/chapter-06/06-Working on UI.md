@@ -70,9 +70,9 @@ We can also remove welcome message from that file so it should look like that:
 		<div id="app"></div>
 
 		<!-- scripts and styles -->
-		{% style "/assets/bulma/css/bulma.min.css" %} {% style
-		"/assets/material-icons/css/material-icons.min.css" %} {% style
-		"/css/screen.css" %}
+		{% style "/assets/bulma/css/bulma.min.css" %} 
+		{% style "/assets/material-icons/css/material-icons.min.css" %}    
+		{% style "/css/screen.css" %}
 
 		<script type="text/javascript">
 			var csrfToken = '{{csrf-token}}';
@@ -87,6 +87,82 @@ We can also remove welcome message from that file so it should look like that:
 </html>
 ```
 
+Now we can use [this example][map-example] to add a map to our project. There is just one problem with it: it's written in javascript and it may be hard to convert it to clojure manually. But luckily there is a [transpiler from js to cljs][js-cljs-transpiler].
+
+Here is how our map component should look like after transpilation and some additions:
+
+```clojure
+(defn map-component
+  []
+  (let [create (fn [this]
+                 ; Define globals
+                 (def am4core (.-am4core js/window))
+                 (def am4maps (.-am4maps js/window))
+                 (def am4geodata_worldLow (.-am4geodata_worldLow js/window))
+
+                 ; Create map instance
+                 (def chart (.create am4core "chartdiv" (.-MapChart am4maps)))
+
+                 ; Set map definition
+                 (set! (.-geodata chart) am4geodata_worldLow)
+
+                 ; Set projection
+                 (set! (.-projection chart) (new (.-Miller (.-projections am4maps))))
+
+                 ; Create map polygon series
+                 (def polygonSeries (.push (.-series chart) (new (.-MapPolygonSeries am4maps))))
+
+                 ; Make map load polygon (like country names) data from GeoJSON
+                 (set! (.-useGeodata polygonSeries) true)
+
+                 ; Configure series
+                 (def polygonTemplate (.. polygonSeries -mapPolygons -template))
+                 (set! (.-tooltipText polygonTemplate) "{name}")
+                 (set! (.-fill polygonTemplate) (.color am4core "#74B266"))
+
+                 ; Create hover state and set alternative fill color
+                 (def hs (.create (.-states polygonTemplate) "hover"))
+                 (set! (.. hs -properties -fill) (.color am4core "#367B25"))
+
+                 ; Remove Antarctica
+                 (set! (.-exclude polygonSeries) #js ["AQ"])
+
+                 ; add some data
+                 (def testData
+                   #js
+                    [#js {:id    "US"
+                          :value 100
+                          :fill  (.color am4core "#F05C5C")}
+                     #js {:id    "FR"
+                          :value 50
+                          :fill  (.color am4core "#5C5CFF")}])
+                 (set! (.-data polygonSeries) testData)
+
+                 ; Bind "fill" property to "fill" key in data
+                 (set! (.. polygonTemplate -propertyFields -fill) "fill"))]
+
+    (r/create-class
+     {:display-name  "map-component"
+      :reagent-render (fn []
+                        [:div {:id "chartdiv"
+                               :style {:width "100%"
+                                       :height "calc(100vh - 5rem)"}}])
+      :component-did-mount
+      create})))
+```
+
+We put all the logic inside `create` function which will be called after our component is mounted to the DOM. To quickly test everything will put it into `visiteta/src/cljs/visitera/core.cljs` file. And put it inside `home-page` component.
+
+```clojure
+(defn home-page []
+  [map-component])
+```
+
+After saving a file and going to the main screen in the browser we should see a map with a few countries colorized. Great! Now we need to connect it to our back-end. But there is one problem: in our back-end we used *alpha-3* - *(USA)* codes for countries but our map expects data in *alpha-2*  - *(US)* format. So we should fix that first.
+
+## Back-end fixes
+
+
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -95,7 +171,9 @@ We can also remove welcome message from that file so it should look like that:
 [reframe-img]: https://raw.github.com/aliaksandr-s/prototyping-with-clojure/master/tutorial/chapter-06/Re-frame.svg?sanitize=true
 [datamaps]: https://datamaps.github.io/
 [amcharts]: https://www.amcharts.com/
+[map-example]: https://codepen.io/team/amcharts/pen/jzeoay
+[js-cljs-transpiler]: https://roman01la.github.io/javascript-to-clojurescript/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0Nj
-YwNzMyOTddfQ==
+eyJoaXN0b3J5IjpbODk4OTUyMTk4LDQzODUwNjQzNSwxNjg1MD
+A0NTY3LC0xNDY2MDczMjk3XX0=
 -->
