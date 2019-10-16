@@ -158,7 +158,7 @@ We put all the logic inside `create` function which will be called after our com
   [map-component])
 ```
 
-After saving a file and going to the main screen in the browser we should see a map with a few countries colorized. Great! Now we need to connect it to our back-end. But there is one problem: in our back-end we used *alpha-3* - *(USA)* codes for countries but our map expects data in *alpha-2*  - *(US)* format. So we should fix that first.
+After saving a file and going to the main screen in the browser we should see a map with a few countries colorized. Great! Now we need to connect it to our back-end. But there is one problem: in our back-end we used *alpha-3* - *(USA, CAN, BLR)* codes for countries but our map expects data in *alpha-2*  - *(US, CA, BY)* format. So we should fix that first.
 
 ## Back-end fixes
 
@@ -174,6 +174,6 @@ After saving a file and going to the main screen in the browser we should see a 
 [map-example]: https://codepen.io/team/amcharts/pen/jzeoay
 [js-cljs-transpiler]: https://roman01la.github.io/javascript-to-clojurescript/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODk4OTUyMTk4LDQzODUwNjQzNSwxNjg1MD
-A0NTY3LC0xNDY2MDczMjk3XX0=
+eyJoaXN0b3J5IjpbLTEwNzIyMTQ5MTcsODk4OTUyMTk4LDQzOD
+UwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDczMjk3XX0=
 -->
