@@ -194,7 +194,7 @@ And now we can run `(reset-db)` to apply our new changes. To verify that everyth
 
 For our application to function properly we need to have information about all the countries prepopulated in the database. We definitely don't want to do this by hand, so let's do some research and try to find that data in some format we could use.
 
-After some researches I was able to find that [Countries list project][countries-list-github]. It has everything we need and even more. Here is a [json file][countries-list-json] with all the countries and codes. And because we're in a clojure world we need to convert json to edn. I used this [json to edn converter][json-to-end-converter].
+After some researches I was able to find that [Countries list project][countries-list-github]. It has everything we need and even more. Here is a [json file][countries-list-json] with all the countries and codes. And because we're in a clojure world we need to convert json to edn. I used this [json to edn converter][json-to-edn-converter].
 
 That's what we had:
 
@@ -390,9 +390,9 @@ Code for the end of this chapter can be found in `app/chapter-04/end` folder.
 [datomic-console-docs]: https://docs.datomic.com/on-prem/console.html
 [countries-list-github]: https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-3/slim-3.json
-[json-to-end-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
+[json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4OTEwMTAzOCwxNjMwODUzNTgwLDEzNT
-c3OTY3MzIsLTE2MTE2MDY1NywxMDE1NDA1NjExLDM1NTEwMDAz
-OF19
+eyJoaXN0b3J5IjpbLTE5NjI3Nzg0MzgsLTg4OTEwMTAzOCwxNj
+MwODUzNTgwLDEzNTc3OTY3MzIsLTE2MTE2MDY1NywxMDE1NDA1
+NjExLDM1NTEwMDAzOF19
 -->
