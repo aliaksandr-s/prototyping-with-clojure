@@ -162,7 +162,58 @@ After saving a file and going to the main screen in the browser we should see a 
 
 ## Back-end fixes
 
+First we go to [github repo with countries list][countries-list-github] and copy the content of [full countries list][countries-list-json]. Then convert it from JSON to EDN using [json to edn converter][json-to-edn-converter]. Next we'll save everything to `visitera/resources/raw/data.edn`. 
 
+We don't really need all that data about each country so let's do some transformations. So let's create a script that will parse that data and leave only those fields we are interested in. We need only `:name` and `:alpha-2` but we'll also leave `:alpha-3` and `:code` just in case and because we already have them in our schema.
+
+So here is the script that we can place into `visitera/resources/raw/transform-data.edn`:
+
+```clojure
+(defn get-raw-data [] (->
+                       (slurp "./resources/raw/data.edn")
+                       (read-string)
+                       (eval)))
+
+(def keys [:name :country-code :alpha-2 :alpha-3])
+(def new-keys {:name         :country/name
+               :country-code :country/code
+               :alpha-2      :country/alpha-2
+               :alpha-3      :country/alpha-3})
+
+(defn transform [country]
+  (-> country
+      (select-keys keys)
+      (clojure.set/rename-keys new-keys)))
+
+(defn wrap-with-template [data]
+  (str {:visitera/data1 {:txes [(vec data)]}}))
+
+(defn save-parsed []
+  (spit "./resources/raw/parsed-data.edn"
+        (binding [*print-namespace-maps* false]
+          (->>
+           (get-raw-data)
+           (map transform)
+           (wrap-with-template)))))
+
+(save-parsed)
+```
+
+Nothing complicated here: just load the content, do some transformations and save it to `visitera/resources/raw/parsed-data.edn`. And to execute it we just connect to our running REPL with our code editor and evaluate the content of the file.
+
+Now let's copy paste `parsed-data.edn` file to `visitera/resources/migrations` and change its name to `countries-data.edn`. We also should do some updates to `visitera/resources/migrations/schema.edn` file.
+
+First add the next field to our country schema:
+
+```clojure
+{:db/doc                "Country ISO alpha-2 code"
+ :db/ident              :country/alpha-2
+ :db/valueType          :db.type/string
+ :db/cardinality        :db.cardinality/one
+ :db/unique             :db.unique/identity}
+```
+
+Second remove all the data about countries and test data. We'll have them separated files. So our `schema.edn` should contain nothing else but country and user schema.
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -173,7 +224,11 @@ After saving a file and going to the main screen in the browser we should see a 
 [amcharts]: https://www.amcharts.com/
 [map-example]: https://codepen.io/team/amcharts/pen/jzeoay
 [js-cljs-transpiler]: https://roman01la.github.io/javascript-to-clojurescript/
+[countries-list-github]: https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
+[countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
+[json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNzIyMTQ5MTcsODk4OTUyMTk4LDQzOD
-UwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDczMjk3XX0=
+eyJoaXN0b3J5IjpbMTQwMzQ5ODcxLC0xMDcyMjE0OTE3LDg5OD
+k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
+N119
 -->
