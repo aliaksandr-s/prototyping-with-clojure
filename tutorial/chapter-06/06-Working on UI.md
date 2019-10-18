@@ -257,9 +257,26 @@ And we also need to add some changes to `visitera/src/clj/visitera/db/core.clj`.
       (c/ensure-conforms conn norms-map (keys norms-map)))))
 ```
 
-Next we need to replace all occurrences of `alpha-3` word to `alpha-2`.
+Next we need to replace all occurrences of `alpha-3` word to `alpha-2`. And to apply all the changes we did, we need to execute `(reset-db)` function which is located in `user` namespace.
 
+To test that everything worked we need to reevaluate `get-countries` function from `visitera.db.core` namespace and call `(get-countries (d/db conn) "test@user.com")`. As a result we should get something like that:
 
+```clojure
+[[#:user
+{:countries-to-visit 
+ [#:country{:alpha-2 "AL"}
+  #:country{:alpha-2 "AD"} 
+  #:country{:alpha-2 "FR"}
+  #:country{:alpha-2 "ZM"}], 
+:countries-visited 
+[#:country{:alpha-2 "CZ"} 
+ #:country{:alpha-2 "RU"} 
+ #:country{:alpha-2 "US"}]}]]
+```
+
+That is exactly what we have in our `test-data.edn` file. So that means everything works as expected.
+
+## Showing data on a map
 
 
 [reagent]: https://reagent-project.github.io/
@@ -275,7 +292,7 @@ Next we need to replace all occurrences of `alpha-3` word to `alpha-2`.
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODE1MTQ1ODczLC0xMDcyMjE0OTE3LDg5OD
-k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
-N119
+eyJoaXN0b3J5IjpbLTk5MDIyNzc3NywtMTA3MjIxNDkxNyw4OT
+g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
+OTddfQ==
 -->
