@@ -213,7 +213,36 @@ First add the next field to our country schema:
  :db/unique             :db.unique/identity}
 ```
 
-Second remove all the data about countries and test data. We'll have them separated files. So our `schema.edn` should contain nothing else but country and user schema.
+Second remove all the data about countries and test data. We'll have them in separated files. So our `schema.edn` should contain nothing else but country and user schema.
+
+And let's also put some test data to `visitera/resources/migrations/test-data.edn` file
+
+```clojure
+{:visitera/data2
+ {:txes
+  [[{:user/email
+     "test@user.com"
+     :user/password
+     ; somepass
+     "bcrypt+sha512$c0d6f8f472f9312d1ac5cb84b39c858e$12$72eb4c3d6d0f6148c66657da865705f67c1914ef1d66fd2a"
+     :user/countries-to-visit
+     [{:country/name "Zambia"}
+      {:country/name "France"}
+      {:country/name "Albania"}
+      {:country/name "Andorra"}]
+     :user/countries-visited
+     [{:country/alpha-2 "RU"}
+      {:country/alpha-2 "CZ"}
+      {:country/alpha-2 "US"}]}
+
+    {:user/email
+     "test@user-1.com"
+     :user/password
+     ; somepass
+     "bcrypt+sha512$c0d6f8f472f9312d1ac5cb84b39c858e$12$72eb4c3d6d0f6148c66657da865705f67c1914ef1d66fd2a"}]]}}
+```
+
+
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -228,7 +257,7 @@ Second remove all the data about countries and test data. We'll have them separa
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwMzQ5ODcxLC0xMDcyMjE0OTE3LDg5OD
+eyJoaXN0b3J5IjpbNDMxNzU3NDg4LC0xMDcyMjE0OTE3LDg5OD
 k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
 N119
 -->
