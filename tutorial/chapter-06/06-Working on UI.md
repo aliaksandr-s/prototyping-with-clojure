@@ -276,7 +276,18 @@ To test that everything worked we need to reevaluate `get-countries` function fr
 
 That is exactly what we have in our `test-data.edn` file. So that means everything works as expected.
 
-## Showing data on a map
+## Showing data on the map
+
+We updated our schema so now we are almost ready to show data on the map. But before we can get back to the front-end part we need to do a few more changes on the back-end side. 
+
+Our `get-countries` function returns too much data. Everything we really need is two lists with *alpha-2* codes of countries user already visited or will visit in future. Something like that: 
+
+```clojure
+{:visited ("CZ" "RU" "US"), 
+ :to-visit ("AL" "AD" "CN" "FR" "ZM")}
+```
+
+
 
 
 [reagent]: https://reagent-project.github.io/
@@ -292,7 +303,7 @@ That is exactly what we have in our `test-data.edn` file. So that means everythi
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5MDIyNzc3NywtMTA3MjIxNDkxNyw4OT
-g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
-OTddfQ==
+eyJoaXN0b3J5IjpbNDk3NjU4NzMwLC0xMDcyMjE0OTE3LDg5OD
+k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
+N119
 -->
