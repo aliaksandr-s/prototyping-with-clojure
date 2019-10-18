@@ -242,6 +242,24 @@ And let's also put some test data to `visitera/resources/migrations/test-data.ed
      "bcrypt+sha512$c0d6f8f472f9312d1ac5cb84b39c858e$12$72eb4c3d6d0f6148c66657da865705f67c1914ef1d66fd2a"}]]}}
 ```
 
+And we also need to add some changes to `visitera/src/clj/visitera/db/core.clj`. First let's update `install-schema` function so it would use all the files from `migrations` folder:
+
+```clojure
+(def db-resources
+  ["migrations/schema.edn"
+   "migrations/countries-data.edn"
+   "migrations/test-data.edn"])
+
+(defn install-schema
+  [conn]
+  (for [resource db-resources]
+    (let [norms-map (c/read-resource resource)]
+      (c/ensure-conforms conn norms-map (keys norms-map)))))
+```
+
+Next we need to replace all occurrences of `alpha-3` word to `alpha-2`.
+
+
 
 
 [reagent]: https://reagent-project.github.io/
@@ -257,7 +275,7 @@ And let's also put some test data to `visitera/resources/migrations/test-data.ed
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDMxNzU3NDg4LC0xMDcyMjE0OTE3LDg5OD
+eyJoaXN0b3J5IjpbODE1MTQ1ODczLC0xMDcyMjE0OTE3LDg5OD
 k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
 N119
 -->
