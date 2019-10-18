@@ -340,6 +340,49 @@ And we should not forget to import `get-countries` function from `visitera.db.co
 
 And we're done with the back-end part for this task and can get back to the client side to focus on actually showing those countries on the map.
 
+Let's open `visitera/src/cljs/visitera/core.cljs` file. And inside `init!` function we replace   `(rf/dispatch [:fetch-docs])` with `(rf/dispatch [:fetch-user-countries])`. The first step is done, we've just dispatched an event. If we go to the main screen in our browser and open console we should see an error like that:
+
+```js
+re-frame: no :event handler registered for: 
+:fetch-user-countries
+```
+
+Let's fix that and add an event handler to `visitera/src/cljs/visitera/events.cljs` file
+
+```clojure
+(rf/reg-event-fx
+ :fetch-user-countries
+ (fn [_ _]
+   {:http-xhrio {:method          :get
+                 :uri             "/api/user-countries"
+                 :response-format (ajax-edn/edn-response-format)
+                 :on-success      [:set-countries]
+                 :on-failure      [:common/set-error]}}))
+```
+
+Here we describe how to get countries and what to do if the request is successful or if there was an error. We pass data from server using EDN so we need explicitly import some helpers to work with it.
+
+```clojure
+(ns visitera.events
+  (:require
+   ...
+   [ajax.edn :as ajax-edn]))
+```
+
+And we also need to register an event handler that will update our app db when we successfully fetched countries data.
+
+```clojure
+(rf/reg-event-db
+ :set-countries
+ (fn [db [_ countries]]
+   (assoc db :countries countries)))
+```
+
+
+
+
+
+
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -354,7 +397,7 @@ And we're done with the back-end part for this task and can get back to the clie
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEwNzIzMywtMTA3MjIxNDkxNyw4OTg5NT
-IxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMyOTdd
-fQ==
+eyJoaXN0b3J5IjpbLTg3MjAzOTkyMCwtMTA3MjIxNDkxNyw4OT
+g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
+OTddfQ==
 -->
