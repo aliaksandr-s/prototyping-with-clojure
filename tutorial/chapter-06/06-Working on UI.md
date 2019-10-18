@@ -286,8 +286,59 @@ Our `get-countries` function returns too much data. Everything we really need is
 {:visited ("CZ" "RU" "US"), 
  :to-visit ("AL" "AD" "CN" "FR" "ZM")}
 ```
+So let's add a transformation function and update `get-countries` function:
 
+```clojure
+(defn- format-countries [countries]
+  (let [countries-content (-> countries (first) (first))
+        map-fn (fn [el] (:country/alpha-2 el))]
+    {:visited  (map map-fn (:user/countries-visited countries-content))
+     :to-visit (map map-fn (:user/countries-to-visit countries-content))}))
 
+(defn get-countries [db user-email]
+  (-> (d/q '[:find (pull ?e
+                         [{:user/countries-to-visit
+                           [:country/alpha-2]}
+                          {:user/countries-visited
+                           [:country/alpha-2]}])
+             :in $ ?user-email
+             :where [?e :user/email ?user-email]]
+           db user-email)
+      (format-countries)))
+```
+Now if we evaluate everything and try to execute `(get-countries (d/db conn) "test@user.com")` we should get the expected result.
+
+And now we can connect everything together by adding a new route. Let's open `visitera/src/clj/visitera/routes/home.clj` file and add a new handler:
+
+```clojure
+(defn get-user-countries-handler [{:keys [session]}]
+  (let [email (:identity session)]
+    (-> (response/ok (pr-str (get-countries (d/db conn) email)))
+        (response/header "Content-Type" "application/edn"))))
+```
+Here we just get a user email from a `session` and return countries based on that email.
+
+Next we add a new route to `home-routes` function:
+
+```clojure
+...
+["/api"
+    {:middleware [middleware/wrap-restricted]}
+    ["/user-countries"
+     ["" {:get get-user-countries-handler}]]]
+...
+```
+And we should not forget to import `get-countries` function from `visitera.db.core` namespace
+
+```clojure
+(ns visitera.routes.home
+  (:require
+	...
+   [visitera.db.core :refer [conn find-user add-user get-countries]]
+	...
+```
+
+And we're done with the back-end part for this task and can get back to the client side to focus on actually showing those countries on the map.
 
 
 [reagent]: https://reagent-project.github.io/
@@ -303,7 +354,7 @@ Our `get-countries` function returns too much data. Everything we really need is
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDk3NjU4NzMwLC0xMDcyMjE0OTE3LDg5OD
-k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
-N119
+eyJoaXN0b3J5IjpbMjEwNzIzMywtMTA3MjIxNDkxNyw4OTg5NT
+IxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMyOTdd
+fQ==
 -->
