@@ -382,9 +382,35 @@ And we also need to register an event handler that will update our app db when w
    (assoc db :countries countries)))
 ```
 
+Event handler for errors is already there, but we don't really care about handling errors for now.
 
+Now we are ready to test if we can get data from the sever. Let's go to the main screen of our app using these credentials from `test-data.edn`:
 
+```
+email:    test@user.com
+password: somepass
+```
+There is should be an icon at the bottom right of the screen to open [re-frisk dev tools][re-frisk]. We can see that `:fetch-user-countries` and `:set-countries` events fired as we expected. But 
+countries lists are empty:
 
+```
++ :countries {2 keys}
+    :visited (0 items)
+    :to-visit (0 items)
+```
+
+There must be a bug somewhere, let's try to find it. Our client-side code works as expected and as we remember our database part also returns the right data. But for some reason we get empty lists. So there may be something wrong with our back-end route handlers. So `visitera.routes.home` namespace may be a good place to start our researches.
+
+Let's add a few `println` statements to `get-user-countries-handerler`:
+
+```
+(defn get-user-countries-handler [{:keys [session]}]
+  (let [email (:identity session)]
+    (println email)
+    (println (get-countries (d/db conn) email))
+    (-> (response/ok (pr-str (get-countries (d/db conn) email)))
+        (response/header "Content-Type" "application/edn"))))
+```
 
 
 
@@ -400,8 +426,9 @@ And we also need to register an event handler that will update our app db when w
 [countries-list-github]: https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
+[re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk1NTc4NTYxOCwtMTA3MjIxNDkxNyw4OT
-g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
-OTddfQ==
+eyJoaXN0b3J5IjpbNjU2MDk3MTgyLC0xMDcyMjE0OTE3LDg5OD
+k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
+N119
 -->
