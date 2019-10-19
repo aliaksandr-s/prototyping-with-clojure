@@ -276,6 +276,10 @@ To test that everything worked we need to reevaluate `get-countries` function fr
 
 That is exactly what we have in our `test-data.edn` file. So that means everything works as expected.
 
+Let's also extend session life so it would be easier to work with the client side. In `visitera.middleware` namespace in `wrap-base` function we just need to replace `(ttl-memory-store (* 60 30))` with `(ttl-memory-store three-days)` and create a private variable `three-days`: 
+
+`(def ^:private three-days (* 60 60 24 3))`
+
 ## Showing data on the map
 
 We updated our schema so now we are almost ready to show data on the map. But before we can get back to the front-end part we need to do a few more changes on the back-end side. 
@@ -397,7 +401,7 @@ And we also need to register an event handler that will update our app db when w
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg3MjAzOTkyMCwtMTA3MjIxNDkxNyw4OT
+eyJoaXN0b3J5IjpbMTk1NTc4NTYxOCwtMTA3MjIxNDkxNyw4OT
 g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
 OTddfQ==
 -->
