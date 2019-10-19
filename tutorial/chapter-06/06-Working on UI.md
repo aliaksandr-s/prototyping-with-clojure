@@ -412,6 +412,40 @@ Let's add a few `println` statements to `get-user-countries-handerler`:
         (response/header "Content-Type" "application/edn"))))
 ```
 
+Now if we restart our browser we should see in the terminal:
+
+```
+user=> :test@user.com
+{:visited (), :to-visit ()}
+```
+
+It seems our email is saved as a keyword in session but we need it to be just a string to get data from the database. So let's fix that. Inside `login-handler` we need to replace:
+
+```clojure
+[updated-session (assoc session :identity (keyword (:email params)))]
+```
+
+with:
+
+```clojure
+[updated-session (assoc session :identity (:email params))]
+```
+
+To test everything we need to logout, login again and go to the main page. If we open [re-frisk dev tools][re-frisk] we should see that our countries properly updated:
+
+```
++ :countries {2 keys}
+    + :visited (3 items)
+        "CZ"
+        "RU"
+        "US"
+    + :to-visit (4 items)
+        "AL"
+        "AD"
+        "FR"
+        "ZM"
+``` 
+
 
 
 [reagent]: https://reagent-project.github.io/
@@ -428,7 +462,7 @@ Let's add a few `println` statements to `get-user-countries-handerler`:
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjU2MDk3MTgyLC0xMDcyMjE0OTE3LDg5OD
-k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
-N119
+eyJoaXN0b3J5IjpbLTIyODE3MjgzMywtMTA3MjIxNDkxNyw4OT
+g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
+OTddfQ==
 -->
