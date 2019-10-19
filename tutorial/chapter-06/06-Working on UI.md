@@ -446,6 +446,33 @@ To test everything we need to logout, login again and go to the main page. If we
         "ZM"
 ``` 
 
+We fixed our problem so we can get back to the main task of showing countries on the map. We already created events and event handlers with effects so the next step it to add subscriptions to `visitera.events` namespace. Here it is:
+
+```clojure
+(rf/reg-sub
+ :countries
+ (fn [db _]
+   (:countries db)))
+```
+
+Now we can use that subscription to get countries data in our `map-component`. But here we have another problem: our `map-component` expects countries to be a list where each country is a map with `:id` and `:fill` properties. 
+
+So we need to transform this:
+
+```clojure
+{:visited ("CZ" "RU" "US"), 
+ :to-visit ("AL" "AD" "CN" "FR" "ZM")}
+```
+
+into this:
+
+```clojure
+[{:id     "CZ"
+  :status :visited
+  :fill   #some-color
+}, {..}, {..}, ....]
+```
+
 
 
 [reagent]: https://reagent-project.github.io/
@@ -462,7 +489,7 @@ To test everything we need to logout, login again and go to the main page. If we
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIyODE3MjgzMywtMTA3MjIxNDkxNyw4OT
-g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
-OTddfQ==
+eyJoaXN0b3J5IjpbLTEzODU4MzE5MDAsLTEwNzIyMTQ5MTcsOD
+k4OTUyMTk4LDQzODUwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDcz
+Mjk3XX0=
 -->
