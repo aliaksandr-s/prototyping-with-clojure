@@ -473,6 +473,87 @@ into this:
 }, {..}, {..}, ....]
 ```
 
+Let's start with creating a `visitera/src/cljs/visitera/config.cljs` and putting some colors there:
+
+```clojure
+(ns visitera.config)
+
+(def colors
+  {:to-visit    "#f0dd92"
+   :visited     "#83b582"
+   :not-visited "#dddddd"})
+```
+
+Now we can import it in `visitera.events` namespace:
+
+```clojure
+(ns visitera.events
+  (:require
+   ...
+   [visitera.config :as cfg]))
+```
+And implement a transformation function:
+
+```clojure
+(defn- normalize-countries [countries]
+  (into [] cat [(->> (:visited countries)
+                     (map (fn [c-id] {:id     c-id
+                                      :fill   (:visited cfg/colors)
+                                      :status :visited})))
+                (->> (:to-visit countries)
+                     (map (fn [c-id] {:id     c-id
+                                      :fill   (:to-visit cfg/colors)
+                                      :status :to-visit})))]))
+```
+
+And now we can use a great feature of [re-frame] and chain a few subscriptions together:
+
+```clojure
+(rf/reg-sub
+ :normalized-countries
+ (fn []
+   (rf/subscribe [:countries]))
+ (fn [countries]
+   (normalize-countries countries)))
+``` 
+So any time `:counties` gets updated we also recalculate `:normalized-countries` using our transformation function.
+
+And now we are ready to connect countries data with the map. But let's do some refactoring first to make it easier working with `map-component`. Let's create a `visitera/src/cljs/visitera/components` folder and a `map.cljs` file inside it. Now we can move `map-component` from `visitera.core` namespace to a newly created file to a `visitera.components.map` namespace.
+
+```clojure
+(ns visitera.components.map
+  (:require
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   [visitera.config :as cfg]))
+
+(defn map-component
+  []
+  (let [create (fn [this]
+  ...
+```
+
+And we should not forget to `require` it inside `visitera.core` namespace
+
+```clojure
+(ns visitera.core
+  (:require
+	...
+   [visitera.components.map :refer [map-component]]
+	...
+```
+And we update our `home-page` function like that:
+
+```clojure
+(defn home-page []
+  [:div.content
+   [map-component]])
+```
+
+Now we can work on our map in a separated file. And if we update the main page nothing should break.
+
+
+
 
 
 [reagent]: https://reagent-project.github.io/
@@ -489,7 +570,7 @@ into this:
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODU4MzE5MDAsLTEwNzIyMTQ5MTcsOD
-k4OTUyMTk4LDQzODUwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDcz
-Mjk3XX0=
+eyJoaXN0b3J5IjpbMjAwOTI0NTQ2NCwtMTA3MjIxNDkxNyw4OT
+g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
+OTddfQ==
 -->
