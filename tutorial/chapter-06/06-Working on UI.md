@@ -120,10 +120,6 @@ Here is how our map component should look like after transpilation and some addi
                  (set! (.-tooltipText polygonTemplate) "{name}")
                  (set! (.-fill polygonTemplate) (.color am4core "#74B266"))
 
-                 ; Create hover state and set alternative fill color
-                 (def hs (.create (.-states polygonTemplate) "hover"))
-                 (set! (.. hs -properties -fill) (.color am4core "#367B25"))
-
                  ; Remove Antarctica
                  (set! (.-exclude polygonSeries) #js ["AQ"])
 
@@ -552,8 +548,35 @@ And we update our `home-page` function like that:
 
 Now we can work on our map in a separated file. And if we update the main page nothing should break.
 
+Let's start with adding a wrapper to `visitera.components.map` namespace where we add our subscriptions
 
+```clojure
+(defn map-component []
+  (let [norm-countries (rf/subscribe [:normalized-countries])
+        countries      (rf/subscribe [:countries])]
+    (fn []
+      (if @countries
+        [:div
+         [:div [map-component-inner @norm-countries]]]
+        [:div "Loading"]))))
+```
+We called it `map-component` so we need to change the name of our original `map-component` to `map-component-inner`
 
+We pass countries as a property to `map-component-inner`
+
+```clojure
+(defn map-component-inner
+  [countries]
+  (let [create (fn [this]
+  ...
+```
+
+And now we can remove test data that we had and replace it with real countries.
+
+```clojure
+(set! (.-data polygonSeries) (clj->js countries))
+```
+Our map expects data in `js` format so we also had to convert `clj` to `js`.
 
 
 [reagent]: https://reagent-project.github.io/
@@ -570,7 +593,7 @@ Now we can work on our map in a separated file. And if we update the main page n
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwOTI0NTQ2NCwtMTA3MjIxNDkxNyw4OT
+eyJoaXN0b3J5IjpbMTM2MTE3NTA0MywtMTA3MjIxNDkxNyw4OT
 g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
 OTddfQ==
 -->
