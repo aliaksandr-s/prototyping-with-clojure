@@ -768,6 +768,15 @@ Now we can get back to front-end and add event handlers to `visitera.events` nam
 ```
 When we click on the map we'll do two actions at the same time: send a request to the server to update data in the database and update our map immediately because we already know how it should be updated.
 
+And to get the last country that was updated we also add a subscription to `visitera.events` namespace.
+
+```clojure
+(rf/reg-sub
+ :last-updated
+ (fn [db _]
+   (:last-updated db)))
+```
+
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -783,7 +792,7 @@ When we click on the map we'll do two actions at the same time: send a request t
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzA0ODc1MTExLC0xMDcyMjE0OTE3LDg5OD
-k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
-N119
+eyJoaXN0b3J5IjpbMTI3MjUzMzc5NSwtMTA3MjIxNDkxNyw4OT
+g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
+OTddfQ==
 -->
