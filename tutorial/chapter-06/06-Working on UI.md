@@ -640,7 +640,86 @@ And remove the old code.
 
 We can also remove everything related to the `about-page` because we'll have only one page with the map.
 
-### Adding legend
+### Adding a legend
+
+Now we have a nice navbar with a logout link. So it's time to add a legend which will show show the amount of countries we visited or planning to visit. 
+
+First we need to add a few subscriptions that will count the amount of countries to `visitera.events` namespace:
+
+```clojure
+(rf/reg-sub
+ :visited-count
+ (fn [db _]
+   (-> db :countries :visited count)))
+
+(rf/reg-sub
+ :to-visit-count
+ (fn [db _]
+   (-> db :countries :to-visit count)))
+```
+
+Then we create a legend component inside `visitera.components.map` namespace
+
+```clojure
+(defn legend-tag
+  [color]
+  [:span
+   {:style {:display          "inline-block"
+            :width            "1.3rem"
+            :height           "1.3rem"
+            :border-radius    "5px"
+            :background-color color}}])
+
+(defn legend-row
+  [color text count]
+  [:div
+   {:style {:display               "grid"
+            :grid-template-columns "1.7rem 7rem 1.7rem"}}
+   [legend-tag color]
+   [:span text]
+   [:span count]])
+
+(defn legend-comp
+  [to-visit-count visited-count]
+  [:div
+   {:style {:position "fixed"
+            :top      "60%"
+            :left     "5%"}}
+   [legend-row
+    (cfg/colors :to-visit)
+    "Want to visit: "
+    to-visit-count]
+   [legend-row
+    (cfg/colors :visited)
+    "Already visited: "
+    visited-count]])
+```
+
+We also created `legend-tag` and `legend-row` as helper components.
+
+And as a last step we need to connect our subscriptions with legend map component
+
+```clojure
+...
+(defn map-component []
+  (let [norm-countries (rf/subscribe [:normalized-countries])
+        countries      (rf/subscribe [:countries])
+        visited-count  (rf/subscribe [:visited-count])
+        to-visit-count (rf/subscribe [:to-visit-count])]
+    (fn []
+      (if @countries
+        [:div
+         [:div [map-component-inner @norm-countries]]
+         [:div [legend-comp @to-visit-count @visited-count]]]
+        [:div "Loading"]))))
+```
+
+And now we can go to the browser and make sure that our UI looks much better.
+
+
+
+
+
 
 
 
@@ -658,7 +737,7 @@ We can also remove everything related to the `about-page` because we'll have onl
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzU5NTAwNTE3LC0xMDcyMjE0OTE3LDg5OD
+eyJoaXN0b3J5IjpbNjE0MzQ2ODQwLC0xMDcyMjE0OTE3LDg5OD
 k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
 N119
 -->
