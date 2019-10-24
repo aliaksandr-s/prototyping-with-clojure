@@ -578,6 +578,12 @@ And now we can remove test data that we had and replace it with real countries.
 ```
 Our map expects data in `js` format so we also had to convert `clj` to `js`.
 
+And that's it. If we go to the browser we should see that data from the sever is reflected on the map now.
+
+## Adding a legend
+
+
+
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -593,7 +599,7 @@ Our map expects data in `js` format so we also had to convert `clj` to `js`.
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2MTE3NTA0MywtMTA3MjIxNDkxNyw4OT
+eyJoaXN0b3J5IjpbMTg4NTU0MDIzOSwtMTA3MjIxNDkxNyw4OT
 g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
 OTddfQ==
 -->
