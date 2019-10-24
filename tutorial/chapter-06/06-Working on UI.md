@@ -580,7 +580,27 @@ Our map expects data in `js` format so we also had to convert `clj` to `js`.
 
 And that's it. If we go to the browser we should see that data from the sever is reflected on the map now.
 
-## Adding a legend
+## UI improvements
+
+Before we start working on map updates let's improve our UI a bit. It would be nice to have a legend that shows the amount of each type of countries, buttons for scaling the map would also be a great feature, and navbar definitely should be updated.
+
+### Scaling the map
+
+Let's start with adding buttons to zoom in and zoom out our map. That's actually pretty simple: all we need to do is to add one line to `map-inner-component`
+
+```clojure
+...
+; Set projection
+(set! (.-projection chart) (new (.-Miller (.-projections am4maps))))
+
+; Add zoom control
+(set! (.-zoomControl chart) (new (.-ZoomControl am4maps)))
+...
+```
+
+Now we should see zoom controls at the bottom left corner of the map.
+
+### Updating the navbar
 
 
 
@@ -599,7 +619,7 @@ And that's it. If we go to the browser we should see that data from the sever is
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg4NTU0MDIzOSwtMTA3MjIxNDkxNyw4OT
-g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
-OTddfQ==
+eyJoaXN0b3J5IjpbLTEwODYwNDI5ODcsLTEwNzIyMTQ5MTcsOD
+k4OTUyMTk4LDQzODUwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDcz
+Mjk3XX0=
 -->
