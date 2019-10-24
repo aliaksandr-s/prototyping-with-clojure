@@ -733,9 +733,45 @@ And to apply the changes we need to restart our server:
 2. Then `lein repl`
 3. And `(start)`
 
-Now we can start adding changes to our `visitera.db.core`
+Now we can start adding changes to our `visitera.db.core` namespace:
 
-Here is a handler that we need to add to `visitera.routes.home` namespace:
+```clojure
+(defn remove-from-countries [conn user-email alpha-2]
+  "Remove country from all lists"
+  (let [user-id (-> (find-user (d/db conn) user-email)
+                    (:db/id))
+        country-id (get-country-id-by-alpha-2 (d/db conn) alpha-2)]
+    @(d/transact conn [[:db/retract user-id :user/countries-visited country-id]
+                       [:db/retract user-id :user/countries-to-visit country-id]])))
+
+(defn add-to-countries [conn user-email type alpha-2]
+  "Add country to :visited or :to-visit list"
+  (when-let [country-id (get-country-id-by-alpha-2 (d/db conn) alpha-2)]
+    (let [attr    (concat-keyword :user/countries- type)
+          tx-user {:user/email user-email
+                   attr        [country-id]}]
+      @(d/transact conn [tx-user]))))
+
+(defn update-countries [conn user-email status alpha-2]
+  "Update countries lists"
+  (match status
+    (:or :to-visit :visited) (do
+                               (remove-from-countries conn user-email alpha-2)
+                               (add-to-countries conn user-email status alpha-2))
+    :not-visited (remove-from-countries conn user-email alpha-2)))
+```
+
+The idea is to get country id and status from user. First remove a country from user countries list and then add with a new status. So we created a new `update-countries` function where used pattern matching to make the code a bit simpler. And we also had to a bit update `add-to-countries` and `remove-from-countries` functions. 
+
+And here how we can test if it works from REPL:
+
+1. Go to a proper namespace `(in-ns 'visitera.db.core)`
+2. Run `(update-countries conn "test@user.com" :visited "BY")`
+3. Check the result `(get-countries (d/db conn) "test@user.com")`
+
+And we should see `"BY"` in returned `:visited` list. 
+
+Now we need to add a handler to `visitera.routes.home` namespace:
 
 ```clojure
 (defn put-user-countries-handler [{:keys [params session]}]
@@ -750,9 +786,17 @@ Here is a handler that we need to add to `visitera.routes.home` namespace:
                           (str "Error: " (.getMessage e)))))))
 ``` 
 
-We just get status and country id form a user and try to update our database, if everything is okay we return updated countries, and in case of an error we send back an error message.
+We just get data from a user and try to call `update-countries`, if everything is okay we return updated countries, and in case of an error we send back an error message.
 
-And we also need to add that handler to `home-routes` list:
+We should not forget to import `update-countries`
+
+```clojure
+...
+[visitera.db.core :refer [conn find-user add-user get-countries update-countries]]
+...
+```
+
+And we also need to register that handler inside `home-routes` list:
 
 ```clojure
 ...
@@ -761,7 +805,7 @@ And we also need to add that handler to `home-routes` list:
           :put put-user-countries-handler}]]
 ```
 
-Now we can get back to front-end and add event handlers to `visitera.events` namespace. `:update-user-countries` to handle requests to the server. And `:set-last-updated` to do optimistic updates and not to rerender the whole map component.
+Now we can get back to the front-end and add event handlers to `visitera.events` namespace. `:update-user-countries` to handle requests to the server. And `:set-last-updated` to do optimistic updates.
 
 ```clojure
 (rf/reg-event-db
@@ -808,7 +852,7 @@ And to get the last country that was updated we also add a subscription to `visi
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 [core-match]: https://github.com/clojure/core.match
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0Mjk1MywtMTA3MjIxNDkxNyw4OTg5NT
-IxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMyOTdd
-fQ==
+eyJoaXN0b3J5IjpbLTE1NDE4OTU0OTMsLTEwNzIyMTQ5MTcsOD
+k4OTUyMTk4LDQzODUwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDcz
+Mjk3XX0=
 -->
