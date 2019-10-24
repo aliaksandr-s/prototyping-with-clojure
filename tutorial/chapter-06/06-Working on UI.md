@@ -602,6 +602,45 @@ Now we should see zoom controls at the bottom left corner of the map.
 
 ### Updating the navbar
 
+Let's make a few updates to our navbar too. It's missing logout link, color can be changed, and all the other links can be removed. 
+
+Let's first create a separate file for it inside `visitera/src/cljs/visitera/components/navbar.cljs`.
+
+And put that code inside:
+
+```clojure
+(ns visitera.components.navbar
+  (:require
+   [reagent.core :as r]))
+
+(defn navbar []
+  (r/with-let [expanded? (r/atom false)]
+    [:nav.navbar.is-primary>div.container
+     [:div.navbar-brand
+      [:a.navbar-item {:href "/" :style {:font-weight :bold}} "visitera"]
+      [:span.navbar-burger.burger
+       {:data-target :nav-menu
+        :on-click #(swap! expanded? not)
+        :class (when @expanded? :is-active)}
+       [:span] [:span] [:span]]]
+     [:div#nav-menu.navbar-menu
+      {:class (when @expanded? :is-active)}
+      [:div.navbar-end
+       [:a.navbar-item {:href "/logout"} "Logout"]]]]))
+``` 
+
+And then we just require it inside `visitera.core` namespace. 
+
+```clojure
+...
+[visitera.components.navbar :refer [navbar]]
+...
+```
+And remove the old code.
+
+We can also remove everything related to the `about-page` because we'll have only one page with the map.
+
+### Adding legend
 
 
 
@@ -619,7 +658,7 @@ Now we should see zoom controls at the bottom left corner of the map.
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwODYwNDI5ODcsLTEwNzIyMTQ5MTcsOD
-k4OTUyMTk4LDQzODUwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDcz
-Mjk3XX0=
+eyJoaXN0b3J5IjpbNzU5NTAwNTE3LC0xMDcyMjE0OTE3LDg5OD
+k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
+N119
 -->
