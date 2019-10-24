@@ -716,11 +716,57 @@ And as a last step we need to connect our subscriptions with legend map componen
 
 And now we can go to the browser and make sure that our UI looks much better.
 
+## Map interactivity
 
+Our app is almost ready. There is only one last step and the most important feature of our app --- map interactivity. When we click on a country on the map it should change its state, giving us an ability to visually track our trips.
 
+As usual let's start with the back-end part. Here is a handler that we need to add to `visitera.routes.home` namespace:
 
+```clojure
+(defn put-user-countries-handler [{:keys [params session]}]
+  (let [email (:identity session)
+        status (:status params)
+        country (:id params)]
+    (try
+      (update-countries conn email status country)
+      (-> (response/ok (pr-str (get-countries (d/db conn) email)))
+          (response/header "Content-Type" "application/edn"))
+      (catch Exception e (response/bad-request
+                          (str "Error: " (.getMessage e)))))))
+``` 
 
+We just get status and country id form a user and try to update our database, if everything is okay we return updated countries, and in case of an error we send back an error message.
 
+And we also need to add that handler to `home-routes` list:
+
+```clojure
+...
+["/user-countries"
+     ["" {:get get-user-countries-handler
+          :put put-user-countries-handler}]]
+```
+
+Now we can get back to front-end and add event handlers to `visitera.events` namespace. `:update-user-countries` to handle requests to the server. And `:set-last-updated` to do optimistic updates and not to rerender the whole map component.
+
+```clojure
+(rf/reg-event-db
+ :set-last-updated
+ (fn [db [_ country]]
+   (assoc db :last-updated country)))
+
+(rf/reg-event-fx
+ :update-user-countries
+ (fn [{:keys [db]} [_ country]]
+   {:http-xhrio {:method          :put
+                 :uri             "/api/user-countries"
+                 :params          country
+                 :format          (ajax-edn/edn-request-format)
+                 :response-format (ajax-edn/edn-response-format)
+                 :on-success      [:set-countries]
+                 :on-failure      [:common/set-error]}
+    :dispatch [:set-last-updated country]}))
+```
+When we click on the map we'll do two actions at the same time: send a request to the server to update data in the database and update our map immediately because we already know how it should be updated.
 
 
 [reagent]: https://reagent-project.github.io/
@@ -737,7 +783,7 @@ And now we can go to the browser and make sure that our UI looks much better.
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjE0MzQ2ODQwLC0xMDcyMjE0OTE3LDg5OD
+eyJoaXN0b3J5IjpbNzA0ODc1MTExLC0xMDcyMjE0OTE3LDg5OD
 k1MjE5OCw0Mzg1MDY0MzUsMTY4NTAwNDU2NywtMTQ2NjA3MzI5
 N119
 -->
