@@ -720,7 +720,22 @@ And now we can go to the browser and make sure that our UI looks much better.
 
 Our app is almost ready. There is only one last step and the most important feature of our app --- map interactivity. When we click on a country on the map it should change its state, giving us an ability to visually track our trips.
 
-As usual let's start with the back-end part. Here is a handler that we need to add to `visitera.routes.home` namespace:
+As usual let's start with the back-end part. First we'll need to do some updates to the database layer. But before we start let's add one useful [library for pattern matching][core-match] to our project dependencies. We need to open `project.clj` and add it to the dependencies list:
+
+```clojure
+...
+[org.clojure/core.match "0.3.0"]
+...
+```
+
+And to apply the changes we need to restart our server:
+1. <kbd>Ctrl</kbd> + <kbd>D</kbd> to stop.
+2. Then `lein repl`
+3. And `(start)`
+
+Now we can start adding changes to our `visitera.db.core`
+
+Here is a handler that we need to add to `visitera.routes.home` namespace:
 
 ```clojure
 (defn put-user-countries-handler [{:keys [params session]}]
@@ -791,8 +806,9 @@ And to get the last country that was updated we also add a subscription to `visi
 [countries-list-json]: https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json
 [json-to-edn-converter]: http://pschwarz.bicycle.io/json-to-edn/
 [re-frisk]: https://github.com/flexsurfer/re-frisk
+[core-match]: https://github.com/clojure/core.match
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI3MjUzMzc5NSwtMTA3MjIxNDkxNyw4OT
-g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
-OTddfQ==
+eyJoaXN0b3J5IjpbLTY0Mjk1MywtMTA3MjIxNDkxNyw4OTg5NT
+IxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMyOTdd
+fQ==
 -->
