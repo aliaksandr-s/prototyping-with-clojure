@@ -7,8 +7,11 @@ pom.xml
 # test-config.edn
 *.jar
 *.class
+.classpath
 /.lein-*
 profiles.clj
+.project
+.settings
 /.env
 .nrepl-port
 /.rebel_*
