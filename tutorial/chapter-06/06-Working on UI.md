@@ -836,6 +836,113 @@ And to get the last country that was updated we also add a subscription to `visi
    (:last-updated db)))
 ```
 
+And here is the updated `map-component`:
+
+```clojure
+(defn- get-next-status [status]
+  (case status
+    nil          :to-visit
+    :not-visited :to-visit
+    :to-visit    :visited
+    :visited     :not-visited))
+
+(defn map-component-inner
+  [countries last-updated]
+  (let [chart-ref (r/atom nil)
+        polygon-ref (r/atom nil)
+
+        on-country-click (fn [ev]
+                           (let [country-id (.. ev -target -dataItem -dataContext -id)
+                                 status (keyword (.. ev -target -dataItem -dataContext -status))]
+                             (rf/dispatch [:update-user-countries {:status (get-next-status status)
+                                                                   :id country-id}])))
+
+        create (fn [this]
+                 ; Define globals
+                 (def am4core (.-am4core js/window))
+                 (def am4maps (.-am4maps js/window))
+                 (def am4geodata_worldLow (.-am4geodata_worldLow js/window))
+
+                 ; Create map instance
+                 (def chart (.create am4core "chartdiv" (.-MapChart am4maps)))
+                 (swap! chart-ref (fnil identity chart)) ;save to preperly destroy
+
+                 ; Config chart
+                 (set! (.-geodata chart) am4geodata_worldLow)
+                 (set! (.-projection chart) (new (.-Miller (.-projections am4maps))))
+                 (set! (.-zoomControl chart) (new (.-ZoomControl am4maps)))
+
+                 ; Make map load polygon (like country names) data from GeoJSON
+                 (def polygonSeries (.push (.-series chart) (new (.-MapPolygonSeries am4maps))))
+                 (swap! polygon-ref (fnil identity polygonSeries))
+
+                 ; remove antarctica
+                 (set! (.-exclude polygonSeries) #js ["AQ"])
+
+                 ; Make map load polygon (like country names) data from GeoJSON
+                 (set! (.-useGeodata polygonSeries) true)
+
+                 ; Configure series
+                 (def polygonTemplate (.. polygonSeries -mapPolygons -template))
+                 (set! (.-tooltipText polygonTemplate) "{name}")
+                 (set! (.-fill polygonTemplate) (:not-visited cfg/colors))
+                 (.on (.-events polygonTemplate) "hit" on-country-click)
+
+                 ; set initial data
+                 (set! (.-data polygonSeries) (clj->js countries))
+                 ; Bind "fill" property to "fill" key in data
+                 (set! (.. polygonTemplate -propertyFields -fill) "fill"))
+
+        update (fn [comp]
+                 (let [last-updated (second (rest (r/argv comp)))
+                       polygon (.getPolygonById @polygon-ref (:id last-updated))]
+                   (set! (.. polygon -dataItem -dataContext -status) (name (:status last-updated))) ;change status
+                   (set! (.-fill polygon) ((:status last-updated) cfg/colors)))) ;change color
+
+        destroy (fn []
+                  (if @chart-ref (do (.dispose @chart-ref)
+                                     (reset! chart-ref nil)
+                                     (reset! polygon-ref nil))))]
+    (r/create-class
+     {:display-name  "map-component"
+      :reagent-render (fn []
+                        [:div {:id "chartdiv"
+                               :style {:width "100%"
+                                       :height "calc(100vh - 5rem)"}}])
+      :component-did-mount
+      create
+      :component-will-unmount
+      destroy
+      :component-did-update
+      update})))
+
+
+(defn map-component []
+  (let [norm-countries (rf/subscribe [:normalized-countries])
+        countries      (rf/subscribe [:countries])
+        last-updated   (rf/subscribe [:last-updated])
+        visited-count  (rf/subscribe [:visited-count])
+        to-visit-count (rf/subscribe [:to-visit-count])]
+    (fn []
+      (if @countries
+        [:div
+         [:div [map-component-inner @norm-countries @last-updated]]
+         [:div [legend-comp @to-visit-count @visited-count]]]
+        [:div "Loading"]))))
+```
+
+We've added `on-country-click` handler which gets the id of currently clicked country, computes the next status, and dispatches `:update-user-countries` event. We also added `update` function that will be called when our component receives new properties. Inside it we use `am4charts` map api to directly make changes to the updated country. And we also added destroy function to properly clean everything when our component will be unmounted from the DOM.
+
+Now we can go the browser and see how everything works. By clicking on different countries we should immediately see the updates. And if we try to refresh the page everything will be properly restored. Awesome! Everything works as expected. So it means that we are done with the main part and have a fully working application. 
+
+##
+
+In this chapter we got some basic understanding on how to work with front-end in ClojureScript using [reagent] and [re-frame],
+added a map, connected it to the back-end so we could show countries and dynamically update their statuses.
+
+In the next chapter we will deploy our application to the remote server.
+
+Code for the end of this chapter can be found in  `app/chapter-06/end`folder.
 
 [reagent]: https://reagent-project.github.io/
 [re-frame]: https://github.com/Day8/re-frame
@@ -852,7 +959,7 @@ And to get the last country that was updated we also add a subscription to `visi
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 [core-match]: https://github.com/clojure/core.match
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDE4OTU0OTMsLTEwNzIyMTQ5MTcsOD
-k4OTUyMTk4LDQzODUwNjQzNSwxNjg1MDA0NTY3LC0xNDY2MDcz
-Mjk3XX0=
+eyJoaXN0b3J5IjpbMTExNjExNTczNSwtMTA3MjIxNDkxNyw4OT
+g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
+OTddfQ==
 -->
