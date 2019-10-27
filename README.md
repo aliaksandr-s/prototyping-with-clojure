@@ -13,7 +13,7 @@ This series of tutorials is supposed to show you how to turn your ideas into wor
 ### [Chapter-3: Environment set up][chapter-3] 
 ### [Chapter-4: Data modeling][chapter-4]
 ### [Chapter-5: Registration and authentication][chapter-5]
-### [Chapter-6].....
+### [Chapter-6: Working on UI][chapter-6] 
 
 
 [chapter-1]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-01/01-The%20app%20idea.md
@@ -21,7 +21,8 @@ This series of tutorials is supposed to show you how to turn your ideas into wor
 [chapter-3]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-03/03-Environment%20set%20up.md
 [chapter-4]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-04/04-Data%20modeling.md
 [chapter-5]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-05/05-Registration%20and%20authentication.md
+[chapter-6]: https://github.com/aliaksandr-s/prototyping-with-clojure/blob/master/tutorial/chapter-06/06-Working%20on%20UI.md
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQ5MDg2NzM0LDk4MjExMDQ1OCwtMTQ3NT
-UzNDUwMSw5NTMyMzg5ODQsMTAzNTc3MDEzN119
+eyJoaXN0b3J5IjpbLTE0NjMxOTU3OTAsOTgyMTEwNDU4LC0xND
+c1NTM0NTAxLDk1MzIzODk4NCwxMDM1NzcwMTM3XX0=
 -->
