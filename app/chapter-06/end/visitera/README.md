@@ -2,20 +2,32 @@
 
 generated using Luminus version "3.42"
 
-FIXME
-
 ## Prerequisites
 
-You will need [Leiningen][1] 2.0 or above installed.
+1. [Leiningen]
+2. [Datomic]
 
-[1]: https://github.com/technomancy/leiningen
+[leiningen]: https://github.com/technomancy/leiningen
+[datomic]: https://my.datomic.com/downloads/free
 
 ## Running
 
-To start a web server for the application, run:
+1. Run datomic
 
-    lein run 
+   - `cd {datomic-folder}`
+   - `bin/transactor config/samples/free-transactor-template.properties`
+   - _Optional gui console_: `bin/console -p 8080 dev datomic:free://localhost:4334`
+
+2. Start a web server:
+
+   - `lein repl`
+   - `(start)`
+
+3. Start client:
+
+   - `lein figwheel`
+   - Go to `localhost:3001` in your browser
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2019 Aliaksandr Sushkevich

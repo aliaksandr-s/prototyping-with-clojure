@@ -32,6 +32,7 @@
                  [org.webjars.npm/material-icons "0.3.0"]
                  [org.webjars/webjars-locator "0.36"]
                  [org.webjars/font-awesome "5.9.0"]
+                 [org.clojure/core.match "0.3.0"]
                  [re-frame "0.10.8"]
                  [reagent "0.8.1"]
                  [ring-webjars "0.2.0"]

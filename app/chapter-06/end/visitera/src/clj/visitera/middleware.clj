@@ -29,11 +29,11 @@
 
 (defn wrap-csrf [handler]
   (wrap-anti-forgery
-    handler
-    {:error-response
-     (error-page
-       {:status 403
-        :title "Invalid anti-forgery token"})}))
+   handler
+   {:error-response
+    (error-page
+     {:status 403
+      :title "Invalid anti-forgery token"})}))
 
 
 (defn wrap-formats [handler]
@@ -56,11 +56,13 @@
         (wrap-authentication backend)
         (wrap-authorization backend))))
 
+(def ^:private three-days (* 60 60 24 3))
+
 (defn wrap-base [handler]
   (-> ((:middleware defaults) handler)
       wrap-auth
       (wrap-defaults
-        (-> site-defaults
-            (assoc-in [:security :anti-forgery] false)
-            (assoc-in  [:session :store] (ttl-memory-store (* 60 30)))))
+       (-> site-defaults
+           (assoc-in [:security :anti-forgery] false)
+           (assoc-in  [:session :store] (ttl-memory-store three-days))))
       wrap-internal-error))
