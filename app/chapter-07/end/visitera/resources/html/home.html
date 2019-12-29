@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Welcome to visitera</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<!-- scripts and styles -->
+		{% style "/assets/bulma/css/bulma.min.css" %}
+		{% style "/assets/material-icons/css/material-icons.min.css" %}
+		{% style "/css/screen.css" %}
+
+		<script type="text/javascript">
+			var csrfToken = '{{csrf-token}}';
+		</script>
+		<script src="https://www.amcharts.com/lib/4/core.js"></script>
+		<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+		<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+
+		{% script "/js/app.js" %}
+	</body>
+</html>

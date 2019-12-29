@@ -1,0 +1,47 @@
+{;; norm1 installs the schema into Datomic
+ :visitera/norm1
+ {:txes
+  [[;; User schema
+    {:db/doc                "User email address"
+     :db/ident              :user/email
+     :db/valueType          :db.type/string
+     :db/cardinality        :db.cardinality/one
+     :db/unique             :db.unique/identity}
+
+    {:db/doc                "User password hash"
+     :db/ident              :user/password
+     :db/valueType          :db.type/string
+     :db/cardinality        :db.cardinality/one}
+
+    {:db/doc                "Countries user already visited"
+     :db/ident              :user/countries-visited
+     :db/valueType          :db.type/ref
+     :db/cardinality        :db.cardinality/many}
+
+    {:db/doc                "Countries user wants to visit"
+     :db/ident              :user/countries-to-visit
+     :db/valueType          :db.type/ref
+     :db/cardinality        :db.cardinality/many}]
+
+    ;; Country schema
+   [{:db/doc                "Country name"
+     :db/ident              :country/name
+     :db/valueType          :db.type/string
+     :db/cardinality        :db.cardinality/one
+     :db/unique             :db.unique/identity}
+
+    {:db/doc                "Country ISO alpha-3 code"
+     :db/ident              :country/alpha-3
+     :db/valueType          :db.type/string
+     :db/cardinality        :db.cardinality/one}
+
+    {:db/doc                "Country code"
+     :db/ident              :country/code
+     :db/valueType          :db.type/string
+     :db/cardinality        :db.cardinality/one}
+
+    {:db/doc                "Country ISO alpha-2 code"
+     :db/ident              :country/alpha-2
+     :db/valueType          :db.type/string
+     :db/cardinality        :db.cardinality/one
+     :db/unique             :db.unique/identity}]]}}

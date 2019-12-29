@@ -1,0 +1,22 @@
+{:visitera/data2
+ {:txes
+  [[{:user/email
+     "test@user.com"
+     :user/password
+     ; somepass
+     "bcrypt+sha512$c0d6f8f472f9312d1ac5cb84b39c858e$12$72eb4c3d6d0f6148c66657da865705f67c1914ef1d66fd2a"
+     :user/countries-to-visit
+     [{:country/name "Zambia"}
+      {:country/name "France"}
+      {:country/name "Albania"}
+      {:country/name "Andorra"}]
+     :user/countries-visited
+     [{:country/alpha-2 "RU"}
+      {:country/alpha-2 "CZ"}
+      {:country/alpha-2 "US"}]}
+
+    {:user/email
+     "test@user-1.com"
+     :user/password
+     ; somepass
+     "bcrypt+sha512$c0d6f8f472f9312d1ac5cb84b39c858e$12$72eb4c3d6d0f6148c66657da865705f67c1914ef1d66fd2a"}]]}}

@@ -1,0 +1,53 @@
+{% extends "auth.html" %}  <!--  here we specify what template to extend  -->
+{% block form %}           <!--  a place in auth template where the next code will be injected -->
+<form method="POST" action="/register" class="box"> 
+    {% csrf-field %}       <!--  more about this here http://www.luminusweb.net/docs/security.html#cross_site_request_forgery_protection -->
+    <label class="label is-medium has-text-centered">Create Account</label>
+    <div class="field">
+        <label for="email" class="label">Email</label>
+        <div class="control has-icons-left">
+            <!-- Make input red if any errors in validation. 
+                 Also pass email back from the server so user wouldn't have to type it again -->
+             <input type="text"
+                   name="email"
+                   placeholder="e.g.bobsmith@gmail.com"
+                   class="input {% if errors.email %} is-danger {% endif %}"
+                   value="{% if email %}{{email}}{% endif %}"
+            />
+           <span class="icon is-small is-left">
+                <i class="fa fa-envelope"></i>
+            </span>
+        </div>
+        <!-- Show validation errors if any -->
+        {% if errors.email %}
+        <p class="help is-danger">{{errors.email}}</p>
+        {% endif %}
+
+   </div>
+    <div class="field">
+        <label for="password" class="label">Password</label>
+        <div class="control has-icons-left">
+            <input type="password"
+                   name="password"
+                   placeholder="*******"
+                   class="input {% if errors.password %} is-danger {% endif %}"
+ 
+            />
+            <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+            </span>
+        </div>
+        {% if errors.password %}
+        <p class="help is-danger">{{errors.password}}</p>
+        {% endif %}
+    </div>
+   <div class="field">
+        <button class="button is-success" style="width: 100%">
+            Register
+        </button>
+    </div>
+    <div class="field has-text-centered">
+        <span>Already a user? <a href="/login">Log in</a></span>
+    </div>
+</form>
+{% endblock %}
