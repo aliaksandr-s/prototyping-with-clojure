@@ -2,6 +2,8 @@
 
 generated using Luminus version "3.42"
 
+FIXME
+
 ## Prerequisites
 
 1. [Leiningen]
@@ -23,11 +25,20 @@ generated using Luminus version "3.42"
    - `lein repl`
    - `(start)`
 
-3. Start client:
+3. Start clientYou will need [Leiningen][1] 2.0 or above installed.
 
-   - `lein figwheel`
-   - Go to `localhost:3001` in your browser
+[1]: https://github.com/technomancy/leiningen
+
+## Running
+
+To start a web server for the application, run:
+
+   - ` lein figwheel`
+   - Go to `localhost:3001` in your browserrun 
 
 ## License
 
-Copyright © 2019 Aliaksandr Sushkevich
+Copyright © 2019 Aliaksandr SushkevichFIXME
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4NjE3MzY5ODVdfQ==
+-->
