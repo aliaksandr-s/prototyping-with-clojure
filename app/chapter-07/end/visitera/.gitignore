@@ -15,3 +15,7 @@ profiles.clj
 
 /node_modules
 /log
+/data
+
+/datomic/data
+/datomic/log

@@ -1,0 +1,16 @@
+---
+
+version: '3'
+
+services:
+
+  db:
+    image: akiel/datomic-free
+    ports:     
+      - "4334-4336:4334-4336"
+    environment: 
+      DATOMIC_PASSWORD: datomic
+      ADMIN_PASSWORD: admin
+    # volumes:
+    #   - ./data:/data
+    #   - ./log:/log

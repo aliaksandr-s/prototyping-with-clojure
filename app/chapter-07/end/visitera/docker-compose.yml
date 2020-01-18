@@ -1,0 +1,26 @@
+---
+
+version: '3'
+
+services:
+
+  db:
+    image: akiel/datomic-free
+    environment: 
+      DATOMIC_PASSWORD: datomic
+      ADMIN_PASSWORD: admin
+      ALT_HOST: db
+    volumes:
+      - ./data:/data
+      - ./log:/log
+
+  app:
+    build: .
+    ports:     
+      - "3000:3000"
+    depends_on: 
+      - db
+    environment:
+      - DATABASE_URL=datomic:free://db:4334/visitera_prod?password=datomic
+    volumes:
+      - ./log:/log

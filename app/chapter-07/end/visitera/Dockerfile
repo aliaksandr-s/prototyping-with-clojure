@@ -1,7 +1,14 @@
-FROM openjdk:8-alpine
+FROM clojure
 
-COPY target/uberjar/visitera.jar /visitera/app.jar
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-EXPOSE 3000
+COPY project.clj /usr/src/app/
 
-CMD ["java", "-jar", "/visitera/app.jar"]
+RUN lein deps
+COPY . /usr/src/app
+
+RUN lein uberjar
+RUN mv ./target/uberjar/visitera.jar /usr/src/app/visitera.jar
+
+CMD ["java", "-jar", "/usr/src/app/visitera.jar"]

@@ -2,7 +2,8 @@
   (:require
    [reagent.core :as r]
    [re-frame.core :as rf]
-   [visitera.config :as cfg]))
+   [visitera.config :as cfg]
+   [goog.object :as g]))
 
 (defn legend-tag
   [color]
@@ -50,8 +51,8 @@
         polygon-ref (r/atom nil)
 
         on-country-click (fn [ev]
-                           (let [country-id (.. ev -target -dataItem -dataContext -id)
-                                 status (keyword (.. ev -target -dataItem -dataContext -status))]
+                           (let [country-id (g/getValueByKeys ev "target" "dataItem" "dataContext" "id")
+                                 status (keyword (g/getValueByKeys ev "target" "dataItem" "dataContext" "status"))]
                              (rf/dispatch [:update-user-countries {:status (get-next-status status)
                                                                    :id country-id}])))
 
@@ -93,8 +94,8 @@
 
         update (fn [comp]
                  (let [last-updated (second (rest (r/argv comp)))
-                       polygon (.getPolygonById @polygon-ref (:id last-updated))]
-                   (set! (.. polygon -dataItem -dataContext -status) (name (:status last-updated))) ;change status
+                       polygon (. (g/get @polygon-ref "getPolygonById") call @polygon-ref (:id last-updated))]
+                   (g/set (g/getValueByKeys polygon "dataItem" "dataContext") "status" (name (:status last-updated))) ;change status
                    (set! (.-fill polygon) ((:status last-updated) cfg/colors)))) ;change color
 
         destroy (fn []

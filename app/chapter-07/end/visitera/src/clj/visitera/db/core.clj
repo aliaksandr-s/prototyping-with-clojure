@@ -23,7 +23,7 @@
 
 (defn install-schema
   [conn]
-  (for [resource db-resources]
+  (doseq [resource db-resources]
     (let [norms-map (c/read-resource resource)]
       (c/ensure-conforms conn norms-map (keys norms-map)))))
 
