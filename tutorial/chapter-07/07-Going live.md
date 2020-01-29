@@ -15,14 +15,17 @@ All the configs are already set up for us and we just need to provide a `databas
 ``` 
 
 That's all the preparations that we need. Now we can create a production build using this command:
+
 ```
 lein uberjar
 ``` 
 
 If everything is okay it should create a `visitera.jar` file inside `visitera/target/uberjar` folder. Now we can run and test our production ready application using the next command:
+
 ```
 java -jar ./target/uberjar/visitera.jar
 ```
+
 Just not to forget that we should have a running database (`bin/transactor config/samples/free-transactor-template.properties`) before we launch our application.
 
 Our app is running so it's time to test it. Let's go to `localhost:3000` and try to create a new user. But after submitting a form we see an error screen. What just happened? Why isn't it working?
@@ -33,7 +36,40 @@ To figure out where the problem is we can use logs stored in `visitera/log/visit
 Caused by: datomic.impl.Exceptions$IllegalArgumentExceptionInfo: :db.error/not-an-entity Unable to resolve entity: :user/email
 ```
 
-We're using a new database for production and it seems our database schema hasn't been created. 
+We're using a new database for production and it seems our database schema hasn't been created. But why? It just worked in dev environment. 
+
+It occurred that the problem was with `install-schema` function from `visitera.db.core` namespace.
+
+```clojure
+(defn install-schema
+  [conn]
+  (for [resource db-resources]
+    (let [norms-map (c/read-resource resource)]
+      (c/ensure-conforms conn norms-map (keys norms-map)))))
+```
+
+Here we're using `for` function to iterate over `db-resources` and do updates to the database. And `for` builds a lazy sequence that by coincidence will be forced to evaluate by REPL when we run our server, in a non-interactive environment nothing will happen though. So to fix this issue we just need to replace `for` with `doseq` which will eagerly execute everything.
+
+```clojure
+(defn install-schema
+  [conn]
+  (doseq [resource db-resources]
+    (let [norms-map (c/read-resource resource)]
+      (c/ensure-conforms conn norms-map (keys norms-map)))))
+```
+
+And now we need to rebuild our application again with:
+
+```
+lein uberjar
+``` 
+
+And run it with:
+
+```
+java -jar ./target/uberjar/visitera.jar
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2ODY1Mzc0OCwyMDA1NDAyNzEyXX0=
+eyJoaXN0b3J5IjpbLTI3NDQ2NTk1NSwxODY4NjUzNzQ4LDIwMD
+U0MDI3MTJdfQ==
 -->
