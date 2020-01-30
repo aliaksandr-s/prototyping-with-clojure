@@ -97,7 +97,23 @@ It seems there is an error in our `../components/map.cljs` component in this lin
 ```
 
 But we don't have any properties called `xf`. So what's happening here?
+
+......
+.....
+
+
+
+
+
+```
+                                      Google Closure
+               CLSJ Compiler             Compiler
+             -----------------      ------------------
++---------------+         +------------+         +--------------+
+| ClojureScript +-------->+ JavaScript +-------->+ Optimized JS |
++---------------+         +------------+         +--------------+
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTczNTE5MjIsMTg2ODY1Mzc0OCwyMD
-A1NDAyNzEyXX0=
+eyJoaXN0b3J5IjpbLTM1NzI4MDE0MywxODY4NjUzNzQ4LDIwMD
+U0MDI3MTJdfQ==
 -->
