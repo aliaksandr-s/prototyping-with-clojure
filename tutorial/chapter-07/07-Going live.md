@@ -69,7 +69,35 @@ And run it with:
 ```
 java -jar ./target/uberjar/visitera.jar
 ```
+
+Now registration and login should work and we can pass through them to the map screen. 
+
+But another surprise waits us here. If we try to click on the map nothing will happen. And in the browser console we should see an error similar to that one:
+
+```javascript
+map.cljs:53 Uncaught TypeError: Cannot read property 'xf' of undefined
+    at map.cljs:53
+    at Object.dispatch (core.js:1)
+    at core.js:1
+    at Object.e.each (core.js:1)
+    at e.t._eachListener (core.js:1)
+    at e.t.dispatchImmediately (core.js:1)
+    at e._dispatchSpritePointEvent (core.js:1)
+    at Object.dispatch (core.js:1)
+    at core.js:1
+    at Object.e.each (core.js:1)
+```
+
+It seems there is an error in our `../components/map.cljs` component in this line:
+
+```clojure
+...
+(let [country-id (.. ev -target -dataItem -dataContext -id)
+...
+```
+
+But we don't have any properties called `xf`. So what's happening here?
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI3NDQ2NTk1NSwxODY4NjUzNzQ4LDIwMD
-U0MDI3MTJdfQ==
+eyJoaXN0b3J5IjpbLTEyOTczNTE5MjIsMTg2ODY1Mzc0OCwyMD
+A1NDAyNzEyXX0=
 -->
