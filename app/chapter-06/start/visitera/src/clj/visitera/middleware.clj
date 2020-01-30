@@ -25,7 +25,7 @@
         (log/error t (.getMessage t))
         (error-page {:status 500
                      :title "Something very bad has happened!"
-                     :message (.getMessage t)})))))
+                     :message "We've dispatched a team of highly trained gnomes to take care of the problem."})))))
 
 (defn wrap-csrf [handler]
   (wrap-anti-forgery
