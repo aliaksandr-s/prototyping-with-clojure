@@ -98,12 +98,7 @@ It seems there is an error in our `../components/map.cljs` component in this lin
 
 But we don't have any properties called `xf`. So what's happening here?
 
-......
-.....
-
-
-
-
+To understand what caused that problem let's have a look how our production ready code is being produced. There are a few steps here. First our ClojureScript code is compiled to JavaScript and then it will be aggressively minified by [Google Closure Compiler][google-closure]. 
 
 ```
                                       Google Closure
@@ -113,7 +108,48 @@ But we don't have any properties called `xf`. So what's happening here?
 | ClojureScript +-------->+ JavaScript +-------->+ Optimized JS |
 +---------------+         +------------+         +--------------+
 ```
+During this minification process Google Closure will rename object properties to shorter names. But it knows nothing about [amcharts] library that we used to implement the world map so after minifying  our code all the linkages with that library are broken.  One of the simplest solutions to this problem is to explicitly tell Google Closure not to rename properties that we are using.
+
+So here are the updates that we need to add to `visitera.components.map` namespace:
+
+ 1. Import [Google Closure Utils][google-closure-api]
+
+```clojure
+(ns visitera.components.map
+  (:require
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   [visitera.config :as cfg]
+   [goog.object :as g]))
+```
+
+  2. Update some functions to preserve property names after compilation process.
+
+```clojure
+...
+on-country-click (fn [ev]
+                   (let [country-id (g/getValueByKeys ev "target" "dataItem" "dataContext" "id")
+                         status (keyword (g/getValueByKeys ev "target" "dataItem" "dataContext" "status"))]
+                     (rf/dispatch [:update-user-countries {:status (get-next-status status)
+                                                           :id country-id}])))
+...
+update (fn [comp]
+         (let [last-updated (second (rest (r/argv comp)))
+               polygon (. (g/get @polygon-ref "getPolygonById") call @polygon-ref (:id last-updated))]
+           (g/set (g/getValueByKeys polygon "dataItem" "dataContext") "status" (name (:status last-updated))) ;change status
+           (set! (.-fill polygon) ((:status last-updated) cfg/colors)))) ;change color
+...
+```
+
+And as a last step we need to rebuild and test the production build again. This time everything should work as expected. And we can move on to the next step.
+
+## Containerization
+
+
+[google-closure]: https://clojurescript.org/about/closure
+[amcharts]: https://www.amcharts.com/
+[google-closure-api]: https://google.github.io/closure-library/api/goog.object.html
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM1NzI4MDE0MywxODY4NjUzNzQ4LDIwMD
-U0MDI3MTJdfQ==
+eyJoaXN0b3J5IjpbLTEzNDczMjAwNzcsLTM1NzI4MDE0MywxOD
+Y4NjUzNzQ4LDIwMDU0MDI3MTJdfQ==
 -->
