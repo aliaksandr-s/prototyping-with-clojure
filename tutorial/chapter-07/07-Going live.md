@@ -145,6 +145,22 @@ And as a last step we need to rebuild and test the production build again. This 
 
 ## Containerization
 
+                                            Host                               Host
+                                +--------------------------+       +-----------------------------+
+            Host                |          Docker          |       |             +-------------+ |
+   +----------------------+     | +----------------------+ |       |             |   Docker    | |
+   |                      |     | |                      | |       |             | +---------+ | |
+   | +------+ +---------+ |     | | +------+ +---------+ | |       | +------+    | | Datomic | | |
+   | | Java | | Datomic | |     | | | Java | | Datomic | | |       | | Java |    | +---------+ | |
+   | +------+ +---------+ |     | | +-+----+ +-----+---+ | |       | +-+----+    +-------------+ |
+   |   ^            ^     |     | |   ^            ^     | |       |   ^                ^        |
+   |   |  +-----+   |     |     | |   |  +-----+   |     | |       |   |  +-----+       |        |
+   |   +--+ App +---+     |     | |   +--+ App +---+     | |       |   +--+ App +-------+        |
+   |      +-----+         |     | |      +-----+         | |       |      +-----+                |
+   |                      |     | |                      | |       |                             |
+   +----------------------+     | +----------------------+ |       +-----------------------------+
+                                |                          |
+                                +--------------------------+
 
 
 
@@ -152,6 +168,6 @@ And as a last step we need to rebuild and test the production build again. This 
 [amcharts]: https://www.amcharts.com/
 [google-closure-api]: https://google.github.io/closure-library/api/goog.object.html
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTM5MzcxNzUsLTEzNDczMjAwNzcsLTM1Nz
-I4MDE0MywxODY4NjUzNzQ4LDIwMDU0MDI3MTJdfQ==
+eyJoaXN0b3J5IjpbMjE0MDE2ODM1OCwtMTM0NzMyMDA3NywtMz
+U3MjgwMTQzLDE4Njg2NTM3NDgsMjAwNTQwMjcxMl19
 -->
