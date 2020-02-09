@@ -187,6 +187,51 @@ But before we dockerize the whole application we'll try to simplify our developm
 
 Before we can start we should [install docker][docker-install] and [install docker-compose][compose-install].
 
+After everything is installed we only need to create a `docker-compose.yml` file that will describe our database container. We will put it inside `visitera/datomic/` folder. So here is the content of it:
+
+```docker
+---
+version: '3'
+
+services:
+  db:
+    image: akiel/datomic-free
+    ports:     
+      - "4334-4336:4334-4336"
+    environment: 
+      DATOMIC_PASSWORD: datomic
+      ADMIN_PASSWORD: admin
+    volumes:
+      - ./data:/data
+      - ./log:/log
+```
+
+The config is pretty simple. It says that we're gonna have a service called `db` which will be based on [this image][datomic-image]. We also specify some environment variables and set mappings between host machine and the docker container for some ports and folders.
+
+Now we can run the next command from `visitera/datomic` folder:
+
+```
+docker-compose up
+```
+
+This should start up our database service inside a docker container and make it available to our host machine through shared ports we specified in a config file.
+
+And to test if it works with our application we need to change `:database-url` in `visitera/dev-config.end` file.
+
+```clojurle
+...
+ :database-url "datomic:free://localhost:4334/visitera_dev?password=datomic"
+...
+```
+And also we should not forget to add these folders to `.gitignore`
+
+```gitignore
+/datomic/data
+/datomic/log
+```
+
+Now we can try to run our application in development mode to make sure that everything works.
+
 
 
 
@@ -198,8 +243,9 @@ Before we can start we should [install docker][docker-install] and [install dock
 [docker]: https://www.docker.com/
 [docker-install]: https://docs.docker.com/install/
 [compose-install]: https://docs.docker.com/compose/install/
+[datomic-image]: https://hub.docker.com/r/akiel/datomic-free
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNDk1MzkxMjksMzE4ODY2NTUyLC0xMz
-Q3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1Mzc0OCwyMDA1NDAy
-NzEyXX0=
+eyJoaXN0b3J5IjpbLTEyNTk5MzgxOTAsLTEwNDk1MzkxMjksMz
+E4ODY2NTUyLC0xMzQ3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1
+Mzc0OCwyMDA1NDAyNzEyXX0=
 -->
