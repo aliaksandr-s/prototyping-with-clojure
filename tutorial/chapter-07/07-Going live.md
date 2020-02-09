@@ -145,34 +145,29 @@ And as a last step we need to rebuild and test the production build again. This 
 
 ## Containerization
 
-```
-         Host
-+----------------------+
-| +------+ +---------+ |
-| | Java | | Datomic | |
-| +------+ +---------+ |
-|   ^            ^     |
-|   |  +-----+   |     |
-|   +--+ App +---+     |
-|      +-----+         |
-+----------------------+
-```
+To be able to run our application we have a bunch of dependencies *(java, datamomic, leiningen)* installed on a local machine. If we want to move the application to a remote server we'd also have to install all those dependencies. It's not so hard to do this once. But what if we decide to move our application to another server? We'd have to go through this process again and again. 
+
+But there is a great solution called [docker][docker] that will help us to avoid this boring and redundant work of preparing the environment for our application. [Docker][docker] will create an isolated environment and handle all the dependencies based on a configuration file. So dockerizing our application will allow us to run it on any machine just by typing a few commands.  
+
+Here's a simple diagram showing what we want to achieve:
 
 ```
-            Host
-+--------------------------+
-|          Docker          |
-| +----------------------+ |
-| | +------+ +---------+ | |
-| | | Java | | Datomic | | |
-| | +------+ +---------+ | |
-| |   ^            ^     | |
-| |   |  +-----+   |     | |
-| |   +--+ App +---+     | |
-| |      +-----+         | |
-| +----------------------+ |
-+--------------------------+
+         Host                          Host
++----------------------+      +--------------------------+
+| +------+ +---------+ |      |          Docker          |
+| | Java | | Datomic | |      | +----------------------+ |        
+| +------+ +---------+ |      | | +------+ +---------+ | |           
+|   ^            ^     | ==>  | | | Java | | Datomic | | |
+|   |  +-----+   |     |      | | +------+ +---------+ | |
+|   +--+ App +---+     |      | |   ^            ^     | |
+|      +-----+         |      | |   |  +-----+   |     | |
++----------------------+      | |   +--+ App +---+     | |
+                              | |      +-----+         | |
+                              | +----------------------+ |
+                              +--------------------------+
 ```
+
+But before we dockerize the whole application we'll try to simplify our development process and start with creating a docker container for **datomic** so we wouldn't have to download and install it manually.
 
 ```
             Host
@@ -182,7 +177,7 @@ And as a last step we need to rebuild and test the production build again. This 
 |             | +---------+ | |
 | +------+    | | Datomic | | |
 | | Java |    | +---------+ | |
-| +-+----+    +-------------+ |
+| +------+    +-------------+ |
 |   ^                ^        |
 |   |  +-----+       |        |
 |   +--+ App +-------+        |
@@ -190,12 +185,21 @@ And as a last step we need to rebuild and test the production build again. This 
 +-----------------------------+
 ```
 
+Before we can start we should [install docker][docker-install] and [install docker-compose][compose-install].
+
+
+
+
 
 
 [google-closure]: https://clojurescript.org/about/closure
 [amcharts]: https://www.amcharts.com/
 [google-closure-api]: https://google.github.io/closure-library/api/goog.object.html
+[docker]: https://www.docker.com/
+[docker-install]: https://docs.docker.com/install/
+[compose-install]: https://docs.docker.com/compose/install/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzE4ODY2NTUyLC0xMzQ3MzIwMDc3LC0zNT
-cyODAxNDMsMTg2ODY1Mzc0OCwyMDA1NDAyNzEyXX0=
+eyJoaXN0b3J5IjpbLTEwNDk1MzkxMjksMzE4ODY2NTUyLC0xMz
+Q3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1Mzc0OCwyMDA1NDAy
+NzEyXX0=
 -->
