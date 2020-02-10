@@ -189,7 +189,7 @@ Before we can start we should [install docker][docker-install] and [install dock
 
 After everything is installed we only need to create a `docker-compose.yml` file that will describe our database container. We will put it inside `visitera/datomic/` folder. So here is the content of it:
 
-```docker
+```yml
 ---
 version: '3'
 
@@ -232,9 +232,67 @@ And also we should not forget to add these folders to `.gitignore`
 
 Now we can try to run our application in development mode to make sure that everything works.
 
+We improved our development process a little bit. So now we can get back to a production build and dockerize the whole application. We already created a config for datomic so we are only left with our main clojure application.
 
+Luminus framework already has a default `Dockerfile`:
 
+```docker
+FROM openjdk:8-alpine
 
+COPY target/uberjar/visitera.jar /visitera/app.jar
+
+EXPOSE 3000
+
+CMD ["java", "-jar", "/visitera/app.jar"]
+``` 
+
+Using it we can run a compiled `jar` file. This will work on our local machine because we have `leiningen` installed and can build our application manually. But for a remote server we want that build process to happen inside docker container so we wouldn't have to install any extra dependencies and just run our application with one command. So here is the updated `Dockerfile` that installs all the dependencies, creates a production build, and runs it:
+
+```docker
+FROM clojure
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY project.clj /usr/src/app/
+
+RUN lein deps
+COPY . /usr/src/app
+
+RUN lein uberjar
+RUN mv ./target/uberjar/visitera.jar /usr/src/app/visitera.jar
+
+CMD ["java", "-jar", "/usr/src/app/visitera.jar"]
+```
+
+And now we need to create a `docker-compose.yml` file in the root of our project and connect two docker containers. Here it is:
+
+```yml
+---
+version: '3'
+
+services:
+  db:
+    image: akiel/datomic-free
+    environment: 
+      DATOMIC_PASSWORD: datomic
+      ADMIN_PASSWORD: admin
+      ALT_HOST: db
+    volumes:
+      - ./data:/data
+      - ./log:/log
+
+  app:
+    build: .
+    ports:     
+      - "3000:3000"
+    depends_on: 
+      - db
+    environment:
+      - DATABASE_URL=datomic:free://db:4334/visitera_prod?password=datomic
+    volumes:
+      - ./log:/log
+```
 
 
 [google-closure]: https://clojurescript.org/about/closure
@@ -245,7 +303,7 @@ Now we can try to run our application in development mode to make sure that ever
 [compose-install]: https://docs.docker.com/compose/install/
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNTk5MzgxOTAsLTEwNDk1MzkxMjksMz
-E4ODY2NTUyLC0xMzQ3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1
-Mzc0OCwyMDA1NDAyNzEyXX0=
+eyJoaXN0b3J5IjpbLTEwMjYxODA0OTIsLTEyNTk5MzgxOTAsLT
+EwNDk1MzkxMjksMzE4ODY2NTUyLC0xMzQ3MzIwMDc3LC0zNTcy
+ODAxNDMsMTg2ODY1Mzc0OCwyMDA1NDAyNzEyXX0=
 -->
