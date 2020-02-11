@@ -940,7 +940,7 @@ Now we can go the browser and see how everything works. By clicking on different
 In this chapter we got some basic understanding on how to work with front-end in ClojureScript using [reagent] and [re-frame],
 added a map, connected it to the back-end so we could show countries and dynamically update their statuses.
 
-In the next chapter we will deploy our application to the remote server.
+In the next chapter we will create a production build and deploy our application to a remote server.
 
 Code for the end of this chapter can be found in  `app/chapter-06/end`folder.
 
@@ -959,7 +959,7 @@ Code for the end of this chapter can be found in  `app/chapter-06/end`folder.
 [re-frisk]: https://github.com/flexsurfer/re-frisk
 [core-match]: https://github.com/clojure/core.match
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTExNjExNTczNSwtMTA3MjIxNDkxNyw4OT
-g5NTIxOTgsNDM4NTA2NDM1LDE2ODUwMDQ1NjcsLTE0NjYwNzMy
-OTddfQ==
+eyJoaXN0b3J5IjpbMjU3ODU4ODU2LDExMTYxMTU3MzUsLTEwNz
+IyMTQ5MTcsODk4OTUyMTk4LDQzODUwNjQzNSwxNjg1MDA0NTY3
+LC0xNDY2MDczMjk3XX0=
 -->
