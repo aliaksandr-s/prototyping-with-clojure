@@ -210,7 +210,7 @@ The config is pretty simple. It says that we're gonna have a service called `db`
 
 Now we can run the next command from `visitera/datomic` folder:
 
-```
+```bash
 docker-compose up
 ```
 
@@ -225,7 +225,7 @@ And to test if it works with our application we need to change `:database-url` i
 ```
 And also we should not forget to add these folders to `.gitignore`
 
-```gitignore
+```git
 /datomic/data
 /datomic/log
 ```
@@ -294,6 +294,22 @@ services:
       - ./log:/log
 ```
 
+And to run our dockerized application to test it we can use the next command:
+
+```bash
+docker-compose up --build
+```
+
+After making sure that our application works as expected we only need not to forget to add shared `/log` and `/data` folders to `.gitignore`
+
+```git
+/log
+/data
+```
+## Deployment
+
+
+
 
 [google-closure]: https://clojurescript.org/about/closure
 [amcharts]: https://www.amcharts.com/
@@ -303,7 +319,8 @@ services:
 [compose-install]: https://docs.docker.com/compose/install/
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMjYxODA0OTIsLTEyNTk5MzgxOTAsLT
-EwNDk1MzkxMjksMzE4ODY2NTUyLC0xMzQ3MzIwMDc3LC0zNTcy
-ODAxNDMsMTg2ODY1Mzc0OCwyMDA1NDAyNzEyXX0=
+eyJoaXN0b3J5IjpbMjA5NTkyOTQyOCwtMTAyNjE4MDQ5MiwtMT
+I1OTkzODE5MCwtMTA0OTUzOTEyOSwzMTg4NjY1NTIsLTEzNDcz
+MjAwNzcsLTM1NzI4MDE0MywxODY4NjUzNzQ4LDIwMDU0MDI3MT
+JdfQ==
 -->
