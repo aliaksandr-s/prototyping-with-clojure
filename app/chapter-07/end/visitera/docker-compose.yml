@@ -1,9 +1,7 @@
 ---
-
 version: '3'
 
 services:
-
   db:
     image: akiel/datomic-free
     environment: 

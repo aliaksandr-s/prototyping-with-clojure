@@ -14,9 +14,16 @@ generated using Luminus version "3.42"
 
 1. Run datomic
 
+   1.1 Downloaded version
+
    - `cd {datomic-folder}`
    - `bin/transactor config/samples/free-transactor-template.properties`
    - _Optional gui console_: `bin/console -p 8080 dev datomic:free://localhost:4334`
+
+   1.2 Using docker
+
+   - `cd datomic`
+   - `docker-compose up`
 
 2. Start a web server:
 
@@ -31,3 +38,4 @@ generated using Luminus version "3.42"
 ## License
 
 Copyright © 2019 Aliaksandr Sushkevich
+
