@@ -306,9 +306,19 @@ After making sure that our application works as expected we only need not to for
 /log
 /data
 ```
+
 ## Deployment
 
+We created a production build and containerized it with docker. So everything is prepared to be shipped to a remote server. There are a lot of different cloud solutions but for our app will use [Digital Ocean][digital-ocean] because it's one of the simplest to use and has a great interface.
 
+So here is a sequence of steps that describes a deployment process:
+
+ 1. As a first step we definitely should register at [Digital Ocean][digital-ocean] (that was kinda obvious I guess).
+ 2. Create a new project
+ 3. Create a new droplet inside that project based on Ubuntu. It should have at least **2GB of RAM** (1GB is not enough for Datomic). We also should not to forget get a more **descriptive name** to our droplet and set up **SSH authentication**
+ 4. When droplet is created we can SSH into it from a terminal using this command: `shh root@{droplet-ip}`
+ 5. Clone the github repository to a home folder `cd /home && git clone https://github.com/aliaksandr-s/prototyping-with-clojure`
+ 6. Go to home folder `cd /home/prototyping-with-clojure/` and switch to a branch with deploy ready code `git checkout deploy`
 
 
 [google-closure]: https://clojurescript.org/about/closure
@@ -318,9 +328,10 @@ After making sure that our application works as expected we only need not to for
 [docker-install]: https://docs.docker.com/install/
 [compose-install]: https://docs.docker.com/compose/install/
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
+[digital-ocean]: https://www.digitalocean.com/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA5NTkyOTQyOCwtMTAyNjE4MDQ5MiwtMT
-I1OTkzODE5MCwtMTA0OTUzOTEyOSwzMTg4NjY1NTIsLTEzNDcz
-MjAwNzcsLTM1NzI4MDE0MywxODY4NjUzNzQ4LDIwMDU0MDI3MT
-JdfQ==
+eyJoaXN0b3J5IjpbLTE2MjcwNjk1OTYsMjA5NTkyOTQyOCwtMT
+AyNjE4MDQ5MiwtMTI1OTkzODE5MCwtMTA0OTUzOTEyOSwzMTg4
+NjY1NTIsLTEzNDczMjAwNzcsLTM1NzI4MDE0MywxODY4NjUzNz
+Q4LDIwMDU0MDI3MTJdfQ==
 -->
