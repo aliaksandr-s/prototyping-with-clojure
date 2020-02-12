@@ -315,7 +315,7 @@ So here is a sequence of steps that describes a deployment process:
 
  1. As a first step we definitely should register at [Digital Ocean][digital-ocean] (that was kinda obvious I guess).
  2. Create a new project
- 3. Create a new droplet inside that project based on Ubuntu. It should have at least **2GB of RAM** (1GB is not enough for Datomic). We also should not to forget get a more **descriptive name** to our droplet and set up **SSH authentication**
+ 3. Create a new docker based droplet (can be found in marketplace). It should have at least **2GB of RAM** (1GB is not enough for Datomic). We also should not to forget get a more **descriptive name** to our droplet and set up **SSH authentication**
  4. When droplet is created we can SSH into it from a terminal using this command: `shh root@{droplet-ip}`
  5. Clone the github repository to a home folder `cd /home && git clone https://github.com/aliaksandr-s/prototyping-with-clojure`
  6. Go to home folder `cd /home/prototyping-with-clojure/` and switch to a branch with deploy ready code `git checkout deploy`
@@ -330,8 +330,8 @@ So here is a sequence of steps that describes a deployment process:
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
 [digital-ocean]: https://www.digitalocean.com/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjcwNjk1OTYsMjA5NTkyOTQyOCwtMT
-AyNjE4MDQ5MiwtMTI1OTkzODE5MCwtMTA0OTUzOTEyOSwzMTg4
-NjY1NTIsLTEzNDczMjAwNzcsLTM1NzI4MDE0MywxODY4NjUzNz
-Q4LDIwMDU0MDI3MTJdfQ==
+eyJoaXN0b3J5IjpbMTUyOTQxMDcyLDIwOTU5Mjk0MjgsLTEwMj
+YxODA0OTIsLTEyNTk5MzgxOTAsLTEwNDk1MzkxMjksMzE4ODY2
+NTUyLC0xMzQ3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1Mzc0OC
+wyMDA1NDAyNzEyXX0=
 -->
