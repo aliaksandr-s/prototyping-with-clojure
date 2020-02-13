@@ -313,7 +313,7 @@ We created a production build and containerized it with docker. So everything is
 
 So here is a sequence of steps that describes a deployment process:
 
- 1. As a first step we definitely should register at [Digital Ocean][digital-ocean] (that was kinda obvious I guess).
+ 1. As a first step we definitely should register an account at [Digital Ocean][digital-ocean] (that was kinda obvious I guess).
  2. Create a new project
  3. Create a new docker based droplet (can be found in marketplace). It should have at least **2GB of RAM** (1GB is not enough for Datomic). We also should not to forget get a more **descriptive name** to our droplet and set up **SSH authentication**
  4. When droplet is created we can SSH into it from a terminal using this command: `shh root@{droplet-ip}`
@@ -330,8 +330,8 @@ So here is a sequence of steps that describes a deployment process:
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
 [digital-ocean]: https://www.digitalocean.com/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyOTQxMDcyLDIwOTU5Mjk0MjgsLTEwMj
-YxODA0OTIsLTEyNTk5MzgxOTAsLTEwNDk1MzkxMjksMzE4ODY2
-NTUyLC0xMzQ3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1Mzc0OC
-wyMDA1NDAyNzEyXX0=
+eyJoaXN0b3J5IjpbLTI4NzQxODE0NiwyMDk1OTI5NDI4LC0xMD
+I2MTgwNDkyLC0xMjU5OTM4MTkwLC0xMDQ5NTM5MTI5LDMxODg2
+NjU1MiwtMTM0NzMyMDA3NywtMzU3MjgwMTQzLDE4Njg2NTM3ND
+gsMjAwNTQwMjcxMl19
 -->
