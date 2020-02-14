@@ -328,7 +328,7 @@ Now our app is accessible to everyone who knows the ip address but it would be n
 
 Well and that is it. We learned how to create a production ready build and fixed issues with javascript compilation, dockerized the whole application and deployed it to DigitalOcean.
 
-The end app should be available at [visitera.info]
+The end app should be available at [visitera.info](visitera.info)
 
 
 [google-closure]: https://clojurescript.org/about/closure
@@ -342,8 +342,8 @@ The end app should be available at [visitera.info]
 [go-daddy-guide]: https://top5hosting.co.uk/blog/uk-hosting/361-connecting-a-godaddy-domain-with-digitalocean-droplet-step-by-step-guide-with-images
 [other-registrars]: https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMxMzk2MzIzMSwyMDk1OTI5NDI4LC0xMD
-I2MTgwNDkyLC0xMjU5OTM4MTkwLC0xMDQ5NTM5MTI5LDMxODg2
-NjU1MiwtMTM0NzMyMDA3NywtMzU3MjgwMTQzLDE4Njg2NTM3ND
-gsMjAwNTQwMjcxMl19
+eyJoaXN0b3J5IjpbMzY2NTQ0NDU1LDIwOTU5Mjk0MjgsLTEwMj
+YxODA0OTIsLTEyNTk5MzgxOTAsLTEwNDk1MzkxMjksMzE4ODY2
+NTUyLC0xMzQ3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1Mzc0OC
+wyMDA1NDAyNzEyXX0=
 -->
