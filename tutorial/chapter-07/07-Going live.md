@@ -210,7 +210,7 @@ The config is pretty simple. It says that we're gonna have a service called `db`
 
 Now we can run the next command from `visitera/datomic` folder:
 
-```
+```bash
 docker-compose up
 ```
 
@@ -225,7 +225,7 @@ And to test if it works with our application we need to change `:database-url` i
 ```
 And also we should not forget to add these folders to `.gitignore`
 
-```gitignore
+```git
 /datomic/data
 /datomic/log
 ```
@@ -265,7 +265,7 @@ RUN mv ./target/uberjar/visitera.jar /usr/src/app/visitera.jar
 CMD ["java", "-jar", "/usr/src/app/visitera.jar"]
 ```
 
-And now we need to create a `docker-compose.yml` file in the root of our project and connect two docker containers. Here it is:
+And now we need to create a `docker-compose.yml` file in the root of our project to connect two docker containers and make our app available at the default port. Here it is:
 
 ```yml
 ---
@@ -285,7 +285,7 @@ services:
   app:
     build: .
     ports:     
-      - "3000:3000"
+      - "80:3000"
     depends_on: 
       - db
     environment:
@@ -293,6 +293,42 @@ services:
     volumes:
       - ./log:/log
 ```
+
+And to run our dockerized application to test it we can use the next command:
+
+```bash
+docker-compose up --build
+```
+
+Our application should be available on `localhost`
+
+After making sure that our application works as expected we only need not to forget to add shared `/log` and `/data` folders to `.gitignore`
+
+```git
+/log
+/data
+```
+
+## Deployment
+
+We created a production build and containerized it with docker. So everything is prepared to be shipped to a remote server. There are a lot of different cloud solutions but for our app will use [DigitalOcean][digital-ocean] because it's one of the simplest to use and has a great interface.
+
+So here is a sequence of steps that describes a deployment process:
+
+ 1. As a first step we definitely should register an account at [Digital Ocean][digital-ocean] (that was kinda obvious I guess).
+ 2. Create a new project
+ 3. Create a new docker based droplet (can be found in marketplace). It should have at least **2GB of RAM** (1GB is not enough for Datomic). We also should not to forget to get a more **descriptive name** to our droplet and set up **SSH authentication**
+ 4. When droplet is created we can SSH into it from a terminal using this command: `shh root@{droplet-ip}`
+ 5. Clone the github repository to a home folder `cd /home && git clone https://github.com/aliaksandr-s/prototyping-with-clojure`
+ 6. Go to home folder `cd /home/prototyping-with-clojure/` and switch to a branch with deploy ready code `git checkout deploy`
+ 7. Spin up docker `docker-compose up --build`
+ 8. And after everything is loaded, our app should be accessible just through `http://{droplet-ip}`
+
+Now our app is accessible to everyone who knows the ip address but it would be nicer to give it a move descriptive domain name. Here is a step by step guide on [how to connect a GoDaddy domain with DigitalOcean droplet][go-daddy-guide], and another one describes [the process with other domain registrars][other-registrars].
+
+Well and that is it. We learned how to create a production ready build and fixed issues with javascript compilation, dockerized the whole application and deployed it to DigitalOcean.
+
+The end app should be available at [visitera.info](visitera.info)
 
 
 [google-closure]: https://clojurescript.org/about/closure
@@ -302,8 +338,12 @@ services:
 [docker-install]: https://docs.docker.com/install/
 [compose-install]: https://docs.docker.com/compose/install/
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
+[digital-ocean]: https://www.digitalocean.com/
+[go-daddy-guide]: https://top5hosting.co.uk/blog/uk-hosting/361-connecting-a-godaddy-domain-with-digitalocean-droplet-step-by-step-guide-with-images
+[other-registrars]: https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMjYxODA0OTIsLTEyNTk5MzgxOTAsLT
-EwNDk1MzkxMjksMzE4ODY2NTUyLC0xMzQ3MzIwMDc3LC0zNTcy
-ODAxNDMsMTg2ODY1Mzc0OCwyMDA1NDAyNzEyXX0=
+eyJoaXN0b3J5IjpbMzY2NTQ0NDU1LDIwOTU5Mjk0MjgsLTEwMj
+YxODA0OTIsLTEyNTk5MzgxOTAsLTEwNDk1MzkxMjksMzE4ODY2
+NTUyLC0xMzQ3MzIwMDc3LC0zNTcyODAxNDMsMTg2ODY1Mzc0OC
+wyMDA1NDAyNzEyXX0=
 -->
