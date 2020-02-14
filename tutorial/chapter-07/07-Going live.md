@@ -311,7 +311,7 @@ After making sure that our application works as expected we only need not to for
 
 ## Deployment
 
-We created a production build and containerized it with docker. So everything is prepared to be shipped to a remote server. There are a lot of different cloud solutions but for our app will use [Digital Ocean][digital-ocean] because it's one of the simplest to use and has a great interface.
+We created a production build and containerized it with docker. So everything is prepared to be shipped to a remote server. There are a lot of different cloud solutions but for our app will use [DigitalOcean][digital-ocean] because it's one of the simplest to use and has a great interface.
 
 So here is a sequence of steps that describes a deployment process:
 
@@ -324,6 +324,12 @@ So here is a sequence of steps that describes a deployment process:
  7. Spin up docker `docker-compose up --build`
  8. And after everything is loaded, our app should be accessible just through `http://{droplet-ip}`
 
+Now our app is accessible to everyone who knows the ip address but it would be nicer to give it a move descriptive domain name. Here is a step by step guide on [how to connect a GoDaddy domain with DigitalOcean droplet][go-daddy-guide], and another one describes [the process with other domain registrars][other-registrars].
+
+Well and that is it. We learned how to create a production ready build and fixed issues with javascript compilation, dockerized the whole application and deployed it to DigitalOcean.
+
+The end app should be available at visitera.info
+
 
 [google-closure]: https://clojurescript.org/about/closure
 [amcharts]: https://www.amcharts.com/
@@ -333,8 +339,10 @@ So here is a sequence of steps that describes a deployment process:
 [compose-install]: https://docs.docker.com/compose/install/
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
 [digital-ocean]: https://www.digitalocean.com/
+[go-daddy-guide]: https://top5hosting.co.uk/blog/uk-hosting/361-connecting-a-godaddy-domain-with-digitalocean-droplet-step-by-step-guide-with-images
+[other-registrars]: https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ5NDIyODczOSwyMDk1OTI5NDI4LC0xMD
+eyJoaXN0b3J5IjpbLTM5MTk1MjQyOSwyMDk1OTI5NDI4LC0xMD
 I2MTgwNDkyLC0xMjU5OTM4MTkwLC0xMDQ5NTM5MTI5LDMxODg2
 NjU1MiwtMTM0NzMyMDA3NywtMzU3MjgwMTQzLDE4Njg2NTM3ND
 gsMjAwNTQwMjcxMl19
