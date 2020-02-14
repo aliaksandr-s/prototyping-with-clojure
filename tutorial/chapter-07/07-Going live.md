@@ -265,7 +265,7 @@ RUN mv ./target/uberjar/visitera.jar /usr/src/app/visitera.jar
 CMD ["java", "-jar", "/usr/src/app/visitera.jar"]
 ```
 
-And now we need to create a `docker-compose.yml` file in the root of our project and connect two docker containers. Here it is:
+And now we need to create a `docker-compose.yml` file in the root of our project to connect two docker containers and make our app available at the default port. Here it is:
 
 ```yml
 ---
@@ -285,7 +285,7 @@ services:
   app:
     build: .
     ports:     
-      - "3000:3000"
+      - "80:3000"
     depends_on: 
       - db
     environment:
@@ -299,6 +299,8 @@ And to run our dockerized application to test it we can use the next command:
 ```bash
 docker-compose up --build
 ```
+
+Our application should be available on `localhost`
 
 After making sure that our application works as expected we only need not to forget to add shared `/log` and `/data` folders to `.gitignore`
 
@@ -315,10 +317,12 @@ So here is a sequence of steps that describes a deployment process:
 
  1. As a first step we definitely should register an account at [Digital Ocean][digital-ocean] (that was kinda obvious I guess).
  2. Create a new project
- 3. Create a new docker based droplet (can be found in marketplace). It should have at least **2GB of RAM** (1GB is not enough for Datomic). We also should not to forget get a more **descriptive name** to our droplet and set up **SSH authentication**
+ 3. Create a new docker based droplet (can be found in marketplace). It should have at least **2GB of RAM** (1GB is not enough for Datomic). We also should not to forget to get a more **descriptive name** to our droplet and set up **SSH authentication**
  4. When droplet is created we can SSH into it from a terminal using this command: `shh root@{droplet-ip}`
  5. Clone the github repository to a home folder `cd /home && git clone https://github.com/aliaksandr-s/prototyping-with-clojure`
  6. Go to home folder `cd /home/prototyping-with-clojure/` and switch to a branch with deploy ready code `git checkout deploy`
+ 7. Spin up docker `docker-compose up --build`
+ 8. And after everything is loaded, our app should be accessible just through `http://{droplet-ip}`
 
 
 [google-closure]: https://clojurescript.org/about/closure
@@ -330,7 +334,7 @@ So here is a sequence of steps that describes a deployment process:
 [datomic-image]: https://hub.docker.com/r/akiel/datomic-free
 [digital-ocean]: https://www.digitalocean.com/
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4NzQxODE0NiwyMDk1OTI5NDI4LC0xMD
+eyJoaXN0b3J5IjpbLTQ5NDIyODczOSwyMDk1OTI5NDI4LC0xMD
 I2MTgwNDkyLC0xMjU5OTM4MTkwLC0xMDQ5NTM5MTI5LDMxODg2
 NjU1MiwtMTM0NzMyMDA3NywtMzU3MjgwMTQzLDE4Njg2NTM3ND
 gsMjAwNTQwMjcxMl19
