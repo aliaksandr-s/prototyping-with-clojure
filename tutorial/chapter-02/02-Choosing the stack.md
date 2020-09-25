@@ -26,9 +26,9 @@ Authentication and authorization are big and complicated topics by themselvels. 
 
 Rerendering an application when its state changes used to be a big problem before [**React**][react]. It abstracted everything related to when and how you should change your DOM. When the state of your app changes all the necessary components will be rerendered automagically. To use it in Clojure world we can choose [**Reagent**][reagent] which is just a wrapper on top of [**React**][react]. 
 
-### State managament
+### State management
 
-Our app should be build out of components and those components should be able to get data from outside and also communicate to each other. So will use [**re-frame**][re-frame] to connect all the components into one live system.  
+Our app should be built out of components and those components should be able to get data from outside and also communicate to each other. So will use [**re-frame**][re-frame] to connect all the components into one live system.  
 
 We didn't go into too much details about each tool now. Because we'll get back to each of them in later chapters. But if you're not familiar with some of them It may be useful to have a quick glance at their docs.
 
